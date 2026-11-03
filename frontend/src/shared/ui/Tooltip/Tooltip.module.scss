@@ -1,0 +1,17 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.tooltip {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+
+  padding: 6px 10px;
+  border-radius: 4px;
+
+  background: #34404c;
+  color: #fff;
+  font-size: 12px;
+
+  transform: translate(10px, 10px);
+}

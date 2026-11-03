@@ -1,0 +1,21 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.header {
+  grid-column: marginleft / marginright;
+  grid-row: start/main;
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerInner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $body-bg-dark;
+}

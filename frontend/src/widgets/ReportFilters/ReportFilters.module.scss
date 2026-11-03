@@ -1,0 +1,94 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.filterWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 600px;
+  // height: 300px;
+  background-color: $body-bg-madium;
+  color: $text-color-light;
+  // z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  transition: all $transition-function $timing-function;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  // padding: 12px;
+  min-width: 360px;
+}
+
+.panelTitle {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.filterRow,
+.sortRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  input[type="text"],
+  input[type="number"] {
+    min-width: 0;
+    height: 30px;
+    padding: 5px 10px;
+    font: inherit;
+    display: inline-flex;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    font-optical-sizing: inherit;
+    font-size-adjust: inherit;
+    font-kerning: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 14px;
+    outline: none;
+    border: 1px solid $accent-color-primary;
+    background-color: transparent;
+  }
+
+  input {
+    flex: 1;
+    color: $text-color-light;
+  }
+
+  button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: $accent-color-primary;
+  }
+}
+
+.addButton {
+  align-self: flex-start;
+  padding: 6px 0;
+  border: none;
+  background: transparent;
+  color: #e99000;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.iconCsv {
+  color: $accent-color-primary;
+  cursor: pointer;
+}

@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: containers/api/Dockerfile
+      target: development
+    env_file: ./backend/.env.development
+    ports:
+      - "3200:3200"
+      - "9229:9229"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm run dev:debug
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+  nginx:
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro

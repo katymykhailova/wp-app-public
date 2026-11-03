@@ -1,0 +1,180 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+:global .myDatePickerPopper .react-datepicker__header {
+  background-color: $accent-color-light-transparent;
+}
+
+.myDatePicker {
+  @include input;
+}
+
+:global(.react-datepicker__tab-loop) {
+  display: inline-block !important;
+}
+
+:global
+  .myDatePickerPopper
+  .react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected {
+  background-color: $accent-color-primary;
+  color: #fff;
+}
+:global
+  .myDatePickerPopper
+  .react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected:hover {
+  background-color: $accent-color-primary;
+}
+:global .myDatePickerPopper .react-datepicker__week-number--selected {
+  background-color: $accent-color-primary;
+  color: #fff;
+}
+:global .myDatePickerPopper .react-datepicker__week-number--selected:hover {
+  background-color: $accent-color-light;
+}
+:global .myDatePickerPopper .react-datepicker__day--selected,
+:global .myDatePickerPopper .react-datepicker__day--in-selecting-range,
+:global .myDatePickerPopper .react-datepicker__day--in-range,
+:global .myDatePickerPopper .react-datepicker__month-text--selected,
+:global .myDatePickerPopper .react-datepicker__month-text--in-selecting-range,
+:global .myDatePickerPopper .react-datepicker__month-text--in-range,
+:global .myDatePickerPopper .react-datepicker__quarter-text--selected,
+:global .myDatePickerPopper .react-datepicker__quarter-text--in-selecting-range,
+:global .myDatePickerPopper .react-datepicker__quarter-text--in-range,
+:global .myDatePickerPopper .react-datepicker__year-text--selected,
+:global .myDatePickerPopper .react-datepicker__year-text--in-selecting-range,
+:global .myDatePickerPopper .react-datepicker__year-text--in-range {
+  background-color: $accent-color-primary;
+  color: #fff;
+}
+:global
+  .myDatePickerPopper
+  .react-datepicker__day--selected:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__day--in-selecting-range:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__day--in-range:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__month-text--selected:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__month-text--in-selecting-range:not(
+    [aria-disabled="true"]
+  ):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__month-text--in-range:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__quarter-text--in-selecting-range:not(
+    [aria-disabled="true"]
+  ):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__quarter-text--selected:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__quarter-text--in-range:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__year-text--selected:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__year-text--in-selecting-range:not(
+    [aria-disabled="true"]
+  ):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__year-text--in-range:not([aria-disabled="true"]):hover {
+  background-color: $accent-color-light;
+}
+:global .myDatePickerPopper .react-datepicker__day--keyboard-selected,
+:global .myDatePickerPopper .react-datepicker__month-text--keyboard-selected,
+:global .myDatePickerPopper .react-datepicker__quarter-text--keyboard-selected,
+:global .myDatePickerPopper .react-datepicker__year-text--keyboard-selected {
+  background-color: $accent-color-light;
+  color: #000;
+}
+:global
+  .myDatePickerPopper
+  .react-datepicker__day--keyboard-selected:not([aria-disabled="true"]):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__month-text--keyboard-selected:not(
+    [aria-disabled="true"]
+  ):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__quarter-text--keyboard-selected:not(
+    [aria-disabled="true"]
+  ):hover,
+:global
+  .myDatePickerPopper
+  .react-datepicker__year-text--keyboard-selected:not(
+    [aria-disabled="true"]
+  ):hover {
+  background-color: $accent-color-light;
+  color: #fff;
+}
+
+:global
+  .myDatePickerPopper
+  .react-datepicker__day--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ),
+:global
+  .myDatePickerPopper
+  .react-datepicker__month-text--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ),
+:global
+  .myDatePickerPopper
+  .react-datepicker__quarter-text--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ),
+:global
+  .myDatePickerPopper
+  .react-datepicker__year-text--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ) {
+  background-color: transparent;
+  color: #000;
+}
+
+:global
+  .myDatePickerPopper
+  .react-datepicker__year-text--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ) {
+  background-color: $accent-color-light;
+}
+:global .myDatePickerPopper .react-datepicker__close-icon::after {
+  cursor: pointer;
+  background-color: $accent-color-primary;
+  color: #fff;
+}

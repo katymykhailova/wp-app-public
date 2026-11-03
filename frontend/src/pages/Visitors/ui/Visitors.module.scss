@@ -1,0 +1,13 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.iconCsv {
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 15px;
+  padding: 0 5px 0 0;
+  color: $accent-color-primary;
+  cursor: pointer;
+}

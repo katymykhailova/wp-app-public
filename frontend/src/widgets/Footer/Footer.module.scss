@@ -1,0 +1,20 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.footer {
+  grid-column: start / end;
+  grid-row: footer / end;
+  justify-items: center;
+  align-content: center;
+  color: $accent-color-primary;
+  background-color: $body-bg-madium;
+
+  &Title {
+    text-align: center;
+  }
+
+  &Text {
+    color: $text-color-madium;
+    text-align: center;
+  }
+}

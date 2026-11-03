@@ -1,0 +1,70 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.popular {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  &Contacts {
+    position: relative;
+  }
+  &ContactsTitle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: $body-bg-dark;
+    color: $text-color-light;
+    @include title-uppercase;
+  }
+  &ContactsTitle > span {
+    color: $accent-color-primary;
+  }
+}
+
+.breadcrumbNav {
+  display: grid;
+}
+
+.breadcrumb {
+  display: grid;
+  align-self: stretch;
+  row-gap: 5px;
+
+  margin: 0;
+  padding: 0 0 0 2px;
+  list-style: none;
+  @include tablet {
+    padding: 0 0 0 10px;
+  }
+  @include desktop {
+    padding: 0 0 0 10px;
+  }
+  &Item {
+    background-color: $accent-color-primary;
+    color: $body-bg-dark;
+    @include title-uppercase;
+  }
+  &Link {
+    color: $text-color-dark;
+    justify-content: space-between;
+    align-items: center;
+    @include flex;
+  }
+  &Link > span {
+    transition: all $transition-function $timing-function;
+  }
+
+  &Link:hover {
+    color: $body-bg-dark;
+    filter: invert(100%);
+  }
+
+  &Link:visited {
+    color: $body-bg-dark;
+  }
+  &Link .arrow {
+  }
+  &Link .accent {
+    color: $text-color-light;
+  }
+}

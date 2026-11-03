@@ -1,0 +1,55 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.userLable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  padding: 5px;
+  border: 2px solid $accent-color-primary;
+  border-radius: 50%;
+  background-color: $accent-color-primary;
+  color: $text-color-dark;
+  font-weight: bold;
+  cursor: pointer;
+}
+.navIcons {
+  display: flex;
+  align-items: center;
+  color: $accent-color-primary;
+}
+
+.navIconList {
+  display: flex;
+  padding: 0 5px;
+  margin: 0;
+  list-style: none;
+}
+.navIconLink {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: $text-color-light;
+  cursor: pointer;
+  transition: all $transition-function $timing-function;
+  &:hover {
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+  }
+  @include tablet {
+    font-size: 12px;
+  }
+  @include desktop {
+    font-size: 14px;
+  }
+  @include desktopBig {
+    font-size: 16px;
+  }
+}
+
+.navIconItem {
+  padding: 0 5px;
+}

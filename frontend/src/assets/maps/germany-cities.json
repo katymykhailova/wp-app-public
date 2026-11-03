@@ -1,0 +1,2461 @@
+[
+  {
+    "name": "Stuttgart",
+    "type": "landeshauptstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Stuttgart",
+    "coordinates": [9.177734, 48.775817]
+  },
+  {
+    "name": "Aalen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Ostalbkreis",
+    "coordinates": [10.092337, 48.835057]
+  },
+  {
+    "name": "Baden-Baden",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Baden-Baden",
+    "coordinates": [8.239951, 48.761794]
+  },
+  {
+    "name": "Balingen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Zollernalbkreis",
+    "coordinates": [8.851349, 48.275846]
+  },
+  {
+    "name": "Biberach an der Riß",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Biberach",
+    "coordinates": [9.79203, 48.097465]
+  },
+  {
+    "name": "Böblingen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Böblingen",
+    "coordinates": [9.009663, 48.685296]
+  },
+  {
+    "name": "Calw",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Calw",
+    "coordinates": [8.741194, 48.713372]
+  },
+  {
+    "name": "Emmendingen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Emmendingen",
+    "coordinates": [7.849035, 48.119829]
+  },
+  {
+    "name": "Esslingen am Neckar",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Esslingen",
+    "coordinates": [9.309565, 48.741347]
+  },
+  {
+    "name": "Freudenstadt",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Freudenstadt",
+    "coordinates": [8.411368, 48.463876]
+  },
+  {
+    "name": "Friedrichshafen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Bodenseekreis",
+    "coordinates": [9.479614, 47.652205]
+  },
+  {
+    "name": "Göppingen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Göppingen",
+    "coordinates": [9.653964, 48.703267]
+  },
+  {
+    "name": "Heidelberg",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Heidelberg",
+    "coordinates": [8.702067, 49.408826]
+  },
+  {
+    "name": "Heidenheim an der Brenz",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Heidenheim",
+    "coordinates": [10.154639, 48.677736]
+  },
+  {
+    "name": "Heilbronn",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Heilbronn",
+    "coordinates": [9.217953, 49.140428]
+  },
+  {
+    "name": "Konstanz",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Konstanz",
+    "coordinates": [9.175957, 47.662757]
+  },
+  {
+    "name": "Künzelsau",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Hohenlohekreis",
+    "coordinates": [9.687069, 49.277894]
+  },
+  {
+    "name": "Ludwigsburg",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Ludwigsburg",
+    "coordinates": [9.194347, 48.889441]
+  },
+  {
+    "name": "Lörrach",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Lörrach",
+    "coordinates": [7.659191, 47.612096]
+  },
+  {
+    "name": "Mannheim",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Mannheim",
+    "coordinates": [8.466275, 49.48778]
+  },
+  {
+    "name": "Mosbach",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Neckar-Odenwald-Kreis",
+    "coordinates": [9.146596, 49.352037]
+  },
+  {
+    "name": "Offenburg",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Ortenaukreis",
+    "coordinates": [7.944214, 48.469474]
+  },
+  {
+    "name": "Pforzheim",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Pforzheim",
+    "coordinates": [8.699166, 48.891285]
+  },
+  {
+    "name": "Rastatt",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Rastatt",
+    "coordinates": [8.202529, 48.857703]
+  },
+  {
+    "name": "Ravensburg",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Ravensburg",
+    "coordinates": [9.615089, 47.78366]
+  },
+  {
+    "name": "Reutlingen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Reutlingen",
+    "coordinates": [9.212006, 48.49208]
+  },
+  {
+    "name": "Rottweil",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Rottweil",
+    "coordinates": [8.627337, 48.167866]
+  },
+  {
+    "name": "Schwäbisch Hall",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Schwäbisch Hall",
+    "coordinates": [9.739951, 49.111579]
+  },
+  {
+    "name": "Sigmaringen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Sigmaringen",
+    "coordinates": [9.214788, 48.086623]
+  },
+  {
+    "name": "Tauberbischofsheim",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Main-Tauber-Kreis",
+    "coordinates": [9.662778, 49.622047]
+  },
+  {
+    "name": "Tuttlingen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Tuttlingen",
+    "coordinates": [8.818761, 47.983725]
+  },
+  {
+    "name": "Ulm",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Ulm",
+    "coordinates": [9.990402, 48.398454]
+  },
+  {
+    "name": "Villingen-Schwenningen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Schwarzwald-Baar-Kreis",
+    "coordinates": [8.491744, 48.057084]
+  },
+  {
+    "name": "Waiblingen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Rems-Murr-Kreis",
+    "coordinates": [9.315987, 48.83229]
+  },
+  {
+    "name": "Waldshut-Tiengen",
+    "type": "kreisstadt",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Waldshut",
+    "coordinates": [8.249715, 47.63065]
+  },
+  {
+    "name": "München",
+    "type": "landeshauptstadt",
+    "bundesland": "Bayern",
+    "kreis": "München",
+    "markerOffsetY": 7,
+    "coordinates": [11.573599, 48.143439]
+  },
+  {
+    "name": "Aichach",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Aichach-Friedberg",
+    "coordinates": [11.133655, 48.461439]
+  },
+  {
+    "name": "Altötting",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Altötting",
+    "coordinates": [12.67892, 48.227986]
+  },
+  {
+    "name": "Amberg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Amberg",
+    "coordinates": [11.855879, 49.442448]
+  },
+  {
+    "name": "Aschaffenburg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Aschaffenburg",
+    "coordinates": [9.147832, 49.973506]
+  },
+  {
+    "name": "Bad Kissingen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Bad Kissingen",
+    "coordinates": [10.078935, 50.199823]
+  },
+  {
+    "name": "Bad Neustadt a.d.Saale",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Rhön-Grabfeld",
+    "coordinates": [10.216904, 50.322861]
+  },
+  {
+    "name": "Bad Reichenhall",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Berchtesgadener Land",
+    "coordinates": [12.876699, 47.725886]
+  },
+  {
+    "name": "Bad Tölz",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Bad Tölz-Wolfratshausen",
+    "coordinates": [11.563912, 47.759148]
+  },
+  {
+    "name": "Bamberg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Bamberg",
+    "coordinates": [10.886786, 49.893387]
+  },
+  {
+    "name": "Cham",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Cham",
+    "coordinates": [12.667061, 49.219124]
+  },
+  {
+    "name": "Coburg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Coburg",
+    "coordinates": [10.960194, 50.25939]
+  },
+  {
+    "name": "Dachau",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Dachau",
+    "coordinates": [11.435167, 48.260956]
+  },
+  {
+    "name": "Deggendorf",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Deggendorf",
+    "coordinates": [12.959966, 48.842343]
+  },
+  {
+    "name": "Dillingen a.d.Donau",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Dillingen a.d.Donau",
+    "coordinates": [10.495232, 48.580882]
+  },
+  {
+    "name": "Dingolfing",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Dingolfing-Landau",
+    "coordinates": [12.500422, 48.62752]
+  },
+  {
+    "name": "Donauwörth",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Donau-Ries",
+    "coordinates": [10.777945, 48.719139]
+  },
+  {
+    "name": "Ebersberg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Ebersberg",
+    "coordinates": [11.968817, 48.078429]
+  },
+  {
+    "name": "Eichstätt",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Eichstätt",
+    "coordinates": [11.185203, 48.891094]
+  },
+  {
+    "name": "Erding",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Erding",
+    "coordinates": [11.907169, 48.306323]
+  },
+  {
+    "name": "Erlangen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Erlangen",
+    "coordinates": [11.00498, 49.595133]
+  },
+  {
+    "name": "Forchheim",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Forchheim",
+    "coordinates": [11.058175, 49.720197]
+  },
+  {
+    "name": "Freising",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Freising",
+    "coordinates": [11.748361, 48.403627]
+  },
+  {
+    "name": "Freyung",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Freyung-Grafenau",
+    "coordinates": [13.54759, 48.808968]
+  },
+  {
+    "name": "Fürstenfeldbruck",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Fürstenfeldbruck",
+    "coordinates": [11.253092, 48.182775]
+  },
+  {
+    "name": "Fürth",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Fürth",
+    "coordinates": [10.989974, 49.477384]
+  },
+  {
+    "name": "Garmisch-Partenkirchen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Garmisch-Partenkirchen",
+    "coordinates": [11.086118, 47.492447]
+  },
+  {
+    "name": "Günzburg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Günzburg",
+    "coordinates": [10.281413, 48.45447]
+  },
+  {
+    "name": "Haßfurt",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Haßberge",
+    "coordinates": [10.506648, 50.031494]
+  },
+  {
+    "name": "Hof",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Hof",
+    "coordinates": [11.913545, 50.316521]
+  },
+  {
+    "name": "Ingolstadt",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Ingolstadt",
+    "coordinates": [11.423387, 48.76542]
+  },
+  {
+    "name": "Karlstadt",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Main-Spessart",
+    "coordinates": [9.764132, 49.962153]
+  },
+  {
+    "name": "Kaufbeuren",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Kaufbeuren",
+    "coordinates": [10.620583, 47.879698]
+  },
+  {
+    "name": "Kelheim",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Kelheim",
+    "coordinates": [11.869879, 48.919056]
+  },
+  {
+    "name": "Kempten (Allgäu)",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Kempten (Allgäu)",
+    "coordinates": [10.317823, 47.724016]
+  },
+  {
+    "name": "Kitzingen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Kitzingen",
+    "coordinates": [10.159239, 49.736047]
+  },
+  {
+    "name": "Kronach",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Kronach",
+    "coordinates": [11.325279, 50.239015]
+  },
+  {
+    "name": "Kulmbach",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Kulmbach",
+    "coordinates": [11.455614, 50.10807]
+  },
+  {
+    "name": "Landsberg am Lech",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Landsberg am Lech",
+    "coordinates": [10.877828, 48.049514]
+  },
+  {
+    "name": "Lauf a.d.Pegnitz",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Nürnberger Land",
+    "coordinates": [11.278019, 49.511562]
+  },
+  {
+    "name": "Lichtenfels",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Lichtenfels",
+    "coordinates": [11.068399, 50.147055]
+  },
+  {
+    "name": "Lindau (Bodensee)",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Lindau (Bodensee)",
+    "coordinates": [9.684376, 47.546458]
+  },
+  {
+    "name": "Marktoberdorf",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Ostallgäu",
+    "coordinates": [10.618465, 47.779483]
+  },
+  {
+    "name": "Memmingen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Memmingen",
+    "coordinates": [10.184968, 47.988445]
+  },
+  {
+    "name": "Miesbach",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Miesbach",
+    "coordinates": [11.834173, 47.788844]
+  },
+  {
+    "name": "Miltenberg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Miltenberg",
+    "coordinates": [9.257405, 49.701266]
+  },
+  {
+    "name": "Mindelheim",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Unterallgäu",
+    "coordinates": [10.491139, 48.047279]
+  },
+  {
+    "name": "Mühldorf a.Inn",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Mühldorf a.Inn",
+    "coordinates": [12.523004, 48.246207]
+  },
+  {
+    "name": "Neu-Ulm",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Neu-Ulm",
+    "coordinates": [9.998683, 48.392999]
+  },
+  {
+    "name": "Neuburg a.d.Donau",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Neuburg-Schrobenhausen",
+    "coordinates": [11.185398, 48.732441]
+  },
+  {
+    "name": "Neumarkt i.d.OPf.",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Neumarkt i.d.OPf.",
+    "coordinates": [11.458903, 49.279626]
+  },
+  {
+    "name": "Neustadt a.d.Aisch",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Neustadt a.d.Aisch-Bad Windsheim",
+    "coordinates": [10.608748, 49.580824]
+  },
+  {
+    "name": "Neustadt a.d.Waldnaab",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Neustadt a.d.Waldnaab",
+    "coordinates": [12.175697, 49.732495]
+  },
+  {
+    "name": "Nürnberg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Nürnberg",
+    "coordinates": [11.075269, 49.450938]
+  },
+  {
+    "name": "Passau",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Passau",
+    "coordinates": [13.420113, 48.569343]
+  },
+  {
+    "name": "Pfaffenhofen a.d.Ilm",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Pfaffenhofen a.d.Ilm",
+    "coordinates": [11.503851, 48.529783]
+  },
+  {
+    "name": "Pfarrkirchen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Rottal-Inn",
+    "coordinates": [12.937787, 48.432193]
+  },
+  {
+    "name": "Regen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Regen",
+    "coordinates": [13.126196, 48.970244]
+  },
+  {
+    "name": "Rosenheim",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Rosenheim",
+    "coordinates": [12.12482, 47.855828]
+  },
+  {
+    "name": "Roth",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Roth",
+    "coordinates": [11.09177, 49.246218]
+  },
+  {
+    "name": "Schwabach",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Schwabach",
+    "coordinates": [11.020832, 49.329561]
+  },
+  {
+    "name": "Schwandorf",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Schwandorf",
+    "coordinates": [12.108976, 49.327638]
+  },
+  {
+    "name": "Schweinfurt",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Schweinfurt",
+    "coordinates": [10.233723, 50.046685]
+  },
+  {
+    "name": "Sonthofen",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Oberallgäu",
+    "coordinates": [10.281195, 47.51239]
+  },
+  {
+    "name": "Starnberg",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Starnberg",
+    "coordinates": [11.33837, 47.996607]
+  },
+  {
+    "name": "Straubing",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Straubing",
+    "coordinates": [12.572499, 48.875878]
+  },
+  {
+    "name": "Tirschenreuth",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Tirschenreuth",
+    "coordinates": [12.33646, 49.878232]
+  },
+  {
+    "name": "Traunstein",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Traunstein",
+    "coordinates": [12.632747, 47.866152]
+  },
+  {
+    "name": "Weiden i.d.OPf.",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Weiden i.d.OPf.",
+    "coordinates": [12.160209, 49.676076]
+  },
+  {
+    "name": "Weilheim i.OB",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Weilheim-Schongau",
+    "coordinates": [11.144997, 47.839999]
+  },
+  {
+    "name": "Weißenburg i.Bay.",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Weißenburg-Gunzenhausen",
+    "coordinates": [10.971667, 49.030107]
+  },
+  {
+    "name": "Wunsiedel",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Wunsiedel i.Fichtelgebirge",
+    "coordinates": [12.002966, 50.037027]
+  },
+  {
+    "name": "Zirndorf",
+    "type": "kreisstadt",
+    "bundesland": "Bayern",
+    "kreis": "Fürth",
+    "coordinates": [10.956456, 49.441541]
+  },
+  {
+    "name": "Berlin",
+    "type": "landeshauptstadt",
+    "bundesland": "Berlin",
+    "kreis": "Berlin",
+    "markerOffsetY": -3,
+    "coordinates": [13.405538, 52.51767],
+    "bundeshauptstadt": true
+  },
+  {
+    "name": "Potsdam",
+    "type": "landeshauptstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Potsdam",
+    "markerOffsetY": 7,
+
+    "coordinates": [13.05358, 52.400355]
+  },
+  {
+    "name": "Bad Belzig",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Potsdam-Mittelmark",
+    "coordinates": [12.586743, 52.140642]
+  },
+  {
+    "name": "Beeskow",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Oder-Spree",
+    "coordinates": [14.24693, 52.172338]
+  },
+  {
+    "name": "Brandenburg an der Havel",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Brandenburg an der Havel",
+    "coordinates": [12.563364, 52.408651]
+  },
+  {
+    "name": "Cottbus",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Cottbus",
+    "coordinates": [14.335117, 51.759345]
+  },
+  {
+    "name": "Eberswalde",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Barnim",
+    "coordinates": [13.820369, 52.834577]
+  },
+  {
+    "name": "Forst (Lausitz)",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Spree-Neiße",
+    "coordinates": [14.644601, 51.744632]
+  },
+  {
+    "name": "Frankfurt (Oder)",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Frankfurt (Oder)",
+    "coordinates": [14.550979, 52.341757]
+  },
+  {
+    "name": "Herzberg (Elster)",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Elbe-Elster",
+    "coordinates": [13.23544, 51.69229]
+  },
+  {
+    "name": "Luckenwalde",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Teltow-Fläming",
+    "coordinates": [13.173009, 52.089253]
+  },
+  {
+    "name": "Lübben (Spreewald)",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Dahme-Spreewald",
+    "coordinates": [13.896595, 51.942032]
+  },
+  {
+    "name": "Neuruppin",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Ostprignitz-Ruppin",
+    "coordinates": [12.806498, 52.923365]
+  },
+  {
+    "name": "Oranienburg",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Oberhavel",
+    "coordinates": [13.236623, 52.754051]
+  },
+  {
+    "name": "Perleberg",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Prignitz",
+    "coordinates": [11.864297, 53.076035]
+  },
+  {
+    "name": "Prenzlau",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Uckermark",
+    "coordinates": [13.862039, 53.316795]
+  },
+  {
+    "name": "Rathenow",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Havelland",
+    "coordinates": [12.338699, 52.606376]
+  },
+  {
+    "name": "Seelow",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Märkisch-Oderland",
+    "coordinates": [14.381058, 52.533809]
+  },
+  {
+    "name": "Senftenberg",
+    "type": "kreisstadt",
+    "bundesland": "Brandenburg",
+    "kreis": "Oberspreewald-Lausitz",
+    "coordinates": [14.004312, 51.518751]
+  },
+  {
+    "name": "Bremen",
+    "type": "landeshauptstadt",
+    "bundesland": "Bremen",
+    "kreis": "Bremen",
+    "coordinates": [8.809338, 53.075606]
+  },
+  {
+    "name": "Bremerhaven",
+    "type": "kreisstadt",
+    "bundesland": "Bremen",
+    "kreis": "Bremerhaven",
+    "coordinates": [8.578068, 53.543032]
+  },
+  {
+    "name": "Hamburg",
+    "type": "landeshauptstadt",
+    "bundesland": "Hamburg",
+    "kreis": "Hamburg",
+    "coordinates": [9.99697, 53.550678]
+  },
+  {
+    "name": "Wiesbaden",
+    "type": "landeshauptstadt",
+    "bundesland": "Hessen",
+    "kreis": "Wiesbaden",
+    "markerOffsetY": -3,
+    "markerOffsetX": -55,
+    "coordinates": [8.239138, 50.081698]
+  },
+  {
+    "name": "Bad Hersfeld",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Hersfeld-Rotenburg",
+    "coordinates": [9.706008, 50.867805]
+  },
+  {
+    "name": "Bad Homburg v.d.Höhe",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Hochtaunuskreis",
+    "coordinates": [8.61299, 50.228406]
+  },
+  {
+    "name": "Bad Schwalbach",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Rheingau-Taunus-Kreis",
+    "coordinates": [8.069825, 50.140276]
+  },
+  {
+    "name": "Dietzenbach",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Offenbach",
+    "coordinates": [8.781779, 50.008939]
+  },
+  {
+    "name": "Erbach",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Odenwaldkreis",
+    "coordinates": [8.99268, 49.657653]
+  },
+  {
+    "name": "Eschwege",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Werra-Meißner-Kreis",
+    "coordinates": [10.057981, 51.185804]
+  },
+  {
+    "name": "Friedberg (Hessen)",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Wetteraukreis",
+    "coordinates": [8.754091, 50.33776]
+  },
+  {
+    "name": "Fulda",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Fulda",
+    "coordinates": [9.675061, 50.55323]
+  },
+  {
+    "name": "Groß-Gerau",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Groß-Gerau",
+    "coordinates": [8.482423, 49.92162]
+  },
+  {
+    "name": "Heppenheim (Bergstraße)",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Bergstraße",
+    "coordinates": [8.644017, 49.641185]
+  },
+  {
+    "name": "Hofheim am Taunus",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Main-Taunus-Kreis",
+    "coordinates": [8.446053, 50.088576]
+  },
+  {
+    "name": "Homberg (Efze)",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Schwalm-Eder-Kreis",
+    "coordinates": [9.407119, 51.032974]
+  },
+  {
+    "name": "Korbach",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Waldeck-Frankenberg",
+    "coordinates": [8.873194, 51.27186]
+  },
+  {
+    "name": "Lauterbach (Hessen)",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Vogelsbergkreis",
+    "coordinates": [9.397967, 50.635729]
+  },
+  {
+    "name": "Limburg a.d.Lahn",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Limburg-Weilburg",
+    "coordinates": [8.064098, 50.387254]
+  },
+  {
+    "name": "Marburg",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Marburg-Biedenkopf",
+    "coordinates": [8.769147, 50.809004]
+  },
+  {
+    "name": "Offenbach am Main",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Offenbach am Main",
+    "coordinates": [8.764442, 50.105567]
+  },
+  {
+    "name": "Wetzlar",
+    "type": "kreisstadt",
+    "bundesland": "Hessen",
+    "kreis": "Lahn-Dill-Kreis",
+    "coordinates": [8.501069, 50.554439]
+  },
+  {
+    "name": "Schwerin",
+    "type": "landeshauptstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Schwerin",
+    "coordinates": [11.414434, 53.628545]
+  },
+  {
+    "name": "Greifswald",
+    "type": "kreisstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Vorpommern-Greifswald",
+    "coordinates": [13.379627, 54.09581]
+  },
+  {
+    "name": "Güstrow",
+    "type": "kreisstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Rostock",
+    "coordinates": [12.175691, 53.794458]
+  },
+  {
+    "name": "Neubrandenburg",
+    "type": "kreisstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Mecklenburgische Seenplatte",
+    "coordinates": [13.25996, 53.557345]
+  },
+  {
+    "name": "Parchim",
+    "type": "kreisstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Ludwigslust-Parchim",
+    "coordinates": [11.847644, 53.425581]
+  },
+  {
+    "name": "Rostock",
+    "type": "kreisstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Rostock",
+    "coordinates": [12.135993, 54.088548]
+  },
+  {
+    "name": "Stralsund",
+    "type": "kreisstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Vorpommern-Rügen",
+    "coordinates": [13.089973, 54.313975]
+  },
+  {
+    "name": "Wismar",
+    "type": "kreisstadt",
+    "bundesland": "Mecklenburg-Vorpommern",
+    "kreis": "Nordwestmecklenburg",
+    "coordinates": [11.466024, 53.891577]
+  },
+  {
+    "name": "Hannover",
+    "type": "landeshauptstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Region Hannover",
+    "coordinates": [9.738084, 52.374551]
+  },
+  {
+    "name": "Aurich",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Aurich",
+    "coordinates": [7.482377, 53.469895]
+  },
+  {
+    "name": "Brake (Unterweser)",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Wesermarsch",
+    "coordinates": [8.478138, 53.326342]
+  },
+  {
+    "name": "Braunschweig",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Braunschweig",
+    "coordinates": [10.520525, 52.26249]
+  },
+  {
+    "name": "Celle",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Celle",
+    "coordinates": [10.08067, 52.626307]
+  },
+  {
+    "name": "Cloppenburg",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Cloppenburg",
+    "coordinates": [8.042518, 52.848368]
+  },
+  {
+    "name": "Cuxhaven",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Cuxhaven",
+    "coordinates": [8.69747, 53.864463]
+  },
+  {
+    "name": "Delmenhorst",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Delmenhorst",
+    "coordinates": [8.630108, 53.049883]
+  },
+  {
+    "name": "Diepholz",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Diepholz",
+    "coordinates": [8.370605, 52.606393]
+  },
+  {
+    "name": "Emden",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Emden",
+    "coordinates": [7.205946, 53.370558]
+  },
+  {
+    "name": "Gifhorn",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Gifhorn",
+    "coordinates": [10.54687, 52.484369]
+  },
+  {
+    "name": "Goslar",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Goslar",
+    "coordinates": [10.429312, 51.906508]
+  },
+  {
+    "name": "Göttingen",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Göttingen",
+    "coordinates": [9.93514, 51.533027]
+  },
+  {
+    "name": "Hameln",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Hameln-Pyrmont",
+    "coordinates": [9.356316, 52.104402]
+  },
+  {
+    "name": "Helmstedt",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Helmstedt",
+    "coordinates": [11.010462, 52.227571]
+  },
+  {
+    "name": "Hildesheim",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Hildesheim",
+    "coordinates": [9.948634, 52.155018]
+  },
+  {
+    "name": "Holzminden",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Holzminden",
+    "coordinates": [9.449537, 51.830618]
+  },
+  {
+    "name": "Jever",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Friesland",
+    "coordinates": [7.900312, 53.575606]
+  },
+  {
+    "name": "Leer (Ostfriesland)",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Leer",
+    "coordinates": [7.451416, 53.22947]
+  },
+  {
+    "name": "Meppen",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Emsland",
+    "coordinates": [7.291937, 52.69083]
+  },
+  {
+    "name": "Nienburg (Weser)",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Nienburg (Weser)",
+    "coordinates": [9.211648, 52.640859]
+  },
+  {
+    "name": "Nordhorn",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Grafschaft Bentheim",
+    "coordinates": [7.071263, 52.435804]
+  },
+  {
+    "name": "Northeim",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Northeim",
+    "coordinates": [10.000406, 51.705681]
+  },
+  {
+    "name": "Oldenburg (Oldb)",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Oldenburg (Oldb)",
+    "coordinates": [8.212993, 53.140025]
+  },
+  {
+    "name": "Osnabrück",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Osnabrück",
+    "coordinates": [8.04205, 52.27692]
+  },
+  {
+    "name": "Osterholz-Scharmbeck",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Osterholz",
+    "coordinates": [8.782826, 53.230402]
+  },
+  {
+    "name": "Osterode am Harz",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Göttingen",
+    "coordinates": [10.248155, 51.728407]
+  },
+  {
+    "name": "Peine",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Peine",
+    "coordinates": [10.227076, 52.321764]
+  },
+  {
+    "name": "Rotenburg (Wümme)",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Rotenburg (Wümme)",
+    "coordinates": [9.409408, 53.111546]
+  },
+  {
+    "name": "Salzgitter",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Salzgitter",
+    "coordinates": [10.370054, 52.127087]
+  },
+  {
+    "name": "Stadthagen",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Schaumburg",
+    "coordinates": [9.205815, 52.323705]
+  },
+  {
+    "name": "Uelzen",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Uelzen",
+    "coordinates": [10.560601, 52.96495]
+  },
+  {
+    "name": "Vechta",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Vechta",
+    "coordinates": [8.284838, 52.727529]
+  },
+  {
+    "name": "Verden (Aller)",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Verden",
+    "coordinates": [9.231105, 52.923403]
+  },
+  {
+    "name": "Westerstede",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Ammerland",
+    "coordinates": [7.923249, 53.25747]
+  },
+  {
+    "name": "Wildeshausen",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Oldenburg",
+    "coordinates": [8.431942, 52.894686]
+  },
+  {
+    "name": "Wilhelmshaven",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Wilhelmshaven",
+    "coordinates": [8.111156, 53.520302]
+  },
+  {
+    "name": "Winsen (Luhe)",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Harburg",
+    "coordinates": [10.209159, 53.362425]
+  },
+  {
+    "name": "Wittmund",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Wittmund",
+    "coordinates": [7.780018, 53.575515]
+  },
+  {
+    "name": "Wolfenbüttel",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Wolfenbüttel",
+    "coordinates": [10.536202, 52.163491]
+  },
+  {
+    "name": "Wolfsburg",
+    "type": "kreisstadt",
+    "bundesland": "Niedersachsen",
+    "kreis": "Wolfsburg",
+    "coordinates": [10.784975, 52.421938]
+  },
+  {
+    "name": "Düsseldorf",
+    "type": "landeshauptstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Düsseldorf",
+    "coordinates": [6.780068, 51.22422]
+  },
+  {
+    "name": "Aachen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Städteregion Aachen",
+    "coordinates": [6.0848, 50.773516]
+  },
+  {
+    "name": "Bergheim",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Rhein-Erft-Kreis",
+    "coordinates": [6.640252, 50.955113]
+  },
+  {
+    "name": "Bergisch Gladbach",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Rheinisch-Bergischer Kreis",
+    "coordinates": [7.130608, 50.992244]
+  },
+  {
+    "name": "Bielefeld",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Bielefeld",
+    "coordinates": [8.53212, 52.020578]
+  },
+  {
+    "name": "Bochum",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Bochum",
+    "coordinates": [7.217177, 51.482699]
+  },
+  {
+    "name": "Bonn",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Bonn",
+    "coordinates": [7.099187, 50.734245]
+  },
+  {
+    "name": "Borken",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Borken",
+    "coordinates": [6.855071, 51.844144]
+  },
+  {
+    "name": "Bottrop",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Bottrop",
+    "coordinates": [6.929939, 51.523694]
+  },
+  {
+    "name": "Coesfeld",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Coesfeld",
+    "coordinates": [7.166744, 51.944948]
+  },
+  {
+    "name": "Dortmund",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Dortmund",
+    "coordinates": [7.464165, 51.514171]
+  },
+  {
+    "name": "Duisburg",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Duisburg",
+    "coordinates": [6.765477, 51.433259]
+  },
+  {
+    "name": "Düren",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Düren",
+    "coordinates": [6.482964, 50.801678]
+  },
+  {
+    "name": "Essen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Essen",
+    "coordinates": [7.012583, 51.455843]
+  },
+  {
+    "name": "Euskirchen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Euskirchen",
+    "coordinates": [6.786098, 50.660933]
+  },
+  {
+    "name": "Gelsenkirchen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Gelsenkirchen",
+    "coordinates": [7.096064, 51.510892]
+  },
+  {
+    "name": "Gummersbach",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Oberbergischer Kreis",
+    "coordinates": [7.568149, 51.028326]
+  },
+  {
+    "name": "Gütersloh",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Gütersloh",
+    "coordinates": [8.381067, 51.909587]
+  },
+  {
+    "name": "Hagen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Hagen",
+    "coordinates": [7.467406, 51.360171]
+  },
+  {
+    "name": "Hamm",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Hamm",
+    "coordinates": [7.816947, 51.678312]
+  },
+  {
+    "name": "Heinsberg",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Heinsberg",
+    "coordinates": [6.094538, 51.061906]
+  },
+  {
+    "name": "Herford",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Herford",
+    "coordinates": [8.673516, 52.115598]
+  },
+  {
+    "name": "Herne",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Herne",
+    "coordinates": [7.222793, 51.540365]
+  },
+  {
+    "name": "Höxter",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Höxter",
+    "coordinates": [9.381623, 51.775666]
+  },
+  {
+    "name": "Kleve",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Kleve",
+    "coordinates": [6.138858, 51.787781]
+  },
+  {
+    "name": "Krefeld",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Krefeld",
+    "coordinates": [6.56089, 51.332637]
+  },
+  {
+    "name": "Leverkusen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Leverkusen",
+    "coordinates": [6.979767, 51.03245]
+  },
+  {
+    "name": "Lüdenscheid",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Märkischer Kreis",
+    "coordinates": [7.63358, 51.21582]
+  },
+  {
+    "name": "Meschede",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Hochsauerlandkreis",
+    "coordinates": [8.285176, 51.346881]
+  },
+  {
+    "name": "Mettmann",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Mettmann",
+    "coordinates": [6.978743, 51.251915]
+  },
+  {
+    "name": "Minden",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Minden-Lübbecke",
+    "coordinates": [8.914559, 52.288271]
+  },
+  {
+    "name": "Mönchengladbach",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Mönchengladbach",
+    "coordinates": [6.43161, 51.194473]
+  },
+  {
+    "name": "Mülheim an der Ruhr",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Mülheim an der Ruhr",
+    "coordinates": [6.88505, 51.428107]
+  },
+  {
+    "name": "Neuss",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Rhein-Kreis Neuss",
+    "coordinates": [6.691409, 51.198873]
+  },
+  {
+    "name": "Oberhausen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Oberhausen",
+    "coordinates": [6.852291, 51.470317]
+  },
+  {
+    "name": "Olpe",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Olpe",
+    "coordinates": [7.843584, 51.02756]
+  },
+  {
+    "name": "Paderborn",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Paderborn",
+    "coordinates": [8.757301, 51.719601]
+  },
+  {
+    "name": "Recklinghausen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Recklinghausen",
+    "coordinates": [7.197544, 51.614576]
+  },
+  {
+    "name": "Remscheid",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Remscheid",
+    "coordinates": [7.194356, 51.179878]
+  },
+  {
+    "name": "Schwelm",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Ennepe-Ruhr-Kreis",
+    "coordinates": [7.29187, 51.284]
+  },
+  {
+    "name": "Siegburg",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Rhein-Sieg-Kreis",
+    "coordinates": [7.2049, 50.796665]
+  },
+  {
+    "name": "Siegen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Siegen-Wittgenstein",
+    "coordinates": [8.024625, 50.874559]
+  },
+  {
+    "name": "Soest",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Soest",
+    "coordinates": [8.106308, 51.572543]
+  },
+  {
+    "name": "Solingen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Solingen",
+    "coordinates": [7.085665, 51.171718]
+  },
+  {
+    "name": "Steinfurt",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Steinfurt",
+    "coordinates": [7.356226, 52.134277]
+  },
+  {
+    "name": "Unna",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Unna",
+    "coordinates": [7.689932, 51.534878]
+  },
+  {
+    "name": "Viersen",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Viersen",
+    "coordinates": [6.393489, 51.252848]
+  },
+  {
+    "name": "Warendorf",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Warendorf",
+    "coordinates": [7.988499, 51.950713]
+  },
+  {
+    "name": "Wesel",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Wesel",
+    "coordinates": [6.617306, 51.65733]
+  },
+  {
+    "name": "Wuppertal",
+    "type": "kreisstadt",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Wuppertal",
+    "coordinates": [7.191398, 51.259755]
+  },
+  {
+    "name": "Mainz",
+    "type": "landeshauptstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Mainz",
+    "markerOffsetX": -35,
+    "coordinates": [8.271855, 50.001959]
+  },
+  {
+    "name": "Altenkirchen (Westerwald)",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Altenkirchen (Westerwald)",
+    "coordinates": [7.645362, 50.687851]
+  },
+  {
+    "name": "Alzey",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Alzey-Worms",
+    "coordinates": [8.112469, 49.745225]
+  },
+  {
+    "name": "Bad Dürkheim",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Bad Dürkheim",
+    "coordinates": [8.169191, 49.460397]
+  },
+  {
+    "name": "Bad Ems",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Rhein-Lahn-Kreis",
+    "coordinates": [7.712321, 50.33497]
+  },
+  {
+    "name": "Bad Kreuznach",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Bad Kreuznach",
+    "coordinates": [7.861839, 49.844515]
+  },
+  {
+    "name": "Bad Neuenahr-Ahrweiler",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Ahrweiler",
+    "coordinates": [7.120457, 50.545218]
+  },
+  {
+    "name": "Birkenfeld",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Birkenfeld",
+    "coordinates": [7.168182, 49.650147]
+  },
+  {
+    "name": "Bitburg",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Eifelkreis Bitburg-Prüm",
+    "coordinates": [6.524756, 49.975769]
+  },
+  {
+    "name": "Cochem",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Cochem-Zell",
+    "coordinates": [7.16384, 50.144672]
+  },
+  {
+    "name": "Daun",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Vulkaneifel",
+    "coordinates": [6.830555, 50.196727]
+  },
+  {
+    "name": "Frankenthal (Pfalz)",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Frankenthal (Pfalz)",
+    "coordinates": [8.354282, 49.535556]
+  },
+  {
+    "name": "Germersheim",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Germersheim",
+    "coordinates": [8.374177, 49.21765]
+  },
+  {
+    "name": "Ingelheim am Rhein",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Mainz-Bingen",
+    "coordinates": [8.072333, 49.977919]
+  },
+  {
+    "name": "Kaiserslautern",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Kaiserslautern",
+    "coordinates": [7.768864, 49.445456]
+  },
+  {
+    "name": "Kirchheimbolanden",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Donnersbergkreis",
+    "coordinates": [8.011623, 49.664077]
+  },
+  {
+    "name": "Koblenz",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Koblenz",
+    "coordinates": [7.597956, 50.359516]
+  },
+  {
+    "name": "Kusel",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Kusel",
+    "coordinates": [7.400548, 49.537633]
+  },
+  {
+    "name": "Landau in der Pfalz",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Landau in der Pfalz",
+    "coordinates": [8.112414, 49.196595]
+  },
+  {
+    "name": "Ludwigshafen am Rhein",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Ludwigshafen am Rhein",
+    "coordinates": [8.447899, 49.483235]
+  },
+  {
+    "name": "Montabaur",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Westerwaldkreis",
+    "coordinates": [7.827159, 50.436232]
+  },
+  {
+    "name": "Neustadt an der Weinstraße",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Neustadt an der Weinstraße",
+    "coordinates": [8.140755, 49.351983]
+  },
+  {
+    "name": "Neuwied",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Neuwied",
+    "coordinates": [7.459692, 50.429018]
+  },
+  {
+    "name": "Pirmasens",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Pirmasens",
+    "coordinates": [7.60822, 49.19741]
+  },
+  {
+    "name": "Simmern/Hunsrück",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Rhein-Hunsrück-Kreis",
+    "coordinates": [7.522062, 49.985095]
+  },
+  {
+    "name": "Speyer",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Speyer",
+    "coordinates": [8.436572, 49.316172]
+  },
+  {
+    "name": "Trier",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Trier",
+    "coordinates": [6.641293, 49.756737]
+  },
+  {
+    "name": "Wittlich",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Bernkastel-Wittlich",
+    "coordinates": [6.889134, 49.98627]
+  },
+  {
+    "name": "Worms",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Worms",
+    "coordinates": [8.361704, 49.629828]
+  },
+  {
+    "name": "Zweibrücken",
+    "type": "kreisstadt",
+    "bundesland": "Rheinland-Pfalz",
+    "kreis": "Zweibrücken",
+    "coordinates": [7.363114, 49.249189]
+  },
+  {
+    "name": "Saarbrücken",
+    "type": "landeshauptstadt",
+    "bundesland": "Saarland",
+    "kreis": "Regionalverband Saarbrücken",
+    "coordinates": [6.996011, 49.236301]
+  },
+  {
+    "name": "Homburg",
+    "type": "kreisstadt",
+    "bundesland": "Saarland",
+    "kreis": "Saarpfalz-Kreis",
+    "coordinates": [7.340244, 49.3237]
+  },
+  {
+    "name": "Merzig",
+    "type": "kreisstadt",
+    "bundesland": "Saarland",
+    "kreis": "Merzig-Wadern",
+    "coordinates": [6.64256, 49.44354]
+  },
+  {
+    "name": "Ottweiler",
+    "type": "kreisstadt",
+    "bundesland": "Saarland",
+    "kreis": "Neunkirchen",
+    "coordinates": [7.16207, 49.402493]
+  },
+  {
+    "name": "Saarlouis",
+    "type": "kreisstadt",
+    "bundesland": "Saarland",
+    "kreis": "Saarlouis",
+    "coordinates": [6.75122, 49.31506]
+  },
+  {
+    "name": "St. Wendel",
+    "type": "kreisstadt",
+    "bundesland": "Saarland",
+    "kreis": "St. Wendel",
+    "coordinates": [7.173032, 49.468359]
+  },
+  {
+    "name": "Dresden",
+    "type": "landeshauptstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Dresden",
+    "coordinates": [13.736883, 51.051697]
+  },
+  {
+    "name": "Bautzen",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Bautzen",
+    "coordinates": [14.427688, 51.180868]
+  },
+  {
+    "name": "Borna",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Leipzig",
+    "coordinates": [12.49747, 51.123285]
+  },
+  {
+    "name": "Chemnitz",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Chemnitz",
+    "coordinates": [12.921602, 50.833593]
+  },
+  {
+    "name": "Freiberg",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Mittelsachsen",
+    "coordinates": [13.344344, 50.914868]
+  },
+  {
+    "name": "Görlitz",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Görlitz",
+    "coordinates": [14.988035, 51.155287]
+  },
+  {
+    "name": "Leipzig",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Leipzig",
+    "coordinates": [12.377931, 51.338288]
+  },
+  {
+    "name": "Meißen",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Meißen",
+    "coordinates": [13.468635, 51.159993]
+  },
+  {
+    "name": "Pirna",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Sächsische Schweiz-Osterzgebirge",
+    "coordinates": [13.938938, 50.960723]
+  },
+  {
+    "name": "Plauen",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Vogtlandkreis",
+    "coordinates": [12.135285, 50.496039]
+  },
+  {
+    "name": "Torgau",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Nordsachsen",
+    "coordinates": [13.004299, 51.558563]
+  },
+  {
+    "name": "Zwickau",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen",
+    "kreis": "Zwickau",
+    "coordinates": [12.492251, 50.719114]
+  },
+  {
+    "name": "Magdeburg",
+    "type": "landeshauptstadt",
+    "bundesland": "Sachsen-Anhalt",
+    "kreis": "Magdeburg",
+    "coordinates": [11.632726, 52.126248]
+  },
+  {
+    "name": "Dessau-Roßlau",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen-Anhalt",
+    "kreis": "Dessau-Roßlau",
+    "coordinates": [12.247059, 51.860589]
+  },
+  {
+    "name": "Haldensleben",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen-Anhalt",
+    "kreis": "Börde",
+    "coordinates": [11.410945, 52.291258]
+  },
+  {
+    "name": "Halle (Saale)",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen-Anhalt",
+    "kreis": "Halle (Saale)",
+    "coordinates": [11.970666, 51.482478]
+  },
+  {
+    "name": "Köthen (Anhalt)",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen-Anhalt",
+    "kreis": "Anhalt-Bitterfeld",
+    "coordinates": [11.973406, 51.751224]
+  },
+  {
+    "name": "Sangerhausen",
+    "type": "kreisstadt",
+    "bundesland": "Sachsen-Anhalt",
+    "kreis": "Mansfeld-Südharz",
+    "coordinates": [11.298597, 51.473662]
+  },
+  {
+    "name": "Kiel",
+    "type": "landeshauptstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Kiel",
+    "coordinates": [10.13727, 54.321775]
+  },
+  {
+    "name": "Bad Oldesloe",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Stormarn",
+    "coordinates": [10.373196, 53.810046]
+  },
+  {
+    "name": "Bad Segeberg",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Segeberg",
+    "coordinates": [10.304193, 53.937059]
+  },
+  {
+    "name": "Eutin",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Ostholstein",
+    "coordinates": [10.614962, 54.138933]
+  },
+  {
+    "name": "Flensburg",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Flensburg",
+    "coordinates": [9.43751, 54.78252]
+  },
+  {
+    "name": "Heide",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Dithmarschen",
+    "coordinates": [9.091156, 54.193962]
+  },
+  {
+    "name": "Husum",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Nordfriesland",
+    "coordinates": [9.050149, 54.476472]
+  },
+  {
+    "name": "Itzehoe",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Steinburg",
+    "coordinates": [9.515569, 53.92055]
+  },
+  {
+    "name": "Neumünster",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Neumünster",
+    "coordinates": [9.988422, 54.069895]
+  },
+  {
+    "name": "Pinneberg",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Pinneberg",
+    "coordinates": [9.793233, 53.660754]
+  },
+  {
+    "name": "Plön",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Plön",
+    "coordinates": [10.416369, 54.158288]
+  },
+  {
+    "name": "Ratzeburg",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Herzogtum Lauenburg",
+    "coordinates": [10.774492, 53.699024]
+  },
+  {
+    "name": "Rendsburg",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Rendsburg-Eckernförde",
+    "coordinates": [9.663206, 54.306495]
+  },
+  {
+    "name": "Schleswig",
+    "type": "kreisstadt",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Schleswig-Flensburg",
+    "coordinates": [9.566657, 54.514941]
+  },
+  {
+    "name": "Erfurt",
+    "type": "landeshauptstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Erfurt",
+    "coordinates": [11.027236, 50.977122]
+  },
+  {
+    "name": "Altenburg",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Altenburger Land",
+    "coordinates": [12.437252, 50.987195]
+  },
+  {
+    "name": "Apolda",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Weimarer Land",
+    "coordinates": [11.517423, 51.02536]
+  },
+  {
+    "name": "Arnstadt",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Ilm-Kreis",
+    "coordinates": [10.946529, 50.8333]
+  },
+  {
+    "name": "Bad Salzungen",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Wartburgkreis",
+    "coordinates": [10.231992, 50.811679]
+  },
+  {
+    "name": "Eisenach",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Wartburgkreis",
+    "coordinates": [10.322388, 50.977287]
+  },
+  {
+    "name": "Eisenberg",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Saale-Holzland-Kreis",
+    "coordinates": [11.901344, 50.967554]
+  },
+  {
+    "name": "Gera",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Gera",
+    "coordinates": [12.080429, 50.876147]
+  },
+  {
+    "name": "Gotha",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Gotha",
+    "coordinates": [10.70337, 50.948759]
+  },
+  {
+    "name": "Greiz",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Greiz",
+    "coordinates": [12.201545, 50.654739]
+  },
+  {
+    "name": "Heilbad Heiligenstadt",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Eichsfeld",
+    "coordinates": [10.137999, 51.378474]
+  },
+  {
+    "name": "Hildburghausen",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Hildburghausen",
+    "coordinates": [10.729007, 50.425612]
+  },
+  {
+    "name": "Jena",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Jena",
+    "coordinates": [11.591842, 50.93006]
+  },
+  {
+    "name": "Meiningen",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Schmalkalden-Meiningen",
+    "coordinates": [10.419048, 50.57111]
+  },
+  {
+    "name": "Mühlhausen/Thüringen",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Unstrut-Hainich-Kreis",
+    "coordinates": [10.458418, 51.209777]
+  },
+  {
+    "name": "Nordhausen",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Nordhausen",
+    "coordinates": [10.791619, 51.500441]
+  },
+  {
+    "name": "Saalfeld/Saale",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Saalfeld-Rudolstadt",
+    "coordinates": [11.361357, 50.647648]
+  },
+  {
+    "name": "Schleiz",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Saale-Orla-Kreis",
+    "coordinates": [11.807287, 50.577418]
+  },
+  {
+    "name": "Sondershausen",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Kyffhäuserkreis",
+    "coordinates": [10.869766, 51.370471]
+  },
+  {
+    "name": "Sonneberg",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Sonneberg",
+    "coordinates": [11.175725, 50.357569]
+  },
+  {
+    "name": "Suhl",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Suhl",
+    "coordinates": [10.68693, 50.609536]
+  },
+  {
+    "name": "Sömmerda",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Sömmerda",
+    "coordinates": [11.118975, 51.159368]
+  },
+  {
+    "name": "Weimar",
+    "type": "kreisstadt",
+    "bundesland": "Thüringen",
+    "kreis": "Weimar",
+    "coordinates": [11.329741, 50.980761]
+  },
+  {
+    "name": "Augsburg",
+    "type": "kreisfreie",
+    "bundesland": "Bayern",
+    "kreis": "Augsburg",
+    "coordinates": [10.892578, 48.369696]
+  },
+  {
+    "name": "Regensburg",
+    "type": "kreisfreie",
+    "bundesland": "Bayern",
+    "kreis": "Regensburg",
+    "coordinates": [12.097392, 49.017834]
+  },
+  {
+    "name": "Würzburg",
+    "type": "kreisfreie",
+    "bundesland": "Bayern",
+    "kreis": "Würzburg",
+    "coordinates": [9.93725, 49.79393]
+  },
+  {
+    "name": "Frankfurt am Main",
+    "type": "kreisfreie",
+    "bundesland": "Hessen",
+    "kreis": "Frankfurt am Main",
+    "markerOffsetX": 4,
+    "coordinates": [8.682433, 50.11088]
+  },
+  {
+    "name": "Kassel",
+    "type": "kreisfreie",
+    "bundesland": "Hessen",
+    "kreis": "Kassel",
+    "coordinates": [9.495199, 51.314684]
+  },
+  {
+    "name": "Darmstadt",
+    "type": "kreisfreie",
+    "bundesland": "Hessen",
+    "kreis": "Darmstadt",
+    "coordinates": [8.6566, 49.873211]
+  },
+  {
+    "name": "Köln",
+    "type": "kreisfreie",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Köln",
+    "coordinates": [6.957068, 50.938107]
+  },
+  {
+    "name": "Münster",
+    "type": "kreisfreie",
+    "bundesland": "Nordrhein-Westfalen",
+    "kreis": "Münster",
+    "coordinates": [7.626804, 51.961908]
+  },
+  {
+    "name": "Karlsruhe",
+    "type": "kreisfreie",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Karlsruhe",
+    "coordinates": [8.405282, 49.009626]
+  },
+  {
+    "name": "Freiburg im Breisgau",
+    "type": "kreisfreie",
+    "bundesland": "Baden-Württemberg",
+    "kreis": "Freiburg im Breisgau",
+    "coordinates": [7.849877, 47.994786]
+  },
+  {
+    "name": "Lübeck",
+    "type": "kreisfreie",
+    "bundesland": "Schleswig-Holstein",
+    "kreis": "Lübeck",
+    "coordinates": [10.683932, 53.866269]
+  }
+]

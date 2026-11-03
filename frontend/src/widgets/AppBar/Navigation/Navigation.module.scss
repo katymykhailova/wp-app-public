@@ -1,0 +1,79 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.navContainer {
+  @include flex;
+  position: relative;
+  justify-content: space-between;
+  min-height: 90px;
+  color: $text-color-light;
+}
+
+.nav {
+  @include flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navLink {
+  font-size: 8px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  @include tablet {
+    font-size: 12px;
+  }
+  @include desktop {
+    font-size: 14px;
+  }
+  @include desktopBig {
+    font-size: 16px;
+  }
+}
+
+.HamburgerCrossIcons {
+  @include desktop {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $desktop) {
+  .navContainer {
+    z-index: 99;
+  }
+  .nav {
+    position: absolute;
+    top: 0;
+    left: -150%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: auto;
+    padding: 50px 0 40px 0;
+    margin: 100px 0 0 0;
+    background-color: $body-bg-dark;
+    z-index: 98;
+    opacity: 0;
+    transition: all $transition-function $timing-function;
+    &.active {
+      left: 0%;
+      opacity: 1;
+    }
+  }
+
+  .HamburgerCrossIcons {
+    display: block;
+  }
+}
+
+.userLable {
+  padding: 5px;
+  border: 2px solid $accent-color-primary;
+  border-radius: 50%;
+  background-color: $accent-color-primary;
+  color: $text-color-dark;
+  font-weight: bold;
+  cursor: pointer;
+}

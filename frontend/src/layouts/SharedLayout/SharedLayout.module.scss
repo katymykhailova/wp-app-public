@@ -1,0 +1,14 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.container {
+  display: grid;
+  grid-template-columns: [start] 5% [marginleft] 1fr [main] 3fr [marginright] 5% [end];
+  grid-template-rows: [start] 100px [main] 1fr [footer] auto [end];
+  row-gap: 20px;
+  min-height: 100vh;
+  @include desktop {
+    grid-template-columns: [start] 10% [marginleft] 1fr [main] 3fr [marginright] 10% [end];
+  }
+  @include wrapper;
+}

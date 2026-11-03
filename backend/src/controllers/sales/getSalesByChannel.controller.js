@@ -1,0 +1,35 @@
+import { startOfYear, format } from "date-fns";
+import { query } from "../../util/db2.js";
+
+export default async (req, res) => {
+  const dateStart =
+    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
+  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+  try {
+    const rows = await query(
+      `SELECT
+      COUNT(AUAUN) AS "Gesamtzahl der Bestellungen",
+      COUNT(CASE WHEN FTR.AUNFV <> 'X' THEN AUAUN END) AS "Bestellungen (ohne Angebote)",
+      COUNT(CASE WHEN FTR.AUNFV = 'X' THEN AUAUN END) AS "Angebote",
+      SUM(FTR.AURBT) AS "Umsatz gesamt",
+      SUM(CASE WHEN FTR.AUNLN = '800' THEN FTR.AURBT END) AS "Umsatz Chat",
+      SUM(CASE WHEN FTR.AUNLN = '900' THEN FTR.AURBT END) AS "Umsatz eShop",
+      SUM(CASE WHEN FTR.AUNLN < '800' THEN FTR.AURBT END) AS "Umsatz Filialen",
+      COUNT(CASE WHEN FTR.AUNLN = '800' THEN FTR.AUAUN END) AS "Chat-Bestellungen",
+      COUNT(CASE WHEN FTR.AUNLN = '900' THEN FTR.AUAUN END) AS "eShop-Bestellungen",
+      COUNT(CASE WHEN FTR.AUNLN < '800' THEN FTR.AUAUN END) AS "Filialbestellungen"	
+      FROM
+        UDVM400DAT.MAUFTR AS FTR
+      WHERE
+      FTR.AUDAT >= ${dateStart}
+      AND FTR.AUDAT <= ${dateEnd}
+      AND AURBT <> 0
+      AND AUAUN <> AUKDN
+      AND FTR.AUNLN <> 30
+      AND FTR.AUNFV <> 'X'`,
+    );
+    res.status(200).json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

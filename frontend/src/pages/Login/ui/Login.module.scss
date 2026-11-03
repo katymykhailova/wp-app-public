@@ -1,0 +1,22 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.loginForm {
+  max-width: 40%;
+}
+
+.loginFormWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginFormLabel {
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.loginFormInput {
+  @include input;
+  margin: 0 0 15px 0;
+}

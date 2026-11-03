@@ -1,0 +1,275 @@
+[
+  {
+    "address": "Musterstraße 1",
+    "name": "München 1",
+    "city": "München",
+    "citySlug": "muenchen",
+    "id": 1
+  },
+  {
+    "address": "Musterstraße 2",
+    "name": "Berlin 2",
+    "city": "Berlin",
+    "citySlug": "berlin",
+    "id": 2
+  },
+  {
+    "address": "Musterstraße 3",
+    "name": "Stuttgart 3",
+    "city": "Stuttgart",
+    "citySlug": "stuttgart",
+    "id": 3
+  },
+  {
+    "address": "Musterstraße 4",
+    "name": "Hamburg",
+    "city": "Hamburg",
+    "citySlug": "hamburg",
+    "id": 4
+  },
+  {
+    "address": "Musterstraße 5",
+    "name": "Köln 5",
+    "city": "Köln",
+    "citySlug": "koeln",
+    "id": 5
+  },
+  {
+    "address": "Musterstraße 6",
+    "name": "Düsseldorf",
+    "city": "Düsseldorf",
+    "citySlug": "duesseldorf",
+    "id": 7
+  },
+  {
+    "address": "Musterstraße 7",
+    "name": "Wiesbaden 14",
+    "city": "Wiesbaden",
+    "citySlug": "wiesbaden",
+    "id": 14
+  },
+  {
+    "address": "Musterstraße 8",
+    "name": "Frankfurt 15",
+    "city": "Frankfurt",
+    "citySlug": "frankfurt",
+    "id": 15
+  },
+  {
+    "address": "Musterstraße 9",
+    "name": "Hannover 16",
+    "city": "Hannover",
+    "citySlug": "hannover",
+    "id": 16
+  },
+  {
+    "address": "Musterstraße 10",
+    "name": "Mannheim 17",
+    "city": "Mannheim",
+    "citySlug": "mannheim",
+    "id": 17
+  },
+  {
+    "address": "Musterstraße 11",
+    "name": "Frankfurt",
+    "city": "Frankfurt",
+    "citySlug": "frankfurt",
+    "id": 18
+  },
+  {
+    "address": "Musterstraße 12",
+    "name": "Hamburg 19",
+    "city": "Hamburg",
+    "citySlug": "hamburg",
+    "id": 19
+  },
+  {
+    "address": "Musterstraße 13",
+    "name": "Bochum 21",
+    "city": "Bochum",
+    "citySlug": "bochum",
+    "id": 21
+  },
+  {
+    "address": "Musterstraße 14",
+    "name": "Sindelfingen 22",
+    "city": "Sindelfingen",
+    "citySlug": "sindelfingen",
+    "id": 22
+  },
+  {
+    "address": "Musterstraße 15",
+    "name": "Rosenheim 23",
+    "city": "Rosenheim",
+    "citySlug": "rosenheim",
+    "id": 23
+  },
+  {
+    "address": "Musterstraße 16",
+    "name": "Augsburg 24",
+    "city": "Augsburg",
+    "citySlug": "augsburg",
+    "id": 24
+  },
+  {
+    "address": "Musterstraße 17",
+    "name": "Hannover 25",
+    "city": "Hannover",
+    "citySlug": "hannover",
+    "id": 25
+  },
+  {
+    "address": "Musterstraße 18",
+    "name": "Saarbruecken 26",
+    "city": "Saarbruecken",
+    "citySlug": "saarbruecken",
+    "id": 26
+  },
+  {
+    "address": "Musterstraße 19",
+    "name": "Frankfurt Skyline 27",
+    "city": "Frankfurt",
+    "citySlug": "frankfurt-skyline",
+    "id": 27
+  },
+  {
+    "address": "Musterstraße 20",
+    "name": "Stuttgart",
+    "city": "Stuttgart",
+    "citySlug": "stuttgart",
+    "id": 28
+  },
+  {
+    "address": "Musterstraße 21",
+    "name": "Bremen 29",
+    "city": "Bremen",
+    "citySlug": "bremen",
+    "id": 29
+  },
+  {
+    "address": "Musterstraße 22",
+    "name": "Großhandel 30",
+    "city": "Großhandel",
+    "citySlug": "grosshandel",
+    "id": 30
+  },
+  {
+    "address": "Musterstraße 23",
+    "name": "Leipzig 31",
+    "city": "Leipzig",
+    "citySlug": "leipzig",
+    "id": 31
+  },
+  {
+    "address": "Musterstraße 24",
+    "name": "Berlin City 32",
+    "city": "Berlin",
+    "citySlug": "berlin-city",
+    "id": 32
+  },
+  {
+    "address": "Musterstraße 25",
+    "name": "Waldshut-Tiengen 33",
+    "city": "Waldshut-Tiengen",
+    "citySlug": "waldshut-tiengen",
+    "id": 33
+  },
+  {
+    "address": "Musterstraße 26",
+    "name": "München",
+    "city": "München",
+    "citySlug": "muenchen",
+    "id": 34
+  },
+  {
+    "address": "Musterstraße 27",
+    "name": "Frankfurt 35",
+    "city": "Frankfurt",
+    "citySlug": "frankfurt-hanauer-2",
+    "id": 35
+  },
+  {
+    "address": "Musterstraße 28",
+    "name": "Frankfurt 38",
+    "city": "Frankfurt",
+    "citySlug": "frankfurt-hanauer-2",
+    "id": 38
+  },
+  {
+    "address": "Musterstraße 29",
+    "name": "Franchise 40",
+    "city": "Franchise",
+    "citySlug": "franchise",
+    "id": 40
+  },
+  {
+    "address": "Musterstraße 30",
+    "name": "Neu-Ulm 80",
+    "city": "Neu-Ulm",
+    "citySlug": "wp-neu-ulm-moebelhandel",
+    "id": 80
+  },
+  {
+    "address": "Musterstraße 31",
+    "name": "Outlet Hohenbrunn",
+    "city": "Hohenbrunn",
+    "citySlug": "outlet-hohenbrunn",
+    "id": 101
+  },
+  {
+    "address": "Musterstraße 32",
+    "name": "eShop-OUTLET",
+    "city": "eShop-OUTLET",
+    "citySlug": "eshop-outlet",
+    "id": 700
+  },
+  {
+    "address": "Musterstraße 33",
+    "name": "Chat",
+    "city": "Chat",
+    "citySlug": "chat",
+    "id": 800
+  },
+  {
+    "address": "Musterstraße 34",
+    "name": "München 834",
+    "city": "München",
+    "citySlug": "muenchen-2",
+    "id": 834
+  },
+  {
+    "address": "Musterstraße 35",
+    "name": "eShop",
+    "city": "eShop",
+    "citySlug": "eshop",
+    "id": 900
+  },
+  {
+    "address": "Musterstraße 36",
+    "name": "Lager Hamburg",
+    "city": "Hamburg",
+    "citySlug": "hamburg",
+    "id": 901
+  },
+  {
+    "address": "Musterstraße 37",
+    "name": "Lager Hebertshausen",
+    "city": "Hebertshausen",
+    "citySlug": "hebertshausen",
+    "id": 902
+  },
+  {
+    "address": "Musterstraße 38",
+    "name": "Lager Ostfildern",
+    "city": "Ostfildern",
+    "citySlug": "ostfildern",
+    "id": 903
+  },
+  {
+    "address": "Musterstraße 39",
+    "name": "Lager Düsseldorf",
+    "city": "Düsseldorf",
+    "citySlug": "duesseldorf",
+    "id": 904
+  }
+]

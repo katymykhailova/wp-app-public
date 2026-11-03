@@ -1,0 +1,19 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.postContent {
+  padding: 5px;
+}
+
+.postTitle {
+  padding-bottom: 5px;
+  color: $accent-color-primary;
+  border-bottom: $body-bg-dark solid 1px;
+}
+
+.postList {
+  & > ul {
+    margin-bottom: 0;
+    list-style: square;
+  }
+}

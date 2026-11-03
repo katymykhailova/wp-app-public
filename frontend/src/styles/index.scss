@@ -1,0 +1,99 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+@import-normalize;
+
+:root {
+  line-height: 1.5;
+  color: $text-color-dark;
+  background-color: $body-bg-dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: $accent-color-primary;
+  text-decoration: inherit;
+  transition: all $transition-function $timing-function;
+}
+
+a:hover {
+  color: $accent-color-light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: $font-family;
+  font-size: $font-size-base;
+  color: $text-color-light;
+  background-color: $body-bg-dark;
+}
+
+ul {
+  padding-left: 1.2em;
+}
+
+ul li::marker {
+  color: $accent-color-primary;
+}
+
+h1 {
+  font-size: 1.75em;
+  line-height: 1.1;
+  @media (min-width: $desktop-min) {
+    font-size: 3.2em;
+  }
+}
+
+h2 {
+  font-size: 1.5em;
+  line-height: 1.1;
+  @media (min-width: $desktop-min) {
+    font-size: 1.8em;
+  }
+}
+
+h3 {
+  font-size: 1.3em;
+  line-height: 1.1;
+  @media (min-width: $desktop-min) {
+    font-size: 1.6em;
+  }
+}
+
+h4 {
+  font-size: 1.1em;
+  line-height: 1.1;
+  @media (min-width: $desktop-min) {
+    font-size: 1.4em;
+  }
+}
+
+h5 {
+  font-size: 1em;
+  line-height: 1.1;
+  @media (min-width: $desktop-min) {
+    font-size: 1.2em;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-transform: uppercase;
+}
+
+h3,
+h4,
+h5 {
+  text-transform: uppercase;
+  color: $accent-color-primary;
+}

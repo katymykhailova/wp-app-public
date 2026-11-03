@@ -1,0 +1,43 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+  overflow: hidden;
+  & > div {
+    width: 100%;
+    display: flex;
+  }
+}
+
+.searchInput {
+  display: inline-block;
+  width: 100%;
+  height: 46px;
+  font-style: inherit;
+  font-variant: inherit;
+  font-weight: inherit;
+  font-stretch: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-size-adjust: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 20px;
+  outline: none;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+}
+
+.searchLabel {
+  display: flex;
+  padding: 5px;
+  color: $accent-color-primary;
+}

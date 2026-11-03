@@ -1,0 +1,330 @@
+[
+  {
+    "lieferant": "Musterlieferant 1",
+    "id": 14444,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 2",
+    "id": 10016,
+    "kundendienst": "MAM",
+    "einkauf": "FMA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 3",
+    "id": 13265,
+    "kundendienst": "PDB",
+    "einkauf": "PDB",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 4",
+    "id": 14265,
+    "kundendienst": "PDB",
+    "einkauf": "PDB",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 5",
+    "id": 11285,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 6",
+    "id": 10034,
+    "kundendienst": "PDB",
+    "einkauf": "FMA",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 7",
+    "id": 13431,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 8",
+    "id": 10014,
+    "kundendienst": "PDB",
+    "einkauf": "FMA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 9",
+    "id": 10086,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 10",
+    "id": 10002,
+    "kundendienst": "MAM",
+    "einkauf": "FMA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 11",
+    "id": 10004,
+    "kundendienst": "MAM",
+    "einkauf": "FMA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 12",
+    "id": 10096,
+    "kundendienst": "PDB",
+    "einkauf": "JVL",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 13",
+    "id": 11747,
+    "kundendienst": "PDB",
+    "einkauf": "JVL",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 14",
+    "id": 10100,
+    "kundendienst": "PDB",
+    "einkauf": "FMA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 15",
+    "id": 10062,
+    "kundendienst": "PDB",
+    "einkauf": "PDB",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 16",
+    "id": 10009,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 17",
+    "id": 10010,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 18",
+    "id": 11743,
+    "kundendienst": "PDB",
+    "einkauf": "JVL",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 19",
+    "id": 11107,
+    "kundendienst": "PDB",
+    "einkauf": "FMA",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 20",
+    "id": 11335,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 21",
+    "id": 10050,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 22",
+    "id": 10104,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": 0,
+    "webshop": 0
+  },
+  {
+    "lieferant": "Musterlieferant 23",
+    "id": 10018,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 24",
+    "id": 10800,
+    "kundendienst": "PDB",
+    "einkauf": "JVL",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 25",
+    "id": 13414,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 26",
+    "id": 10036,
+    "kundendienst": "PDB",
+    "einkauf": "FMA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 27",
+    "id": 10027,
+    "kundendienst": "PDB",
+    "einkauf": "FMA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 28",
+    "id": 10105,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 29",
+    "id": 12017,
+    "kundendienst": "MAM",
+    "einkauf": "FMA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 30",
+    "id": 10957,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 31",
+    "id": 10900,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 32",
+    "id": 10950,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 33",
+    "id": 12018,
+    "kundendienst": "PDB",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 34",
+    "id": 10059,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 35",
+    "id": 10097,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 36",
+    "id": 10038,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 37",
+    "id": 13079,
+    "kundendienst": "PDB",
+    "einkauf": "TJA",
+    "produktmanagement": "SBO1",
+    "webshop": "SAT"
+  },
+  {
+    "lieferant": "Musterlieferant 38",
+    "id": 10001,
+    "kundendienst": 0,
+    "einkauf": "FMA",
+    "produktmanagement": 0,
+    "webshop": 0
+  },
+  {
+    "lieferant": "Musterlieferant 39",
+    "id": 11222,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "AVO",
+    "webshop": "KDI"
+  },
+  {
+    "lieferant": "Musterlieferant 40",
+    "id": 10077,
+    "kundendienst": "MAM",
+    "einkauf": "TJA",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  },
+  {
+    "lieferant": "Musterlieferant 41",
+    "id": 12404,
+    "kundendienst": "MAM",
+    "einkauf": "JVL",
+    "produktmanagement": "PHE",
+    "webshop": "VAT"
+  }
+]

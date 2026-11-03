@@ -1,0 +1,58 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(var(--columns-count), minmax(0, 1fr));
+  gap: 1px;
+  border: $body-bg-madium 1px solid;
+  padding: 1px;
+}
+
+.headerCell,
+.totalsCell,
+.cell {
+  font-size: 7px;
+  min-width: 0;
+  padding: 5px;
+  overflow-wrap: anywhere;
+  border: $body-bg-madium 1px solid;
+  @include tablet {
+    font-size: 12px;
+    border: $body-bg-madium 1px solid;
+  }
+  @include desktop {
+    font-size: 14px;
+    border: $body-bg-madium 1px solid;
+  }
+}
+
+.headerCell {
+  text-align: center;
+  font-weight: 600;
+  background-color: $body-bg-madium;
+  color: $text-color-light;
+}
+
+.totalsCell {
+  font-weight: 600;
+  background-color: $body-bg-madium-transparent;
+  color: $text-color-light;
+}
+
+.title {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+}
+
+.navIcons {
+  display: flex;
+}
+
+.navIcon {
+  display: flex;
+  align-items: center;
+  padding: 0 5px 0 0;
+  color: $accent-color-primary;
+}

@@ -1,0 +1,36 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+svg circle:hover {
+  fill: $accent-color-light;
+  cursor: pointer;
+  transition: all $transition-function $timing-function;
+}
+
+.map {
+  height: 100%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  @include desktopSmall {
+    grid-template-columns: 1.4fr 1fr;
+  }
+  @include desktop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.storeDetails {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 5px;
+  margin-bottom: 2em;
+  & > div:nth-child(odd) {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $accent-color-primary;
+  }
+}

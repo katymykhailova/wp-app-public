@@ -1,0 +1,15 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgb(255 255 255 / 60%);
+  backdrop-filter: blur(2px);
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "address": "Musterstraße 12",
+    "address2": "40210 Düsseldorf",
+    "phone": "+49 211 0000001",
+    "fax": "+49 211 0000091",
+    "ofice_working_hours": "Mo–Sa 10:00–19:00",
+    "name": ["Store:", "Düsseldorf"],
+    "city": "Düsseldorf"
+  },
+  {
+    "id": 2,
+    "address": "Beispielstraße 24",
+    "address2": "20095 Hamburg",
+    "phone": "+49 40 0000002",
+    "fax": "+49 40 0000092",
+    "ofice_working_hours": "Mo–Sa 10:00–19:00",
+    "name": ["Store:", "Hamburg"],
+    "city": "Hamburg"
+  },
+  {
+    "id": 3,
+    "address": "Musterweg 36",
+    "address2": "80331 München",
+    "phone": "+49 89 0000003",
+    "fax": "+49 89 0000093",
+    "ofice_working_hours": "Mo–Sa 10:00–19:00",
+    "name": ["Store:", "München"],
+    "city": "München"
+  },
+  {
+    "id": 4,
+    "address": "Beispielweg 48",
+    "address2": "70173 Stuttgart",
+    "phone": "+49 711 0000004",
+    "fax": "+49 711 0000094",
+    "ofice_working_hours": "Mo–Sa 10:00–19:00",
+    "name": ["Store:", "Stuttgart Königsbau"],
+    "city": "Stuttgart"
+  }
+]

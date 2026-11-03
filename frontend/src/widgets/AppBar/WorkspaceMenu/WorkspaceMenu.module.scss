@@ -1,0 +1,27 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.wsMenuContainer {
+  position: absolute;
+  right: 0;
+  top: 110px;
+  padding: 20px;
+  min-height: 100px;
+  min-width: 200px;
+  background-color: $body-bg-dark;
+  transform: translateY(-200%);
+  transition: all $transition-function $timing-function;
+  z-index: 1;
+  opacity: 0;
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menuList {
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

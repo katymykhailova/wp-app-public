@@ -1,0 +1,47 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.contactListContainer {
+  font-size: 8px;
+  display: grid;
+  justify-items: left;
+  &.title {
+    font-weight: bold;
+  }
+  &.big {
+    grid-template-columns: 3fr 3.5fr 1.5fr 1.5fr 2fr 4fr;
+  }
+  &.middle {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  &.small {
+    grid-template-columns: 3fr 0.8fr 3.5fr;
+  }
+
+  @media (min-width: #{$tablet}) {
+    font-size: 9px;
+  }
+  @media (min-width: #{$desktop-min}) {
+    font-size: 11px;
+  }
+  @media (min-width: #{$desktop}) {
+    font-size: 12px;
+  }
+
+  @media (min-width: #{$desktop-big}) {
+    font-size: 14px;
+  }
+}
+
+.contactListContainerBig {
+  grid-template-columns: 3fr 3.5fr 1.5fr 1.5fr 2fr 4fr;
+}
+.contactListContainerSmall {
+  grid-template-columns: 3fr 3.5fr 2fr 2fr 4fr;
+}
+
+.contactListItem {
+  padding: 4px;
+  width: 100%;
+  border: $text-color-dark 1px solid;
+}

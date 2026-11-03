@@ -1,0 +1,32 @@
+[
+  {
+    "date": "04.03.2026",
+    "title": "Die Geschäftsleitung informiert",
+    "content": "<ul><li>Unser Lager ist umgezogen. Die neue Musteradresse lautet ab sofort: Musterstraße 10, 80331 München.</li></ul>"
+  },
+  {
+    "date": "18.03.2026",
+    "title": "Neue Öffnungszeiten",
+    "content": "<ul><li>Ab dem 01.04.2026 gelten neue Öffnungszeiten: Montag bis Freitag von 09:00 bis 18:00 Uhr.</li></ul>"
+  },
+  {
+    "date": "07.04.2026",
+    "title": "Information aus der IT",
+    "content": "<ul><li>Am kommenden Wochenende finden planmäßige Wartungsarbeiten an den internen Systemen statt.</li><li>Es kann zeitweise zu Einschränkungen kommen.</li></ul>"
+  },
+  {
+    "date": "22.04.2026",
+    "title": "Neue Kolleginnen und Kollegen",
+    "content": "<p>Wir begrüßen unsere neuen Kolleginnen und Kollegen und wünschen ihnen einen erfolgreichen Start im Unternehmen.</p>"
+  },
+  {
+    "date": "12.05.2026",
+    "title": "Interne Schulung",
+    "content": "<ul><li>Im Juni findet eine interne Schulung zum Thema Datenschutz und Informationssicherheit statt.</li><li>Weitere Informationen folgen per E-Mail.</li></ul>"
+  },
+  {
+    "date": "03.06.2026",
+    "title": "Sommerfest 2026",
+    "content": "<p>Unser diesjähriges Sommerfest findet am 17.07.2026 statt. Weitere Informationen zum Programm werden rechtzeitig bekannt gegeben.</p>"
+  }
+]

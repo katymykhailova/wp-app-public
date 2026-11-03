@@ -1,0 +1,18 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.button {
+  height: 30px;
+  padding: 0 15px 0 15px;
+  // margin-bottom: 15px;
+  background-color: $accent-color-primary;
+  border-radius: 3px;
+  border: 1px solid $accent-color-primary;
+  color: $body-bg-light;
+  cursor: pointer;
+  transition: all $transition-function $timing-function;
+  &:hover {
+    background-color: $accent-color-light;
+    color: $body-bg-dark;
+  }
+}

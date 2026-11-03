@@ -1,0 +1,54 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.contentWrapper {
+  grid-row: main/footer;
+  padding: 40px 20px 20px 20px;
+  background-color: $body-bg-light;
+  color: $text-color-dark;
+  background-repeat: no-repeat;
+  background-size: auto 300px;
+  background-position: top right;
+  @include desktopSmall {
+    padding: 20px;
+  }
+}
+
+.withSidebar {
+  grid-column: marginleft / marginright;
+  @include desktopSmall {
+    grid-column: main / marginright;
+  }
+}
+
+.noSidebar {
+  grid-column: marginleft / marginright;
+}
+
+.contentBanner {
+  display: flex;
+  flex-direction: column;
+  height: 315px;
+  align-items: start;
+  margin: 0;
+}
+
+.contentTitle {
+  width: 40%;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  text-transform: uppercase;
+  @include desktop {
+    margin: 0 0 20px 0;
+  }
+}
+
+.contenSubtTitle {
+  width: 40%;
+  padding: 0;
+  margin: 0 0 20px 0;
+  text-align: left;
+  text-transform: uppercase;
+  color: $accent-color-primary;
+}

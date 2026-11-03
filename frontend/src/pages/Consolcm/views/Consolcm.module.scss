@@ -1,0 +1,21 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.accentColor {
+  color: $accent-color-primary;
+}
+.accentBold {
+  font-weight: bold;
+}
+
+.link {
+  background-color: transparent;
+  border: none;
+  color: $accent-color-primary;
+  cursor: pointer;
+  transition: all $transition-function $timing-function;
+
+  &:hover {
+    color: $accent-color-light;
+  }
+}

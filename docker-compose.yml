@@ -1,0 +1,44 @@
+networks:
+  wp-net:
+    driver: bridge
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+    networks:
+      - wp-net
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: production
+    restart: unless-stopped
+    networks:
+      - wp-net
+
+  backend:
+    container_name: backend
+    env_file: ./backend/.env
+    platform: linux/amd64
+    build:
+      context: ./backend
+      dockerfile: containers/api/Dockerfile
+      target: production
+    restart: unless-stopped
+    networks:
+      - wp-net
+    volumes:
+      - ./backend/db_daten:/app/db_daten
+    environment:
+      - ODBCINI=/etc/odbc.ini

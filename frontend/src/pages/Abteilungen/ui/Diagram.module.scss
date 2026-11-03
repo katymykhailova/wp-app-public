@@ -1,0 +1,65 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.diagram {
+  font-size: 0.8em;
+}
+
+.nodeWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  align-items: stretch;
+}
+
+.nodeBox {
+  padding: 0.3rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  font-size: 0.8rem;
+  min-width: 140px;
+  text-align: center;
+  background-color: $accent-color-primary;
+  transition: all $transition-function $timing-function;
+  &:hover {
+    background-color: $accent-color-light;
+    cursor: pointer;
+  }
+  &.current {
+    background-color: $accent-color-light;
+  }
+
+  @include tablet {
+    font-size: 12px;
+  }
+  @include desktop {
+    font-size: 12px;
+  }
+}
+
+.children {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-gap: 0.3rem;
+}
+
+.child {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &:nth-child(odd) {
+    align-self: flex-start;
+  }
+  &:nth-child(even) {
+    align-self: flex-end;
+  }
+}
+
+.connectorVertical {
+  width: 2px;
+  height: 10px;
+  background: #ccc;
+  margin-bottom: 0.2rem;
+}

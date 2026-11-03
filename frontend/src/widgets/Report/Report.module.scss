@@ -1,0 +1,16 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.iconCsv {
+  color: $accent-color-primary;
+  cursor: pointer;
+}
+
+.actions {
+  margin-bottom: 15px;
+  @include flex;
+}
+
+.action {
+  margin-right: 15px;
+}

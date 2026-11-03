@@ -1,0 +1,11 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.sectionTitle {
+  background: $body-bg-dark;
+  color: $text-color-light;
+  @include title-uppercase;
+  & > span {
+    color: $accent-color-primary;
+  }
+}

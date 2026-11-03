@@ -1,0 +1,102 @@
+@use "./variables" as *;
+
+/* text mixins */
+
+@mixin title-uppercase {
+  padding: 10px 5px;
+  font-size: 0.65em;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 1;
+
+  @media (min-width: $tablet) {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  @media (min-width: $desktop) {
+    font-size: 1.75em;
+  }
+}
+
+@mixin subtitle1 {
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@mixin subtitle2 {
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 1.71;
+}
+
+/* container mixins */
+
+@mixin wrapper {
+  & {
+    margin: 0 auto;
+    width: 100%;
+  }
+  @include mobile {
+  }
+  @include tablet {
+  }
+  @include desktop {
+  }
+}
+
+@mixin flex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin gridContainer {
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+
+/* media mixins */
+
+@mixin mobile {
+  @media (max-width: #{$tablet - 1px}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: #{$tablet}) and (max-width: #{$desktop - 1px}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin desktopSmall {
+  @media (min-width: #{$desktop-min}) {
+    @content;
+  }
+}
+
+@mixin desktopBig {
+  @media (min-width: #{$desktop-big}) {
+    @content;
+  }
+}
+
+@mixin input {
+  padding: 0;
+  margin: 0 15px 15px 0;
+  height: 30px;
+  padding-left: 15px;
+  background-color: $accent-color-light-transparent;
+  border-radius: 3px;
+  border: 1px solid $accent-color-primary;
+  &:focus {
+    border: 1px solid $accent-color-primary;
+    outline: 1px solid $accent-color-primary;
+  }
+}

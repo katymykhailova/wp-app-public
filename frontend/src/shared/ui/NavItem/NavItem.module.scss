@@ -1,0 +1,29 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.navLink {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 8px;
+  color: $text-color-light;
+  cursor: pointer;
+  transition: all $transition-function $timing-function;
+  &:hover {
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+  }
+  @include tablet {
+    font-size: 12px;
+  }
+  @include desktop {
+    font-size: 14px;
+  }
+  @include desktopBig {
+    font-size: 16px;
+  }
+}
+
+.active {
+  color: $accent-color-primary;
+}
