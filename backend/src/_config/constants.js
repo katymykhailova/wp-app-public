@@ -1,6 +1,6 @@
 const operatorsByType = {
   number: ["=", "<>", ">", "<", ">=", "<=", "in", "not in"],
-  text: ["=", "<>", "in", "not in", "like"],
+  string: ["=", "<>", "in", "not in", "like"],
   date: ["=", "<>", ">", "<", ">=", "<=", "in", "not in"],
   select: ["in"],
 };

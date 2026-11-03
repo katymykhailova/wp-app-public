@@ -7,12 +7,71 @@
   @include flex;
   flex-wrap: wrap;
 }
+.actionsColumn {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  margin-bottom: 0;
+}
 
-.button {
+.actionButton,
+.actionCollapsiblButton {
+  position: relative;
+  height: 30px;
   border: none;
   padding: 0;
   margin: 0;
+  background-color: transparent;
+  text-transform: uppercase;
+
+  cursor: pointer;
   @include flex;
+
+  &.outlined {
+    border: 2px $accent-color-primary solid;
+    padding: 0 5px 0 5px;
+  }
+
+  &.withText {
+    font-weight: bold;
+    color: $accent-color-primary;
+    & > * {
+      margin-right: 5px;
+    }
+  }
+}
+
+.actionCollapsiblButton {
+  width: 100%;
+  border-bottom: 2px $text-color-light solid;
+  padding: 0 0 10px;
+  color: $text-color-light;
+  font-weight: bold;
+}
+
+.actionCollapsiblButtonToggle {
+  position: absolute;
+  right: 10px;
+  color: $text-color-light;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  transition: all $transition-function $timing-function;
+}
+
+.actionCollapsiblePanel {
+  padding: 0 10px;
+  margin-bottom: 10px;
+  display: none;
+  width: 100%;
+
+  &.active {
+    display: block;
+  }
+  transition: all $transition-function $timing-function;
 }
 
 .item {

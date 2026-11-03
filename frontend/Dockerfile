@@ -1,16 +1,16 @@
 # ---  1: Builder ---
 FROM node:22-bookworm AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
 RUN npm run build
  
 # ---  2: Development ---
 FROM node:22-bookworm AS development
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
 # default port 5173
 CMD ["npm", "run", "dev"]

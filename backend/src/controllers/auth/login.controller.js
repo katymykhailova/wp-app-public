@@ -44,7 +44,7 @@ export default async (req, res) => {
 
     const adUser = searchEntries[0];
     if (!adUser) {
-      sendSuccessRes(res, { message: "User not found in AD" }, 404);
+      return sendSuccessRes(res, { message: "User not found in AD" }, 404);
     }
 
     const memberOf = adUser?.memberOf ?? [];

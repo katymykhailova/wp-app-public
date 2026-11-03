@@ -41,6 +41,12 @@ const ReportFilters = ({
     setIsDropdownOpen((prev) => (prev === type ? null : type));
   };
 
+  const handleOnParamsChange = () => {
+    setIsOpen(null);
+    setIsDropdownOpen(null);
+    onParamsChange();
+  };
+
   // const orderLabel =
   //   selectedFields.find(({ key }) => key === selectedOrder)?.label ??
   //   "Sortieren nach";
@@ -169,7 +175,7 @@ const ReportFilters = ({
                         />
                       </Dropdown>
                     )}
-                    {["number", "text"].includes(fieldConfig?.type) && (
+                    {["number", "string"].includes(fieldConfig?.type) && (
                       <input
                         type={fieldConfig.type}
                         placeholder="Wert"
@@ -256,7 +262,7 @@ const ReportFilters = ({
           </Actions.Collapsible>
         )}
 
-        <Actions.Button outlined withText onClick={onParamsChange}>
+        <Actions.Button outlined withText onClick={handleOnParamsChange}>
           <div>Anwenden</div>
         </Actions.Button>
       </Actions>

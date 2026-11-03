@@ -1,96 +1,81 @@
 import { startOfYear, format } from "date-fns";
-import sqlHelpers from "../../_helpers/sqlHelpers.js";
+import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
 
-export default async (req, res) => {
-  const dateStart =
-    req.query.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
-  const dateEnd = req.query.dateEnd || format(new Date(), "yyyyMMdd");
-  const defaultFields = [
-    "kunden_nr",
-    "betrag_erstkauf",
-    "betrag_zweitkauf",
-    "erstes_datum",
-    "zweites_datum",
-    "tagen_zwischen",
-    "segment",
-  ];
+const aggregateFields = {
+  betrag_erstkauf: { fn: "sum", format: "currency" },
+  betrag_zweitkauf: { fn: "sum", format: "currency" },
+  erstes_datum_sort: { fn: "min" },
+  zweites_datum_sort: { fn: "min" },
+  segment_sort: { fn: "min" },
+  count: { fn: "count", distinct: true, format: "number" },
+};
 
-  const technicalFields = [
-    "erstes_datum_sort",
-    "zweites_datum_sort",
-    "segment_sort",
-    "count",
-  ];
+const resultFields = {
+  id: {
+    label: "id",
+    sortable: false,
+    selectable: false,
+    visible: false,
+    queryable: false,
+  },
+  count: {
+    label: "Anzahl",
+    sortable: true,
+    selectable: true,
+    visible: true,
+    required: true,
+    hiddenByDefault: true,
+  },
+  kunden_nr: {
+    label: "Kundennummer",
+    sortable: false,
+    selectable: true,
+    visible: true,
+  },
+  betrag_erstkauf: {
+    label: "Erstkaufbetrag",
+    sortable: true,
+    selectable: true,
+    visible: true,
+    format: "currency",
+  },
+  betrag_zweitkauf: {
+    label: "Zweitkaufbetrag",
+    sortable: true,
+    selectable: true,
+    visible: true,
+    format: "currency",
+  },
+  erstes_datum: {
+    label: "Erstkaufdatum",
+    sortable: true,
+    selectable: true,
+    visible: true,
+    sortKey: "erstes_datum_sort",
+  },
+  zweites_datum: {
+    label: "Zweitkaufdatum",
+    sortable: true,
+    selectable: true,
+    visible: true,
+    sortKey: "zweites_datum_sort",
+  },
+  tagen_zwischen: {
+    label: "Tage zwischen den Käufen",
+    sortable: true,
+    selectable: true,
+    visible: true,
+  },
+  segment: {
+    label: "Segment",
+    sortable: true,
+    sortKey: "segment_sort",
+    selectable: false,
+    visible: true,
+  },
+};
 
-  const aggregateFields = {
-    betrag_erstkauf: { fn: "sum", format: "currency" },
-    betrag_zweitkauf: { fn: "sum", format: "currency" },
-    erstes_datum_sort: { fn: "min" },
-    zweites_datum_sort: { fn: "min" },
-    segment_sort: { fn: "min" },
-    count: { fn: "count", distinct: true, format: "number" },
-  };
-
-  const resultFields = {
-    id: { label: "id", sortable: false, selectable: false, visible: false },
-    count: {
-      label: "Anzahl",
-      sortable: true,
-      selectable: true,
-      visible: true,
-      hiddenByDefault: true,
-    },
-    kunden_nr: {
-      label: "Kundennummer",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    betrag_erstkauf: {
-      label: "Erstkaufbetrag",
-      sortable: true,
-      selectable: true,
-      visible: true,
-      format: "currency",
-    },
-    betrag_zweitkauf: {
-      label: "Zweitkaufbetrag",
-      sortable: true,
-      selectable: true,
-      visible: true,
-      format: "currency",
-    },
-    erstes_datum: {
-      label: "Erstkaufdatum",
-      sortable: true,
-      selectable: true,
-      visible: true,
-      sortKey: "erstes_datum_sort",
-    },
-    zweites_datum: {
-      label: "Zweitkaufdatum",
-      sortable: true,
-      selectable: true,
-      visible: true,
-      sortKey: "zweites_datum_sort",
-    },
-    tagen_zwischen: {
-      label: "Tage zwischen den Käufen",
-      sortable: true,
-      selectable: true,
-      visible: true,
-    },
-    segment: {
-      label: "Segment",
-      sortable: true,
-      sortKey: "segment_sort",
-      selectable: false,
-      visible: true,
-    },
-  };
-
-  try {
-    const cte = `
+const cte = `
           vertraege AS (
           SELECT
               a.AUAUN, a.AUKDN, a.AUAEU, a.AUDAT, a.AURBT, k.KDNAD,
@@ -141,7 +126,7 @@ export default async (req, res) => {
           WHERE segment_end < max_Tagen
       )`;
 
-    const source = `SELECT
+const source = `SELECT
           kunden_nr as count,
           tz.kunden_nr AS kunden_nr, 
           tz.betrag_erstkauf AS betrag_erstkauf, 
@@ -157,17 +142,24 @@ export default async (req, res) => {
       LEFT JOIN segmente AS s
           ON tz.tagen_zwischen BETWEEN s.segment_start AND s.segment_end`;
 
-    const data = await sqlHelpers.getQueryData(
-      { recursive: true, cte, source },
-      {
-        query: req.query,
-        defaultFields,
-        technicalFields,
-        aggregateFields,
-        resultFields,
-        params: [dateStart, dateStart, dateStart, dateEnd],
-      },
-    );
+const sqlConfig = {
+  recursive: true,
+  cte,
+  source,
+};
+
+export default async (req, res) => {
+  const dateStart =
+    req.query.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
+  const dateEnd = req.query.dateEnd || format(new Date(), "yyyyMMdd");
+
+  try {
+    const data = await sqlHelpers.getQueryData(sqlConfig, {
+      query: req.query,
+      aggregateFields,
+      resultFields,
+      params: [dateStart, dateStart, dateStart, dateEnd],
+    });
 
     res.status(200).json(data);
   } catch (error) {

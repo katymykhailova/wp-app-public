@@ -3,6 +3,7 @@ import getSalesByChannel from "../controllers/sales/getSalesByChannel.controller
 import getSalesByBranch from "../controllers/sales/getSalesByBranch.controller.js";
 import getSalesQuotations from "../controllers/sales/getSalesQuotations.js";
 import getSalesByPostcode from "../controllers/sales/getSalesByPostcode.controller.js";
+import getSalesDetails from "../controllers/sales/getSalesrDetails.js";
 
 const router = Router();
 
@@ -10,5 +11,6 @@ router.get("/get-sales-by-channel", getSalesByChannel);
 router.get("/get-sales-by-branch", getSalesByBranch);
 router.get("/get-sales-quotations", getSalesQuotations);
 router.get("/get-sales-by-postcode", getSalesByPostcode);
+router.get("/get-sales-details", getSalesDetails);
 
 export default router;

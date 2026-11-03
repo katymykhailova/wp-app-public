@@ -1,7 +1,7 @@
 import { startOfYear, format } from "date-fns";
 import fsPromises from "fs/promises";
 import config from "../../_config/config.js";
-import sqlHelpers from "../../_helpers/sqlHelpers.js";
+import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
 
 const BASE_DIR = config.dbDir;
 
@@ -10,16 +10,20 @@ export default async (req, res) => {
     req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
   const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
 
-  const defaultFields = ["period", "besucherzahl", "filiale", "nln"];
-
-  const technicalFields = ["nln", "period_sort"];
+  // const technicalFields = ["nln"];
 
   const aggregateFields = {
     besucherzahl: { fn: "sum", format: "number" },
   };
 
   const resultFields = {
-    id: { label: "id", sortable: false, selectable: false, visible: false },
+    id: {
+      label: "id",
+      sortable: false,
+      selectable: false,
+      visible: false,
+      queryable: false,
+    },
     filiale: {
       label: "Filiale",
       sortable: false,
@@ -43,7 +47,7 @@ export default async (req, res) => {
     },
   };
 
-  const defaultOrder = ["period_sort", "filiale"];
+  const defaultOrder = [{ field: "period_sort" }, { field: "filiale" }];
 
   const chartConfig = [
     {
@@ -93,8 +97,7 @@ export default async (req, res) => {
       { source },
       {
         query: req.query,
-        defaultFields,
-        technicalFields,
+        // technicalFields,
         aggregateFields,
         resultFields,
         timeGranularity: true,
@@ -118,7 +121,7 @@ export default async (req, res) => {
         ...(filialeOptions.length && {
           filiale: {
             label: "Filiale",
-            type: "select",
+            // type: "select",
             options: filialeOptions,
           },
         }),

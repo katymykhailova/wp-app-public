@@ -21,8 +21,7 @@ export default async (req, res) => {
       FROM
         UDVM400DAT.MAUFTR AS FTR
       WHERE
-      FTR.AUDAT >= ${dateStart}
-      AND FTR.AUDAT <= ${dateEnd}
+      FTR.AUDAT BETWEEN ${dateStart} AND ${dateEnd}
       AND AURBT <> 0
       AND AUAUN <> AUKDN
       AND FTR.AUNLN <> 30
