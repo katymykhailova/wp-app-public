@@ -1,61 +1,45 @@
 import { startOfYear, format } from "date-fns";
 import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
+import { createFields } from "../../_helpers/createFields.js";
 
-const aggregateFields = {
-  umsatz_gesamt: { fn: "sum", format: "currency" },
-  umsatz_neukunden: { fn: "sum", format: "currency" },
-  umsatz_bestandskunden: { fn: "sum", format: "currency" },
-};
-
-const resultFields = {
+const resultFields = createFields({
   id: {
     label: "id",
-    sortable: false,
+    type: "number",
     selectable: false,
+    sortable: false,
+    filterable: false,
     visible: false,
     queryable: false,
   },
   plz: {
     label: "PLZ",
-    sortable: false,
-    selectable: true,
-    visible: true,
     required: true,
+    filterable: false,
     hiddenByDefault: true,
   },
   plz_gruppe: {
     label: "PLZ Gruppe",
-    sortable: false,
-    selectable: true,
-    visible: true,
+    filterable: false,
+    defaultOrder: { priority: 1, direction: "asc" },
   },
   filiale: {
     label: "Filiale",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    type: "select",
   },
   umsatz_gesamt: {
     label: "Umsatz gesamt",
-    sortable: false,
-    selectable: true,
-    visible: true,
+    aggregate: true,
   },
   umsatz_neukunden: {
     label: "Umsatz Neukunden",
-    sortable: false,
-    selectable: true,
-    visible: true,
+    aggregate: true,
   },
   umsatz_bestandskunden: {
     label: "Umsatz Bestandskunden",
-    sortable: false,
-    selectable: true,
-    visible: true,
+    aggregate: true,
   },
-};
-
-const defaultOrder = [{ field: "plz_gruppe" }];
+});
 
 const chartConfig = [
   {
@@ -91,9 +75,9 @@ const cte = `base AS (
         CASE WHEN KDNAD >= ? THEN FTR.AURBT ELSE 0 END AS umsatz_neukunden
       FROM UDVM400DAT.MAUFTR AS FTR
       INNER JOIN UDVM400DAT.MKUNDE AS KUNDE ON FTR.AUKDN = KUNDE.KDKDN
-      WHERE (FTR.AUDAT BETWEEN ? AND ?)
+      WHERE FTR.AUDAT BETWEEN ? AND ?
         AND FTR.AUNFV <> 'X'
-        AND (FTR.AUAUN <> FTR.AUKDN)
+        AND FTR.AUAUN <> FTR.AUKDN
         AND FTR.AURBT <> 0
         AND FTR.AUNLN <> 30
         AND KUNDE.KDNAT = '')`;
@@ -110,7 +94,6 @@ const source = `SELECT
 const filters = {
   filiale: {
     label: "Filiale",
-    // type: "select",
     options: [
       { label: "online", value: "online" },
       { label: "Filiale", value: "Filiale" },
@@ -131,9 +114,7 @@ export default async (req, res) => {
   try {
     const result = await sqlHelpers.getQueryData(sqlConfig, {
       query: req.query,
-      aggregateFields,
       resultFields,
-      defaultOrder,
       params: [dateStart, dateStart, dateStart, dateEnd],
     });
 

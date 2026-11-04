@@ -2,84 +2,60 @@ import { startOfYear, format } from "date-fns";
 import fsPromises from "fs/promises";
 import config from "../../_config/config.js";
 import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
+import { createFields } from "../../_helpers/createFields.js";
 
 const BASE_DIR = config.dbDir;
 
-const defaultOrder = [{ field: "date" }];
-
-const aggregateFields = {};
-
-const resultFields = {
+const resultFields = createFields({
   id: {
     label: "id",
-    sortable: false,
+    type: "number",
     selectable: false,
+    sortable: false,
+    filterable: false,
     visible: false,
     queryable: false,
   },
-  company: {
+  firma: {
     label: "Firma",
-    sortable: false,
-    selectable: true,
-    visible: true,
+    type: "select",
   },
-  firstName: {
+  vorname: {
     label: "Vorname",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
-  lastName: {
+  nachname: {
     label: "Nachname",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   email: {
     label: "Email",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   online: {
     label: "Online",
     sortable: false,
-    selectable: true,
-    visible: true,
   },
-  branch: {
+  filiale: {
     label: "Filiale",
+    type: "select",
     sortable: false,
     selectable: true,
     visible: true,
     filterKey: "nln",
   },
-  date: {
+  auftragsdatum: {
     label: "Auftragsdatum",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    filterable: false,
     sortKey: "period_sort",
   },
   orderNumber: {
     label: "Auftragsnummer",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
-  complaint: {
+  reklamation: {
     label: "Reklamation",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   productGroups: {
     label: "Warengruppen",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
-};
+});
 
 const branchesData = await fsPromises.readFile(
   BASE_DIR + "/branches.json",
@@ -94,12 +70,28 @@ const productGroupsQuery = `
     FROM UDVM400DAT.MVDATR AS firmenstamm 
     WHERE vdsaa = '7' AND SUBSTRING(vdvar, 8, 1) <> '2' AND TRANSLATE(LEFT(vdvar, 3), ' ', '0123456789')= '   '`;
 
-export default async (req, res) => {
-  const dateStart =
-    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
-  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+const sorce = `
+      LEFT JOIN (
+          VALUES
+          ${values}
+          ) AS FLL (NLN, Bezeichnung)
+          ON FTR.AUNLN = FLL.NLN
+      WHERE
+        FTR.AUDAT BETWEEN ? AND ?
+        AND FTR.AUNFV <> 'X' 
+        AND (AUAUN <> AUKDN) 
+        AND AUKDN < 9999998 
+        AND AURBT <> 0 
+`;
 
-  const cte = ` 
+const sourceFiliale = `SELECT DISTINCT
+      FLL.Bezeichnung AS "label",
+      FTR.AUNLN AS "value"
+    FROM UDVM400DAT.MAUFTR AS FTR
+    ${sorce}
+      ORDER BY "label" ASC`;
+
+const cte = ` 
     WGR AS (${productGroupsQuery}),
     rekl AS (
       SELECT APANR,  MAX(APREK) AS APREK
@@ -112,22 +104,16 @@ export default async (req, res) => {
     ),
     vertraege AS (
       SELECT
-        CASE WHEN AUPER > 5 THEN 'ja' ELSE 'nein' END AS company,
+        CASE WHEN AUPER > 5 THEN 'ja' ELSE 'nein' END AS firma,
         CASE WHEN AUNLN < 800 THEN 'nein' ELSE 'ja' END AS Online,
         AUDAT AS period_sort,
-        VARCHAR_FORMAT(DATE(TIMESTAMP_FORMAT(DIGITS(AUDAT), 'YYYYMMDD')),'DD.MM.YYYY') AS date,
-        TRIM(KDNM2) as firstName, VARCHAR(KDNM1) AS lastName, KDEML AS Email, Bezeichnung AS branch, AUNLN AS nln, AUAUN AS orderNumber
-      FROM UDVM400DAT.MAUFTR AS UDVM400DAT_MAUFTR
-      LEFT JOIN UDVM400DAT.MKUNDE AS UDVM400DAT_MKUNDE 
-        ON UDVM400DAT_MAUFTR.AUKDN = UDVM400DAT_MKUNDE.KDKDN
-          LEFT JOIN (
-          VALUES
-          ${values}
-          ) AS FLL (NLN, Bezeichnung)
-          ON UDVM400DAT_MAUFTR.AUNLN = FLL.NLN
-      WHERE
-        UDVM400DAT_MAUFTR.AUDAT BETWEEN ? AND ?
-        AND UDVM400DAT_MAUFTR.AUNFV <> 'X' AND (AUAUN <> AUKDN) AND AUKDN < 9999998 AND AURBT <> 0 AND KDNWL = 'J'
+        VARCHAR_FORMAT(DATE(TIMESTAMP_FORMAT(DIGITS(AUDAT), 'YYYYMMDD')),'DD.MM.YYYY') AS auftragsdatum,
+        TRIM(KDNM2) as vorname, VARCHAR(KDNM1) AS nachname, KDEML AS Email, Bezeichnung AS filiale, AUNLN AS nln, AUAUN AS orderNumber
+      FROM UDVM400DAT.MAUFTR AS FTR
+      LEFT JOIN UDVM400DAT.MKUNDE AS KUNDE
+        ON FTR.AUKDN = KUNDE.KDKDN
+      ${sorce}
+        AND KDNWL = 'J'
       ),
     Art AS (SELECT APANR, APWGR
       FROM UDVM400DAT.MARPOK AS p
@@ -137,81 +123,69 @@ export default async (req, res) => {
       FROM UDVM400DAT.MARPOL AS p
       WHERE APWGR IN (101,102,306,210,402,201,601,301,701,211,702))`;
 
-  const source = `SELECT
-      vertraege.orderNumber AS id, vertraege.company AS company, vertraege.firstName AS firstName, 
-      vertraege.lastName AS lastName, vertraege.Email AS email, vertraege.Online AS online, 
-      vertraege.branch AS branch, vertraege.nln AS nln, vertraege.period_sort AS period_sort, vertraege.date AS date, vertraege.orderNumber AS orderNumber,
-      CASE WHEN rekl.APREK IS NULL OR TRIM(rekl.APREK) = '' THEN 'nein' ELSE 'ja' END AS complaint,
+const sourceBase = `SELECT
+      vertraege.orderNumber AS id, vertraege.firma AS firma, vertraege.vorname AS vorname, 
+      vertraege.nachname AS nachname, vertraege.Email AS email, vertraege.Online AS online, 
+      vertraege.filiale AS filiale, vertraege.nln AS nln, vertraege.period_sort AS period_sort, vertraege.auftragsdatum AS auftragsdatum, vertraege.orderNumber AS orderNumber,
+      CASE WHEN rekl.APREK IS NULL OR TRIM(rekl.APREK) = '' THEN 'nein' ELSE 'ja' END AS reklamation,
       Listagg(WGR.Warengruppe, ', ') WITHIN GROUP (ORDER BY Warengruppe) AS productGroups
     FROM vertraege
     INNER JOIN Art ON vertraege.orderNumber = Art.APANR
     INNER Join WGR ON Art.APWGR = WGR.groupId
     LEFT JOIN rekl ON rekl.APANR = vertraege.orderNumber 
-    GROUP BY vertraege.company, vertraege.firstName, vertraege.lastName, vertraege.Email,
-      vertraege.Online, vertraege.branch, vertraege.nln, vertraege.period_sort, vertraege.date, vertraege.orderNumber,
+    GROUP BY vertraege.firma, vertraege.vorname, vertraege.nachname, vertraege.Email,
+      vertraege.Online, vertraege.filiale, vertraege.nln, vertraege.period_sort, vertraege.auftragsdatum, vertraege.orderNumber,
       CASE WHEN rekl.APREK IS NULL OR TRIM(rekl.APREK) = '' THEN 'nein' ELSE 'ja' END`;
 
-  const sqlConfig = {
-    cte,
-    source,
+const firmaFilter = {
+  label: "Firma",
+  options: [
+    { label: "ja", value: "ja" },
+    { label: "nein", value: "nein" },
+  ],
+};
+
+export default async (req, res) => {
+  const dateStart =
+    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
+  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+
+  const queries = {
+    data: {
+      sqlConfig: {
+        cte,
+        source: sourceBase,
+      },
+      options: {
+        query: req.query,
+        grouping: { mode: "standard", totals: false },
+        resultFields,
+        params: [dateStart, dateEnd],
+      },
+    },
+    filiale: {
+      sqlConfig: {
+        source: sourceFiliale,
+      },
+      options: {
+        query: {},
+        rawQuery: true,
+        params: [dateStart, dateEnd],
+      },
+    },
   };
 
   try {
-    // const productGroups = await query(productGroupsQuery);
-    // const productGroupsOptions = [
-    //   ...new Map(
-    //     productGroups.map(({ wgr, groupId: id }) => [
-    //       id,
-    //       { label: wgr, value: id },
-    //     ]),
-    //   ).values(),
-    // ].sort((a, b) => a.label.localeCompare(b.label));
-
-    const result = await sqlHelpers.getQueryData(sqlConfig, {
-      query: req.query,
-      aggregateFields,
-      resultFields,
-      defaultOrder,
-      params: [dateStart, dateEnd],
-    });
-
-    const filialeOptions = [
-      ...new Map(
-        (result?.data ?? [])
-          .filter(({ filiale, nln }) => filiale && nln)
-          .map(({ filiale, nln }) => [nln, { label: filiale, value: nln }]),
-      ).values(),
-    ].sort((a, b) => a.label.localeCompare(b.label));
+    const result = await sqlHelpers.getParallelQueryData(queries);
 
     const data = {
-      ...result,
+      ...result["data"],
       filters: {
-        // wgr: {
-        //   label: "Filiale",
-        //   type: "select",
-        //   options: productGroupsOptions,
-        // },
-        company: {
-          label: "Firma",
-          // type: "select",
-          options: [
-            { label: "ja", value: "ja" },
-            { label: "nein", value: "nein" },
-          ],
-        },
-        // complaint: {
-        //   label: "Reklamation",
-        //   type: "select",
-        //   options: [
-        //     { label: "ja", value: "ja" },
-        //     { label: "nein", value: "nein" },
-        //   ],
-        // },
-        ...(filialeOptions.length && {
+        firma: firmaFilter,
+        ...(result["filiale"].length && {
           filiale: {
             label: "Filiale",
-            // type: "select",
-            options: filialeOptions,
+            options: result["filiale"],
           },
         }),
       },

@@ -1,13 +1,7 @@
 import { startOfYear, format } from "date-fns";
-import { query } from "../../util/db2.js";
+import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
 
-export default async (req, res) => {
-  const dateStart =
-    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
-  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
-  try {
-    const rows = await query(
-      `SELECT
+const source = `SELECT
       COUNT(AUAUN) AS "Gesamtzahl der Bestellungen",
       COUNT(CASE WHEN FTR.AUNFV <> 'X' THEN AUAUN END) AS "Bestellungen (ohne Angebote)",
       COUNT(CASE WHEN FTR.AUNFV = 'X' THEN AUAUN END) AS "Angebote",
@@ -21,13 +15,28 @@ export default async (req, res) => {
       FROM
         UDVM400DAT.MAUFTR AS FTR
       WHERE
-      FTR.AUDAT BETWEEN ${dateStart} AND ${dateEnd}
+      FTR.AUDAT BETWEEN ? AND ?
       AND AURBT <> 0
       AND AUAUN <> AUKDN
       AND FTR.AUNLN <> 30
-      AND FTR.AUNFV <> 'X'`,
+      AND FTR.AUNFV <> 'X'
+    `;
+
+export default async (req, res) => {
+  const dateStart =
+    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
+  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+  try {
+    const result = await sqlHelpers.getQueryData(
+      { source },
+      {
+        query: req.query,
+        rawQuery: true,
+        grouping: { mode: "standard", totals: false },
+        params: [dateStart, dateEnd],
+      },
     );
-    res.status(200).json(rows);
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

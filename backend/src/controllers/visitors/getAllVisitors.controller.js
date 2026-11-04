@@ -2,81 +2,69 @@ import { startOfYear, format } from "date-fns";
 import fsPromises from "fs/promises";
 import config from "../../_config/config.js";
 import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
+import { createFields } from "../../_helpers/createFields.js";
 
 const BASE_DIR = config.dbDir;
 
-export default async (req, res) => {
-  const dateStart =
-    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
-  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+const resultFields = createFields({
+  id: {
+    label: "id",
+    type: "number",
+    selectable: false,
+    sortable: false,
+    filterable: false,
+    visible: false,
+    queryable: false,
+  },
+  filiale: {
+    label: "Filiale",
+    type: "select",
+    defaultOrder: { priority: 2, direction: "asc" },
+    filterKey: "nln",
+  },
+  period: {
+    label: "Zeitraum",
+    type: "date",
+    selectable: false,
+    filterable: false,
+    defaultOrder: { priority: 1, direction: "asc" },
+    sortKey: "period_sort",
+  },
+  besucherzahl: {
+    label: "Besucherzahl",
+    aggregate: true,
+    format: "number",
+    fn: "sum",
+  },
+});
 
-  // const technicalFields = ["nln"];
+const chartConfig = [
+  {
+    name: "Filialvergleich",
+    type: "line",
+    xKey: "period",
+    groupBy: "period",
+    seriesKey: "filiale",
+    metrics: [
+      {
+        dataKey: "besucherzahl",
+        label: "Besucherzahl",
+        format: "number",
+      },
+    ],
+    requiredFields: ["filiale", "period", "besucherzahl"],
+  },
+];
 
-  const aggregateFields = {
-    besucherzahl: { fn: "sum", format: "number" },
-  };
+const branchesData = await fsPromises.readFile(
+  BASE_DIR + "/branches.json",
+  "utf8",
+);
+const branches = JSON.parse(branchesData);
 
-  const resultFields = {
-    id: {
-      label: "id",
-      sortable: false,
-      selectable: false,
-      visible: false,
-      queryable: false,
-    },
-    filiale: {
-      label: "Filiale",
-      sortable: false,
-      selectable: true,
-      visible: true,
-      filterKey: "nln",
-    },
-    period: {
-      label: "Zeitraum",
-      sortable: true,
-      selectable: true,
-      visible: true,
-      sortKey: "period_sort",
-    },
-    besucherzahl: {
-      label: "Besucherzahl",
-      sortable: false,
-      selectable: true,
-      visible: true,
-      format: "number",
-    },
-  };
+const values = sqlHelpers.getSqlValues(branches, "id", "name");
 
-  const defaultOrder = [{ field: "period_sort" }, { field: "filiale" }];
-
-  const chartConfig = [
-    {
-      name: "Filialvergleich",
-      type: "line",
-      xKey: "period",
-      groupBy: "period",
-      seriesKey: "filiale",
-      metrics: [
-        {
-          dataKey: "besucherzahl",
-          label: "Besucherzahl",
-          format: "number",
-        },
-      ],
-      requiredFields: ["filiale", "period", "besucherzahl"],
-    },
-  ];
-
-  try {
-    const branchesData = await fsPromises.readFile(
-      BASE_DIR + "/branches.json",
-      "utf8",
-    );
-    const branches = JSON.parse(branchesData);
-
-    const values = sqlHelpers.getSqlValues(branches, "id", "name");
-
-    const source = `SELECT
+const source = `SELECT
       BSU.K6NLN AS nln,
       BSU.K6DAT AS period,
       BSU.K6BSU AS besucherzahl,
@@ -93,15 +81,18 @@ export default async (req, res) => {
     WHERE
       BSU.K6DAT BETWEEN ? AND ?`;
 
+export default async (req, res) => {
+  const dateStart =
+    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
+  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+
+  try {
     const result = await sqlHelpers.getQueryData(
       { source },
       {
         query: req.query,
-        // technicalFields,
-        aggregateFields,
         resultFields,
         timeGranularity: true,
-        defaultOrder,
         params: [dateStart, dateEnd],
       },
     );
@@ -121,7 +112,6 @@ export default async (req, res) => {
         ...(filialeOptions.length && {
           filiale: {
             label: "Filiale",
-            // type: "select",
             options: filialeOptions,
           },
         }),

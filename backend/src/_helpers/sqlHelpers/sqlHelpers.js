@@ -2,7 +2,7 @@ import { query, queryMultiple } from "../../util/db2.js";
 import { isInvalidObject, isInvalidArray } from "../is-invalid-var.js";
 import { operatorsByType } from "../../_config/constants.js";
 
-const IS_PRODUCTION = process.env.IS_PRODUCTION === "true";
+const ibmi = process.env.DSN === "WhosPerfect";
 
 const defaultTimeGranularity = {
   label: "Zeitraum",
@@ -29,7 +29,7 @@ const getAllowedOperators = (field) =>
 const getDefaultFields = (resultFields) =>
   Object.entries(resultFields)
     .filter(
-      ([, config]) => !config.hiddenByDefault && config.queryable !== false
+      ([, config]) => !config.hiddenByDefault && config.queryable !== false,
     )
     .map(([field]) => field);
 
@@ -66,8 +66,8 @@ const normalizeOptions = (options = {}) => {
     options.aggregateFields ??
     Object.fromEntries(
       Object.entries(options.resultFields ?? {}).filter(
-        ([, config]) => config.aggregate
-      )
+        ([, config]) => config.aggregate,
+      ),
     );
 
   return {
@@ -76,7 +76,7 @@ const normalizeOptions = (options = {}) => {
       Object.entries(aggregateFields).map(([field, config]) => [
         field,
         typeof config === "string" ? { fn: config } : { ...config },
-      ])
+      ]),
     ),
     timeGranularity: getTimeGranularity(options),
     grouping: {
@@ -105,9 +105,19 @@ const getFieldParts = (options) => {
         })
     : getDefaultFields(resultFields);
 
+  const defaultOrder = Object.entries(resultFields)
+    .filter(
+      ([field, config]) => config.defaultOrder && queryFields.includes(field),
+    )
+    .sort(([, a], [, b]) => a.defaultOrder.priority - b.defaultOrder.priority)
+    .map(([field, { defaultOrder, sortKey }]) => ({
+      field: sortKey ?? field,
+      direction: defaultOrder.direction ?? "ASC",
+    }));
+
   const grainFields = [
     ...new Set(
-      queryFields.flatMap((field) => aggregateFields[field]?.grain ?? [])
+      queryFields.flatMap((field) => aggregateFields[field]?.grain ?? []),
     ),
   ];
 
@@ -120,7 +130,7 @@ const getFieldParts = (options) => {
   const technicalFields = Object.entries(resultFields)
     .filter(([field]) => queryFields.includes(field))
     .flatMap(([, { sortKey, filterKey }]) =>
-      [sortKey, filterKey].filter((field) => field && field !== timeSortKey)
+      [sortKey, filterKey].filter((field) => field && field !== timeSortKey),
     );
 
   const filterFields = Object.entries(resultFields)
@@ -144,7 +154,7 @@ const getFieldParts = (options) => {
     ]),
   ];
   const dimensions = fields.filter(
-    (field) => !aggregateFields[field] && field !== timeSortKey
+    (field) => !aggregateFields[field] && field !== timeSortKey,
   );
   const groupingDimensions = dimensions.map((field) => `g_${field}`);
 
@@ -181,12 +191,13 @@ const getFieldParts = (options) => {
     preAggregateFields,
     groupingDimensions,
     groupFields,
+    defaultOrder,
   };
 };
 
 const getQueryOptions = (fieldParts, options) => {
   const { selectedFields } = fieldParts;
-  const { query, resultFields, defaultOrder } = options;
+  const { query, resultFields } = options;
 
   // query.filter = {fieldName:{values:[], operator:""}}
   // query.filter = [
@@ -233,11 +244,11 @@ const getQueryOptions = (fieldParts, options) => {
       direction: direction?.toLowerCase() === "desc" ? "DESC" : "ASC",
     }));
 
-  const defaultOrderFields = (defaultOrder ?? []).filter(({ field }) =>
-    selectedFields.includes(field)
-  );
+  // const defaultOrderFields = (defaultOrder ?? []).filter(({ field }) =>
+  //   selectedFields.includes(field),
+  // );
 
-  return { queryFilter, defaultOrderFields, queryOrder };
+  return { queryFilter, queryOrder };
 };
 
 const getTimeGranularityExpressions = (timeGranularity, query) => {
@@ -247,10 +258,10 @@ const getTimeGranularityExpressions = (timeGranularity, query) => {
 
   const selectedOption =
     timeGranularity.options.find(
-      ({ value }) => value === query.timeGranularity
+      ({ value }) => value === query.timeGranularity,
     ) ??
     timeGranularity.options.find(
-      ({ value }) => value === timeGranularity.defaultGranularity
+      ({ value }) => value === timeGranularity.defaultGranularity,
     );
 
   if (!selectedOption) {
@@ -325,7 +336,7 @@ const buildFieldExpressions = (
   aggregateFields,
   timeExpressions,
   groupingDimensions = [],
-  preAggregate = false
+  preAggregate = false,
 ) => {
   return Object.fromEntries(
     fields.map((field) => {
@@ -344,7 +355,7 @@ const buildFieldExpressions = (
         const select = getAggregateExpression(
           field,
           aggregateConfig,
-          preAggregate
+          preAggregate,
         );
         const source = `t.${field}`;
         const scope = aggregateConfig.scope ?? "aggregate";
@@ -365,7 +376,7 @@ const buildFieldExpressions = (
       const sort = `"${field}"`;
 
       return [field, { select, filter, scope: "source", groupBy, sort }];
-    })
+    }),
   );
 };
 
@@ -384,13 +395,13 @@ const getFieldExpressions = (fieldParts, options) => {
     aggregateFields,
     {},
     groupingDimensions,
-    true
+    true,
   );
 
   const fieldsExpressions = buildFieldExpressions(
     expressionFields,
     aggregateFields,
-    timeExpressions
+    timeExpressions,
   );
 
   const groupExpressions = groupFields
@@ -483,11 +494,11 @@ const getFilter = (queryOptions, fieldExpressions) => {
   const { fieldsExpressions } = fieldExpressions;
 
   const whereFilters = queryFilter.filter(
-    ({ filterKey }) => fieldsExpressions[filterKey]?.scope === "source"
+    ({ filterKey }) => fieldsExpressions[filterKey]?.scope === "source",
   );
 
   const havingFilters = queryFilter.filter(
-    ({ filterKey }) => fieldsExpressions[filterKey]?.scope === "aggregate"
+    ({ filterKey }) => fieldsExpressions[filterKey]?.scope === "aggregate",
   );
 
   const where = buildFilter(whereFilters, fieldsExpressions);
@@ -559,7 +570,7 @@ const getGroupBy = (
   fieldParts,
   fieldExpressions,
   grouping,
-  requiresPostAggregation
+  requiresPostAggregation,
 ) => {
   const { groupExpressions } = fieldExpressions;
   const { mode, totals } = grouping;
@@ -586,13 +597,13 @@ const getGroupBy = (
 //   { field: "period", direction: "desc" },
 //   { field: "umsatz", direction: "asc" },
 // ];
-const getOrderBy = (queryOptions, fieldExpressions) => {
-  const { defaultOrderFields, queryOrder } = queryOptions;
+const getOrderBy = (queryOptions, fieldExpressions, fieldParts) => {
+  const { defaultOrder } = fieldParts;
+  const { queryOrder } = queryOptions;
   const { fieldsExpressions } = fieldExpressions;
 
-  const orderFields = queryOrder.length
-    ? queryOrder
-    : defaultOrderFields.map(({ field }) => ({ field, direction: "ASC" }));
+  const orderFields = queryOrder.length ? queryOrder : defaultOrder;
+  // : defaultOrderFields.map(({ field }) => ({ field, direction: "ASC" }));
 
   if (!orderFields.length) return "";
 
@@ -634,7 +645,7 @@ const getAggregatedSource = (
   fieldParts,
   fieldExpressions,
   havingString,
-  options
+  options,
 ) => {
   const select = getSelect(fieldParts, fieldExpressions);
   const avgFields = getAvgFields(fieldParts, options);
@@ -674,7 +685,7 @@ const getQueryParts = (options) => {
   const tGrouped = getGroupedSource(
     fieldParts,
     fieldExpressions,
-    filter.where.sql
+    filter.where.sql,
   );
 
   if (mode === "hierarchical" && filter.having.sql) {
@@ -688,7 +699,7 @@ const getQueryParts = (options) => {
     fieldParts,
     fieldExpressions,
     filter.having.sql,
-    options
+    options,
   );
 
   const totalMarker = getTotalMarker(fieldParts, grouping);
@@ -696,9 +707,9 @@ const getQueryParts = (options) => {
     fieldParts,
     fieldExpressions,
     grouping,
-    requiresPostAggregation
+    requiresPostAggregation,
   );
-  const orderBy = getOrderBy(queryOptions, fieldExpressions);
+  const orderBy = getOrderBy(queryOptions, fieldExpressions, fieldParts);
 
   return {
     select,
@@ -732,8 +743,7 @@ const buildQuery = (sqlConfig, options = {}) => {
   const { params: paramsWhere } = where;
   const { sql: havingString, params: paramsHaving } = having;
 
-  const withKeyword =
-    sqlConfig.recursive && IS_PRODUCTION ? "WITH RECURSIVE" : "WITH";
+  const withKeyword = ibmi && sqlConfig.recursive ? "WITH RECURSIVE" : "WITH";
 
   const withParts = [
     sqlConfig.cte,
@@ -777,7 +787,7 @@ const processResult = (rows, options) => {
               (aggregate === "sum" ? "currency" : "number"),
             value: totalRow[field],
           },
-        ])
+        ]),
       )
     : null;
 
@@ -836,7 +846,7 @@ const getParallelQueryData = async (queries) => {
       const result = await getQueryData(config.sqlConfig, config.options);
 
       return [name, result];
-    })
+    }),
   );
 
   return Object.fromEntries(entries);
@@ -856,7 +866,7 @@ export const getSequentialQueryData = async (queries) => {
     Object.entries(results).map(([name, rows]) => [
       name,
       processResult(rows, normalizedOptions[name]),
-    ])
+    ]),
   );
 };
 

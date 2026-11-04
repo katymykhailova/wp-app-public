@@ -1,7 +1,7 @@
 /**
  * @typedef {Object} FieldOptions
  * @property {string} [label]
- * @property {type} [string]
+ * @property {string} [type]
  * @property {boolean} [selectable]
  * @property {boolean} [sortable]
  * @property {boolean} [filterable]
@@ -11,6 +11,7 @@
  * @property {string} [sortKey]
  * @property {string} [filterKey]
  * @property {boolean} [required]
+ * @property {{ priority: number, direction?: "asc" | "desc" }} [defaultOrder]
  */
 
 /**
@@ -21,7 +22,7 @@
  *   scope?: string,
  *   cast?: string,
  *   groupable?: boolean
- *   distinct?: string,
+ *   distinct?: boolean,
  * }} AggregateFieldOptions
  */
 
@@ -55,7 +56,7 @@ const createFields = (fields) =>
     Object.entries(fields).map(([key, options]) => [
       key,
       options.aggregate ? createAggregateField(options) : createField(options),
-    ]),
+    ])
   );
 
 export { createFields };

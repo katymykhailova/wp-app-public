@@ -1,98 +1,89 @@
 import { startOfYear, format } from "date-fns";
 import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
+import { createFields } from "../../_helpers/createFields.js";
 
-const aggregateFields = {
-  // gesamt_chat: "count",
-  // gesamt_eshop: "count",
-  // gesamt_nln: "count",
-  // anzahl_chat_neukunden: "count",
-  // anzahl_eshop_neukunden: "count",
-  // anzahl_nln_neukunden: "count",
-  // anzahl_gesamt_neukunden: "count",
-  // anzahl_chat_bestandskunden: "count",
-  // anzahl_eshop_bestandskunden: "count",
-  // anzahl_nln_bestandskunden: "count",
-  // anzahl_gesamt_bestandskunden: "count",
-};
-
-const resultFields = {
+const resultFields = createFields({
   id: {
     label: "id",
-    sortable: false,
+    type: "number",
     selectable: false,
+    sortable: false,
+    filterable: false,
     visible: false,
     queryable: false,
   },
   month_start: {
     label: "Monat",
-    sortable: true,
     selectable: false,
-    visible: true,
     sortKey: "month_start_sort",
+    defaultOrder: { priority: 1, direction: "asc" },
   },
   gesamt_chat: {
     label: "Bestellungen Chat",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   gesamt_nln: {
     label: "Bestellungen Filialen",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_chat_neukunden: {
     label: "Neukunden Chat",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_eshop_neukunden: {
     label: "Neukunden eShop",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_nln_neukunden: {
     label: "Neukunden Filialen",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_gesamt_neukunden: {
     label: "Neukunden gesam",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_chat_bestandskunden: {
     label: "Bestandskunden Chat",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_eshop_bestandskunden: {
     label: "Bestandskunden eShop",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_nln_bestandskunden: {
     label: "Bestandskunden Filialen",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   anzahl_gesamt_bestandskunden: {
     label: "Bestandskunden gesamt",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
-};
+});
 
-const defaultOrder = [{ field: "month_start" }];
+const cte = `
+      params (dt_from) AS (
+      VALUES (DATE(TIMESTAMP_FORMAT(CAST(? AS CHAR(8)), 'YYYYMMDD')))
+      ),
+      months (month_start, month_end, n) AS (
+      SELECT
+        dt_from - (DAY(dt_from) - 1) DAYS,
+        ADD_MONTHS(dt_from - (DAY(dt_from) - 1) DAYS, 1),
+        CAST(0 AS INTEGER)
+      FROM params
+      UNION ALL
+      SELECT
+        ADD_MONTHS(month_start, 1),
+        ADD_MONTHS(month_end, 1),
+        n + 1
+      FROM months
+      WHERE n < ?
+      ),
+      umsatz AS (
+      SELECT
+        DATE(TIMESTAMP_FORMAT(DIGITS(FTR.AUDAT), 'YYYYMMDD')) AS Ftr_dt,
+        DATE(TIMESTAMP_FORMAT(DIGITS(KUNDE.KDNAD), 'YYYYMMDD')) AS Kunde_AD,
+        FTR.AUKDN AS Kunde_Nr,
+        FTR.AURBT AS Ohne_Angebote_BETRAG,
+        CASE WHEN FTR.AUNLN = '800' THEN FTR.AURBT END AS Chat_BETRAG,
+        CASE WHEN FTR.AUNLN = '900' THEN FTR.AURBT END AS eShop_BETRAG,
+        CASE WHEN FTR.AUNLN < '800' THEN FTR.AURBT END AS NLN_BETRAG
+      FROM UDVM400DAT.MAUFTR AS FTR
+      INNER JOIN UDVM400DAT.MKUNDE AS KUNDE ON FTR.AUKDN = KUNDE.KDKDN
+      WHERE
+        FTR.AUDAT BETWEEN ? AND ?
+        AND FTR.AUNFV <> 'X' 
+        AND (AUAUN <> AUKDN) AND AURBT <> 0
+        AND KUNDE.KDNAD IS NOT NULL)`;
 
 const source = `SELECT 
         month_start AS month_start_sort,
@@ -113,6 +104,8 @@ const source = `SELECT
       GROUP BY MONTHS.month_start
       ORDER BY MONTHS.month_start`;
 
+const sqlConfig = { recursive: true, cte, source };
+
 export default async (req, res) => {
   const dateStart =
     req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
@@ -124,64 +117,13 @@ export default async (req, res) => {
   const endMonth = Number(String(dateEnd).slice(4, 6));
   const months = (endYear - startYear) * 12 + (endMonth - startMonth);
 
-  const cte = `
-  params (dt_from) AS (
-    VALUES (DATE(TIMESTAMP_FORMAT('${dateStart}', 'YYYYMMDD')))
-  ),
-  months (month_start, month_end, n) AS (
-    SELECT
-      dt_from - (DAY(dt_from) - 1) DAYS,
-      ADD_MONTHS(dt_from - (DAY(dt_from) - 1) DAYS, 1),
-      CAST(0 AS INTEGER)
-    FROM params
-
-    UNION ALL
-
-    SELECT
-      ADD_MONTHS(month_start, 1),
-      ADD_MONTHS(month_end, 1),
-      n + 1
-    FROM months
-    WHERE n < ${months}
-  ),
-  umsatz AS (
-    SELECT
-      DATE(TIMESTAMP_FORMAT(DIGITS(FTR.AUDAT), 'YYYYMMDD')) AS Ftr_dt,
-      DATE(TIMESTAMP_FORMAT(DIGITS(KUNDE.KDNAD), 'YYYYMMDD')) AS Kunde_AD,
-      FTR.AUKDN AS Kunde_Nr,
-      FTR.AURBT AS Ohne_Angebote_BETRAG,
-      CASE WHEN FTR.AUNLN = '800' THEN FTR.AURBT END AS Chat_BETRAG,
-      CASE WHEN FTR.AUNLN = '900' THEN FTR.AURBT END AS eShop_BETRAG,
-      CASE WHEN FTR.AUNLN < '800' THEN FTR.AURBT END AS NLN_BETRAG
-    FROM UDVM400DAT.MAUFTR AS FTR
-    INNER JOIN UDVM400DAT.MKUNDE AS KUNDE
-      ON FTR.AUKDN = KUNDE.KDKDN
-    WHERE
-      FTR.AUDAT BETWEEN ? AND ?
-      AND FTR.AUNFV <> 'X'
-      AND FTR.AUAUN <> FTR.AUKDN
-      AND FTR.AURBT <> 0
-      AND KUNDE.KDNAD IS NOT NULL
-  )`;
-
-  const sqlConfig = { recursive: true, cte, source };
-
   try {
     const data = await sqlHelpers.getQueryData(sqlConfig, {
       query: req.query,
-      aggregateFields,
       resultFields,
-      defaultOrder,
+      grouping: { mode: "standard", totals: false },
       params: [dateStart, months, dateStart, dateEnd],
     });
-
-    // const filialeOptions = [
-    //   ...new Map(
-    //     result
-    //       .filter(({ filiale, nln }) => filiale && nln)
-    //       .map(({ filiale, nln }) => [nln, { label: filiale, value: nln }]),
-    //   ).values(),
-    // ].sort((a, b) => a.label.localeCompare(b.label));
 
     res.status(200).json(data);
   } catch (error) {

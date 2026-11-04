@@ -7,6 +7,9 @@ const query = async (queryString, params = []) => {
     return await connection.query(queryString, params);
   } catch (err) {
     console.error("DB2 connection error:", err);
+
+    console.error("ODBC details:", JSON.stringify(err.odbcErrors, null, 2));
+
     throw err;
   } finally {
     if (connection) {
@@ -33,7 +36,7 @@ const queryMultiple = async (queries) => {
     const results = {};
 
     for (const [name, { queryString, params = [] }] of Object.entries(
-      queries
+      queries,
     )) {
       results[name] = await connection.query(queryString, params);
     }

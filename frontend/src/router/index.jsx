@@ -78,6 +78,7 @@ export const publicRoutes = [
     ],
     nested2: [
       { path: "duesseldorf", navLabel: "Düsseldorf" },
+      // { path: "frankfurt", navLabel: "Frankfurt" },
       { path: "hamburg", navLabel: "Hamburg" },
       { path: "muenchen", navLabel: "München" },
       { path: "stuttgart", navLabel: "Stuttgart" },
@@ -116,7 +117,15 @@ export const publicRoutes = [
       { path: "uebersicht", navLabel: "Uebersicht" },
       { path: "debitoren", navLabel: "Debitoren" },
       { path: "disposition", navLabel: "Disposition" },
+      { path: "e-commerce", navLabel: "E-Commerce" },
+      { path: "kundenservice", navLabel: "Kundenservice" },
       { path: "lagerleiter", navLabel: "Lagerleiter" },
+      { path: "office-empfang", navLabel: "Office / Empfang" },
+      { path: "social-media", navLabel: "SocialMedia" },
+      { path: "vertrieb-frontoffice", navLabel: "Vertrieb / Frontoffice" },
+      { path: "chat", navLabel: "Chat" },
+      { path: "erklaerung", navLabel: "Erklaerung" },
+      { path: "richtlinie", navLabel: "Richtlinie" },
     ],
   },
   {
@@ -146,7 +155,7 @@ export const privateRoutes = [
       },
       { path: "sales-quotations", navLabel: "Umsätze und Angebote" },
       { path: "sales-by-postcode", navLabel: "Umsatz nach PLZ" },
-      { path: "sales-details", navLabel: "Verkaufspositionen" },
+      // { path: "sales-details", navLabel: "Verkaufspositionen" },
     ],
   },
   {
@@ -169,6 +178,8 @@ export const privateRoutes = [
         path: "first-to-second-purchase-intervals",
         navLabel: "Tage zwischen erstem und zweitem Kauf",
       },
+      // { path: "muenchen", navLabel: "München" },
+      // { path: "stuttgart", navLabel: "Stuttgart" },
     ],
   },
   {

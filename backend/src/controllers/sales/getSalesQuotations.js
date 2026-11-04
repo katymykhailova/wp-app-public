@@ -19,6 +19,7 @@ const resultFields = createFields({
   filiale: {
     label: "Filiale",
     type: "select",
+    defaultOrder: { priority: 2, direction: "asc" },
     filterKey: "nln",
   },
   period: {
@@ -26,6 +27,7 @@ const resultFields = createFields({
     type: "date",
     selectable: false,
     filterable: false,
+    defaultOrder: { priority: 1, direction: "asc" },
     sortKey: "period_sort",
   },
   vertragsbetrag: {
@@ -72,7 +74,7 @@ const resultFields = createFields({
   },
 });
 
-const defaultOrder = [{ field: "period_sort" }, { field: "filiale" }];
+// const defaultOrder = [{ field: "period_sort" }, { field: "filiale" }];
 
 const chartSeriesUmsatz = [
   {
@@ -204,7 +206,7 @@ export default async (req, res) => {
         timeGranularity: {
           defaultGranularity: "month",
         },
-        defaultOrder,
+        // defaultOrder,
         params: [dateStart, dateEnd],
       },
     },

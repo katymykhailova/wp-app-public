@@ -1,79 +1,59 @@
 import { startOfYear, format } from "date-fns";
 import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
+import { createFields } from "../../_helpers/createFields.js";
 
-const aggregateFields = {
-  betrag_erstkauf: { fn: "sum", format: "currency" },
-  betrag_zweitkauf: { fn: "sum", format: "currency" },
-  erstes_datum_sort: { fn: "min" },
-  zweites_datum_sort: { fn: "min" },
-  segment_sort: { fn: "min" },
-  count: { fn: "count", distinct: true, format: "number" },
-};
-
-const resultFields = {
+const resultFields = createFields({
   id: {
     label: "id",
-    sortable: false,
+    type: "number",
     selectable: false,
+    sortable: false,
+    filterable: false,
     visible: false,
     queryable: false,
   },
   count: {
     label: "Anzahl",
-    sortable: true,
-    selectable: true,
-    visible: true,
-    required: true,
     hiddenByDefault: true,
+    aggregate: true,
+    fn: "count",
+    distinct: true,
+    format: "number",
   },
   kunden_nr: {
     label: "Kundennummer",
-    sortable: false,
-    selectable: true,
-    visible: true,
   },
   betrag_erstkauf: {
     label: "Erstkaufbetrag",
-    sortable: true,
-    selectable: true,
-    visible: true,
-    format: "currency",
+    aggregate: true,
   },
   betrag_zweitkauf: {
     label: "Zweitkaufbetrag",
-    sortable: true,
-    selectable: true,
-    visible: true,
-    format: "currency",
+    aggregate: true,
   },
   erstes_datum: {
     label: "Erstkaufdatum",
-    sortable: true,
-    selectable: true,
-    visible: true,
     sortKey: "erstes_datum_sort",
+    aggregate: true,
+    fn: "min",
   },
   zweites_datum: {
     label: "Zweitkaufdatum",
-    sortable: true,
-    selectable: true,
-    visible: true,
     sortKey: "zweites_datum_sort",
+    aggregate: true,
+    fn: "min",
   },
   tagen_zwischen: {
     label: "Tage zwischen den Käufen",
-    sortable: true,
-    selectable: true,
-    visible: true,
   },
   segment: {
     label: "Segment",
-    sortable: true,
     sortKey: "segment_sort",
     selectable: false,
-    visible: true,
+    aggregate: true,
+    fn: "min",
   },
-};
+});
 
 const cte = `
           vertraege AS (
@@ -156,7 +136,6 @@ export default async (req, res) => {
   try {
     const data = await sqlHelpers.getQueryData(sqlConfig, {
       query: req.query,
-      aggregateFields,
       resultFields,
       params: [dateStart, dateStart, dateStart, dateEnd],
     });
