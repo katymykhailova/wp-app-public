@@ -15,21 +15,20 @@ const ReportFilters = ({
   onParamsChange,
   fieldsList = [],
   timeGranularityList = [],
-  filterList = [],
-  // selectedFilterValue = [],
-  selectedFilters = [],
-  sortList = [],
   onFieldsCheckboxChange,
   onSelectTimeGranularity,
-  onSelectOrder,
-  onDirectionChange,
-  // onSelectFilter,
-  // onFilterCheckboxChange,
+  filterList = [],
+  selectedFilters = [],
   onAddFilter,
   onRemoveFilter,
   onSelectFilterField,
   onUpdateFilter,
-  direction = "asc",
+  orderList = [],
+  selectedOrders = [],
+  onAddOrder,
+  onRemoveOrder,
+  onSelectOrderField,
+  onUpdateOrder,
 }) => {
   const [isOpen, setIsOpen] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -160,11 +159,13 @@ const ReportFilters = ({
                         }
                       >
                         <Inputlist
-                          checkList={fieldConfig.options.map((option) => ({
-                            key: option.value,
-                            label: option.label,
-                            checked: filter.value.includes(option.value),
-                          }))}
+                          checkList={(fieldConfig.options ?? []).map(
+                            (option) => ({
+                              key: option.value,
+                              label: option.label,
+                              checked: filter.value.includes(option.value),
+                            }),
+                          )}
                           handleChange={(key) => {
                             const nextValue = filter.value.includes(key)
                               ? filter.value.filter((value) => value !== key)
@@ -175,9 +176,10 @@ const ReportFilters = ({
                         />
                       </Dropdown>
                     )}
-                    {["number", "string"].includes(fieldConfig?.type) && (
+                    {["number", "text"].includes(fieldConfig?.type) && (
                       <input
                         type={fieldConfig.type}
+                        name={`filterValue-${filter.id}`}
                         placeholder="Wert"
                         value={filter.value[0] ?? ""}
                         onChange={(e) => {
@@ -218,44 +220,68 @@ const ReportFilters = ({
             </div>
           </Actions.Collapsible>
         )}
-        {sortList.length > 0 && (
+        {orderList.length > 0 && (
           <Actions.Collapsible
             onToggle={() => handleCollapsibleToggle("sort")}
             isOpen={isOpen === "sort"}
             placeholder="Sortierung"
           >
             <div className={s.panel}>
-              <div className={s.filterRow}>
-                <Dropdown
-                  placeholder="Sortieren nach"
-                  width="220px"
-                  isOpen={isDropdownOpen === "sortField"}
-                  onToggle={() => handleDropdownToggle("sortField")}
-                >
-                  <Dropdown.List
-                    keyField="key"
-                    label="label"
-                    onClick={(key) => {
-                      setIsDropdownOpen(null);
-                      onSelectOrder(key);
-                    }}
-                    items={sortList}
-                  />
-                </Dropdown>
-                <Actions.Button outlined onClick={onDirectionChange}>
-                  {direction === "asc" ? (
-                    <MdArrowUpward size="25px" className={s.iconCsv} />
-                  ) : (
-                    <MdArrowDownward size="25px" className={s.iconCsv} />
-                  )}
-                </Actions.Button>
+              {selectedOrders.map((order) => {
+                const fieldConfig = orderList.find(
+                  ({ key }) => key === order.field,
+                );
+                const direction = order.direction;
 
-                <button type="button" title="Sortierung entfernen">
-                  ×
-                </button>
-              </div>
+                return (
+                  <div className={s.filterRow} key={order.id}>
+                    <Dropdown
+                      placeholder={fieldConfig?.label ?? "Sortieren nach"}
+                      width="220px"
+                      isOpen={isDropdownOpen === `order-${order.id}`}
+                      onToggle={() => handleDropdownToggle(`order-${order.id}`)}
+                    >
+                      <Dropdown.List
+                        keyField="key"
+                        label="label"
+                        items={orderList}
+                        onClick={(key) => {
+                          onSelectOrderField(order.id, key);
+                          setIsDropdownOpen(null);
+                        }}
+                      />
+                    </Dropdown>
+                    <Actions.Button
+                      outlined
+                      onClick={() => {
+                        onUpdateOrder(order.id, {
+                          direction: direction === "asc" ? "desc" : "asc",
+                        });
+                      }}
+                    >
+                      {direction === "asc" ? (
+                        <MdArrowUpward size="25px" className={s.iconCsv} />
+                      ) : (
+                        <MdArrowDownward size="25px" className={s.iconCsv} />
+                      )}
+                    </Actions.Button>
 
-              <button type="button" className={s.addButton}>
+                    <button
+                      type="button"
+                      title="Sortierung entfernen"
+                      onClick={() => onRemoveOrder(order.id)}
+                    >
+                      ×
+                    </button>
+                  </div>
+                );
+              })}
+
+              <button
+                type="button"
+                className={s.addButton}
+                onClick={onAddOrder}
+              >
                 + Sortierung hinzufügen
               </button>
             </div>
@@ -271,145 +297,3 @@ const ReportFilters = ({
 };
 
 export default ReportFilters;
-
-// <div className={s.panel}>
-//   <div className={s.filterRow}>
-//     <Dropdown
-//       placeholder="Filter nach"
-//       width="220px"
-//       isOpen={isDropdownOpen === "filterField"}
-//       onToggle={() => handleDropdownToggle("filterField")}
-//     >
-//       <Dropdown.List
-//         keyField="key"
-//         label="label"
-//         onClick={(key) => {
-//           setIsDropdownOpen(null);
-//           onSelectFilter(key);
-//         }}
-//         items={filterList}
-//       />
-//     </Dropdown>
-
-//     <Dropdown
-//       placeholder="="
-//       width="100px"
-//       isOpen={isDropdownOpen === "optionFilter"}
-//       onToggle={() => handleDropdownToggle("optionFilter")}
-//     >
-//       <Dropdown.List
-//         keyField="key"
-//         label="label"
-//         items={[
-//           { key: "=", label: "=" },
-//           { key: "!=", label: "≠" },
-//           { key: ">", label: ">" },
-//           { key: "<", label: "<" },
-//           { key: "in", label: "in" },
-//           { key: "like", label: "enthält" },
-//         ]}
-//       />
-//     </Dropdown>
-//     <Dropdown
-//       placeholder="Werte auswählen"
-//       isOpen={isDropdownOpen === "filterValue"}
-//       onToggle={() => handleDropdownToggle("filterValue")}
-//       width="200px"
-//     >
-//       <Inputlist
-//         checkList={selectedFilterValue}
-//         handleChange={onFilterCheckboxChange}
-//       />
-//     </Dropdown>
-
-//     <button type="button" title="Filter entfernen">
-//       ×
-//     </button>
-//   </div>
-
-//   <button type="button" className={s.addButton}>
-//     + Filter hinzufügen
-//   </button>
-// </div>;
-
-// {
-//   <input type="text" placeholder="Wert" />
-// }
-
-// {
-//    {filterList.length > 0 && (
-//   <Dropdown placeholder="Filter nach" width="260px">
-//     <div className={s.panel}>
-//       <div className={s.panelTitle}>Filter</div>
-
-//       <div className={s.filterRow}>
-//         <select defaultValue="">
-//           <option value="" disabled>
-//             Feld auswählen
-//           </option>
-//           {filterList.map(({ key, label }) => (
-//             <option key={key} value={key}>
-//               {label}
-//             </option>
-//           ))}
-//         </select>
-
-//         <select defaultValue="=">
-//           <option value="=">=</option>
-//           <option value="!=">≠</option>
-//           <option value=">">&gt;</option>
-//           <option value="<">&lt;</option>
-//           <option value="in">IN</option>
-//           <option value="like">LIKE</option>
-//         </select>
-
-//         <input type="text" placeholder="Wert" />
-
-//         <button type="button" title="Filter entfernen">
-//           ×
-//         </button>
-//       </div>
-
-//       <button type="button" className={s.addButton}>
-//         + Filter hinzufügen
-//       </button>
-//     </div>
-//   </Dropdown>
-// )}
-// }
-
-// {
-//    {sortList.length > 0 && (
-//   <Dropdown placeholder="Sortieren nach" width="260px">
-//     <div className={s.panel}>
-//       <div className={s.panelTitle}>Sortierung</div>
-
-//       <div className={s.sortRow}>
-//         <select defaultValue="">
-//           <option value="" disabled>
-//             Feld auswählen
-//           </option>
-//           {sortList.map(({ key, label }) => (
-//             <option key={key} value={key}>
-//               {label}
-//             </option>
-//           ))}
-//         </select>
-
-//         <select defaultValue="ASC">
-//           <option value="ASC">▲ Aufsteigend</option>
-//           <option value="DESC">▼ Absteigend</option>
-//         </select>
-
-//         <button type="button" title="Sortierung entfernen">
-//           ×
-//         </button>
-//       </div>
-
-//       <button type="button" className={s.addButton}>
-//         + Sortierung hinzufügen
-//       </button>
-//     </div>
-//   </Dropdown>
-// )}
-// }

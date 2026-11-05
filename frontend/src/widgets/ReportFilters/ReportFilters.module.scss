@@ -63,6 +63,17 @@
     background-color: transparent;
   }
 
+  input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
   input {
     flex: 1;
     color: $text-color-light;

@@ -28,7 +28,7 @@
 
 /** @param {FieldOptions} options */
 const createField = (options = {}) => ({
-  type: "string",
+  type: "text",
   selectable: true,
   sortable: true,
   filterable: true,
@@ -56,7 +56,7 @@ const createFields = (fields) =>
     Object.entries(fields).map(([key, options]) => [
       key,
       options.aggregate ? createAggregateField(options) : createField(options),
-    ])
+    ]),
   );
 
 export { createFields };

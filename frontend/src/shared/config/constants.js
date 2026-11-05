@@ -8,7 +8,7 @@ export const operatorsByType = {
     { key: "<=", label: "≤" },
     { key: "<>", label: "≠" },
   ],
-  string: [
+  text: [
     { key: "=", label: "=" },
     { key: "like", label: "enthält" },
   ],

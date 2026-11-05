@@ -74,8 +74,6 @@ const resultFields = createFields({
   },
 });
 
-// const defaultOrder = [{ field: "period_sort" }, { field: "filiale" }];
-
 const chartSeriesUmsatz = [
   {
     dataKey: "umsatz_gesamt",
@@ -201,12 +199,10 @@ export default async (req, res) => {
       options: {
         query: req.query,
         grouping: { mode: "standard", totals: true },
-        // aggregateFields,
         resultFields,
         timeGranularity: {
           defaultGranularity: "month",
         },
-        // defaultOrder,
         params: [dateStart, dateEnd],
       },
     },
@@ -243,135 +239,3 @@ export default async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-// const resultFields = {
-//   id: {
-//     label: "id",
-//     type: "number",
-//     sortable: false,
-//     selectable: false,
-//     visible: false,
-//     queryable: false,
-//     filterable: false,
-//   },
-//   filiale: {
-//     label: "Filiale",
-//     type: "string",
-//     sortable: true,
-//     selectable: true,
-//     visible: true,
-//     filterKey: "nln",
-//   },
-//   period: {
-//     label: "Zeitraum",
-//     type: "date",
-//     sortable: true,
-//     selectable: false,
-//     visible: true,
-//     sortKey: "period_sort",
-//     filterable: false,
-//   },
-//   vertragsbetrag: {
-//     label: "Ø Vertragsbetrag",
-//     visible: true,
-//     type: "number",
-//     sortable: true,
-//     selectable: true,
-//     hiddenByDefault: true,
-//     required: true,
-//     aggregate: true,
-//     fn: "avg",
-//     format: "currency",
-//     cast: "DECIMAL(18, 4)",
-//   },
-//   umsatz_gesamt: {
-//     label: "Umsatz gesamt",
-//     type: "number",
-//     sortable: false,
-//     selectable: true,
-//     visible: true,
-//     aggregate: true,
-//     scope: "aggregate",
-//   },
-//   umsatz_ohne_angebote: {
-//     label: "Umsatz ohne Angebote",
-//     type: "number",
-//     sortable: false,
-//     selectable: true,
-//     visible: true,
-//     aggregate: true,
-//     scope: "aggregate",
-//   },
-//   umsatz_nur_angebote: {
-//     label: "Umsatz nur Angebote",
-//     type: "number",
-//     sortable: false,
-//     selectable: true,
-//     visible: true,
-//     aggregate: true,
-//     scope: "aggregate",
-//   },
-//   anzahl_gesamt: {
-//     label: "Anzahl gesamt",
-//     type: "number",
-//     sortable: false,
-//     selectable: true,
-//     visible: true,
-//     aggregate: true,
-//     fn: "count",
-//     distinct: true,
-//     format: "number",
-//     scope: "aggregate",
-//   },
-//   anzahl_ohne_angebote: {
-//     label: "Anzahl ohne Angebote",
-//     type: "number",
-//     sortable: false,
-//     selectable: true,
-//     visible: true,
-//     aggregate: true,
-//     fn: "count",
-//     distinct: true,
-//     format: "number",
-//     scope: "aggregate",
-//   },
-//   anzahl_nur_angebote: {
-//     label: "Anzahl nur Angebote",
-//     type: "number",
-//     sortable: false,
-//     selectable: true,
-//     visible: true,
-//     aggregate: true,
-//     fn: "count",
-//     distinct: true,
-//     format: "number",
-//     scope: "aggregate",
-//   },
-// };
-
-// const aggregateFields = {
-//   vertragsbetrag: {
-//     fn: "avg",
-//     format: "currency",
-//     cast: "DECIMAL(18, 4)",
-//     scope: "source",
-//   },
-//   umsatz_gesamt: { fn: "sum", format: "currency" },
-//   umsatz_ohne_angebote: { fn: "sum", format: "currency" },
-//   umsatz_nur_angebote: { fn: "sum", format: "currency" },
-//   anzahl_gesamt: {
-//     fn: "count",
-//     distinct: true,
-//     format: "number",
-//   },
-//   anzahl_ohne_angebote: {
-//     fn: "count",
-//     distinct: true,
-//     format: "number",
-//   },
-//   anzahl_nur_angebote: {
-//     fn: "count",
-//     distinct: true,
-//     format: "number",
-//   },
-// };
