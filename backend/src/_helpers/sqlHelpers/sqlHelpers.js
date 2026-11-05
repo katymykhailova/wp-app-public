@@ -62,22 +62,8 @@ const getTimeGranularity = (options) => {
 };
 
 const normalizeOptions = (options = {}) => {
-  const aggregateFields =
-    options.aggregateFields ??
-    Object.fromEntries(
-      Object.entries(options.resultFields ?? {}).filter(
-        ([, config]) => config.aggregate,
-      ),
-    );
-
   return {
     ...options,
-    aggregateFields: Object.fromEntries(
-      Object.entries(aggregateFields).map(([field, config]) => [
-        field,
-        typeof config === "string" ? { fn: config } : { ...config },
-      ]),
-    ),
     timeGranularity: getTimeGranularity(options),
     grouping: {
       mode: "standard",
@@ -88,12 +74,22 @@ const normalizeOptions = (options = {}) => {
 };
 
 const getFieldParts = (options) => {
-  const { query, aggregateFields, resultFields, grouping } = options;
+  const { query, resultFields, grouping } = options;
   const { mode } = grouping;
   const isHierarchical = mode === "hierarchical";
 
   const { fieldKey: timeFieldKey, sortKey: timeSortKey } =
     defaultTimeGranularity;
+
+  const aggregateFields = Object.fromEntries(
+    Object.entries(options.resultFields ?? {}).filter(
+      ([, config]) => config.aggregate,
+    ),
+  );
+
+  const filterFields = Object.entries(resultFields)
+    .filter(([, config]) => config.filterable)
+    .map(([field, { filterKey }]) => filterKey ?? field);
 
   const queryFields = query.fields
     ? query.fields
@@ -132,10 +128,6 @@ const getFieldParts = (options) => {
     .flatMap(([, { sortKey, filterKey }]) =>
       [sortKey, filterKey].filter((field) => field && field !== timeSortKey),
     );
-
-  const filterFields = Object.entries(resultFields)
-    .filter(([, config]) => config.filterable !== false)
-    .map(([field, { filterKey }]) => filterKey ?? field);
 
   const timeSortFields = [
     ...queryFields,
@@ -183,6 +175,7 @@ const getFieldParts = (options) => {
 
   return {
     fields,
+    aggregateFields,
     dimensions,
     selectedFields,
     groupingSets,
@@ -198,15 +191,6 @@ const getFieldParts = (options) => {
 const getQueryOptions = (fieldParts, options) => {
   const { selectedFields } = fieldParts;
   const { query, resultFields } = options;
-
-  // query.filter = {fieldName:{values:[], operator:""}}
-  // query.filter = [
-  //   {
-  //     field: "filiale",
-  //     operator: "in",
-  //     value: ["München", "Berlin"],
-  //   },
-  // ];
 
   const queryFilter = parseQueryParams(query.filter, "array")
     .filter((filter) => {
@@ -236,17 +220,12 @@ const getQueryOptions = (fieldParts, options) => {
       };
     });
 
-  // const query.order = [{ field: "filiale", direction: "asc" }];
   const queryOrder = parseQueryParams(query.order, "array")
     .filter(({ field }) => selectedFields.includes(field))
     .map(({ field, direction }) => ({
       field: resultFields[field]?.sortKey ?? field,
       direction: direction?.toLowerCase() === "desc" ? "DESC" : "ASC",
     }));
-
-  // const defaultOrderFields = (defaultOrder ?? []).filter(({ field }) =>
-  //   selectedFields.includes(field),
-  // );
 
   return { queryFilter, queryOrder };
 };
@@ -318,9 +297,6 @@ const getTimeGranularityExpressions = (timeGranularity, query) => {
   }
 };
 
-// const getFieldExpression = (field, fieldExpressions, usage) =>
-//   fieldExpressions?.[field]?.[usage] ?? `t.${field}`;
-
 const getAggregateExpression = (field, aggregate, preAggregate = false) => {
   const distinct = preAggregate ? aggregate.grainDistinct : aggregate.distinct;
   const cast = preAggregate ? aggregate.grainCast : aggregate.cast;
@@ -382,12 +358,13 @@ const buildFieldExpressions = (
 
 const getFieldExpressions = (fieldParts, options) => {
   const {
+    aggregateFields,
     preAggregateFields,
     groupingDimensions,
     expressionFields,
     groupFields,
   } = fieldParts;
-  const { query, timeGranularity, aggregateFields } = options;
+  const { query, timeGranularity } = options;
   const timeExpressions = getTimeGranularityExpressions(timeGranularity, query);
 
   const preAggregateExpressions = buildFieldExpressions(
@@ -437,9 +414,8 @@ const getTotalExpression = (field, aggregate) => {
   return `${totalFn}(t."${field}")`;
 };
 
-const getTotalSelect = (fieldParts, options) => {
-  const { selectedFields } = fieldParts;
-  const { aggregateFields } = options;
+const getTotalSelect = (fieldParts) => {
+  const { selectedFields, aggregateFields } = fieldParts;
 
   return selectedFields
     .map((field) => {
@@ -592,18 +568,12 @@ const getGroupBy = (
   )`;
 };
 
-// query.order = [
-//   { field: "filiale", direction: "asc" },
-//   { field: "period", direction: "desc" },
-//   { field: "umsatz", direction: "asc" },
-// ];
 const getOrderBy = (queryOptions, fieldExpressions, fieldParts) => {
   const { defaultOrder } = fieldParts;
   const { queryOrder } = queryOptions;
   const { fieldsExpressions } = fieldExpressions;
 
   const orderFields = queryOrder.length ? queryOrder : defaultOrder;
-  // : defaultOrderFields.map(({ field }) => ({ field, direction: "ASC" }));
 
   if (!orderFields.length) return "";
 
@@ -619,9 +589,8 @@ const getOrderBy = (queryOptions, fieldExpressions, fieldParts) => {
     : "";
 };
 
-const getAvgFields = (fieldParts, options) => {
-  const { selectedFields } = fieldParts;
-  const { aggregateFields } = options;
+const getAvgFields = (fieldParts) => {
+  const { selectedFields, aggregateFields } = fieldParts;
 
   return selectedFields.flatMap((field) => {
     const aggregate = aggregateFields[field];
@@ -648,7 +617,7 @@ const getAggregatedSource = (
   options,
 ) => {
   const select = getSelect(fieldParts, fieldExpressions);
-  const avgFields = getAvgFields(fieldParts, options);
+  const avgFields = getAvgFields(fieldParts);
 
   const { groupExpressions } = fieldExpressions;
 
@@ -679,7 +648,7 @@ const getQueryParts = (options) => {
   const queryOptions = getQueryOptions(fieldParts, options);
 
   const select = getSelect(fieldParts, fieldExpressions);
-  const totalSelect = getTotalSelect(fieldParts, options);
+  const totalSelect = getTotalSelect(fieldParts);
   const filter = getFilter(queryOptions, fieldExpressions);
 
   const tGrouped = getGroupedSource(
@@ -766,7 +735,7 @@ const buildQuery = (sqlConfig, options = {}) => {
 };
 
 const processResult = (rows, options) => {
-  const { aggregateFields, resultFields } = options;
+  const { resultFields } = options;
 
   const totalRow = rows.find((row) => row.is_total === 1);
   const result = rows
@@ -778,16 +747,17 @@ const processResult = (rows, options) => {
 
   const totals = totalRow
     ? Object.fromEntries(
-        Object.entries(aggregateFields).map(([field, aggregate]) => [
-          field,
-          {
-            format:
-              resultFields[field]?.format ??
-              aggregate?.format ??
-              (aggregate === "sum" ? "currency" : "number"),
-            value: totalRow[field],
-          },
-        ]),
+        Object.entries(totalRow)
+          .filter(([field]) => resultFields[field]?.aggregate)
+          .map(([field, value]) => [
+            field,
+            {
+              format:
+                resultFields[field]?.format ??
+                (resultFields[field]?.fn === "sum" ? "currency" : "number"),
+              value,
+            },
+          ]),
       )
     : null;
 
@@ -806,10 +776,6 @@ const processResult = (rows, options) => {
 //     option: {
 //       query: req.query,
 //       technicalFields: [""],
-//       aggregateFields: {
-//         feldName1: { fn: "sum", format: "currency/number" },
-//         frldName2: "sum",
-//       },
 //       resultFields: { id: {} },
 //       timeGranularity:
 //         true |
@@ -834,8 +800,11 @@ const getQueryData = async (sqlConfig, options = {}) => {
 
 // ? Example:
 // const queries = {
-//   name: "",
-//   config: {
+//   nameQuerie1: {
+//     sqlConfig: {},
+//     option: {},
+//   },
+//   nameQuerie2: {
 //     sqlConfig: {},
 //     option: {},
 //   },

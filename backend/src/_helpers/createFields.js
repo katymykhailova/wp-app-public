@@ -1,13 +1,13 @@
 /**
  * @typedef {Object} FieldOptions
- * @property {string} [label]
- * @property {string} [type]
- * @property {boolean} [selectable]
- * @property {boolean} [sortable]
- * @property {boolean} [filterable]
- * @property {boolean} [visible]
+ * @property {string} label
+ * @property {string} type
+ * @property {boolean} selectable
+ * @property {boolean} sortable
+ * @property {boolean} filterable
+ * @property {boolean} visible
+ * @property {boolean} hiddenByDefault
  * @property {boolean} [queryable]
- * @property {boolean} [hiddenByDefault]
  * @property {string} [sortKey]
  * @property {string} [filterKey]
  * @property {boolean} [required]
@@ -16,7 +16,7 @@
 
 /**
  * @typedef {FieldOptions & {
- *   aggregate: true,
+ *   aggregate?: true,
  *   fn?: string,
  *   format?: string,
  *   scope?: string,
