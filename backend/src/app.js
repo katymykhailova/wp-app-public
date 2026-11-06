@@ -32,7 +32,7 @@ const app = express();
 app.use(cookieParser());
 
 app.use(
-  compression({ filter: (req, res) => !req.headers["x-no-compression"] })
+  compression({ filter: (req, res) => !req.headers["x-no-compression"] }),
 );
 
 app.enable("trust proxy");
@@ -51,7 +51,7 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     exposedHeaders: ["Content-Disposition"],
-  })
+  }),
 );
 // app.use(express.static("public"));
 app.use(compression());
@@ -60,6 +60,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(authenticateToken);
+
 if (serverConfig.isDev) {
   const passLogin = function (req, res, next) {
     req.user = { isAdmin: true };
@@ -71,7 +72,7 @@ if (serverConfig.isDev) {
 app.use(
   "/app/",
   requireAuth,
-  requireRole(["admin", "edv", "intranet-reporting"])
+  requireRole(["admin", "edv", "intranet-reporting"]),
 );
 app.get("/", (req, res) => {
   res.send("alles ist Okay");

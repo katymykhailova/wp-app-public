@@ -13,10 +13,7 @@ export default (req, res, next) => {
 
     const user = {
       username: tokenData.username,
-      dn: tokenData.dn,
       displayName: tokenData.displayName,
-      mail: tokenData.mail,
-      department: tokenData.department,
       roles: tokenData.roles,
     };
 

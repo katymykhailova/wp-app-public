@@ -104,6 +104,7 @@ const Report = ({
     const visibleFields = configuredFields
       .filter(({ checked }) => checked)
       .map(({ key }) => key);
+
     const normalized = {
       ...params,
       fields: [...new Set(params.fields ?? visibleFields)].sort(),
@@ -329,6 +330,7 @@ const Report = ({
 
   const handleDropdownToggle = (type) =>
     setOpenDropdown((prev) => (prev === type ? null : type));
+
   const handleClose = useCallback(() => setOpenDropdown(null), []);
   useClickOutside(refs, openDropdown !== null, handleClose);
 
@@ -355,13 +357,15 @@ const Report = ({
     () => selectedFields.filter(({ selectable }) => selectable),
     [selectedFields],
   );
+
   const orderList = useMemo(
     () =>
       selectedFields
-        .filter(({ sortable, type }) => sortable !== false && type !== "date")
+        .filter(({ sortable, type }) => sortable !== false)
         .map(({ key, label }) => ({ key, label, direction: "asc" })),
     [selectedFields],
   );
+
   const filterList = useMemo(() => {
     const filtersByType = selectedFields
       .filter(({ filterable, type }) => filterable !== false && type !== "date")
@@ -377,12 +381,14 @@ const Report = ({
 
     return filtersByType;
   }, [selectedFields, filters]);
+
   const chartList = useMemo(
     () =>
       chartConfig?.map((chart) => ({ key: chart.name, label: chart.name })) ??
       [],
     [chartConfig],
   );
+
   const chartLabel =
     chartList.find(({ key }) => key === selectedChart?.name)?.label ??
     "Graph auswählen";

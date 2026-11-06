@@ -14,7 +14,6 @@ const resultFields = createFields({
   },
   plz: {
     label: "PLZ",
-    required: true,
     filterable: false,
     hiddenByDefault: true,
   },

@@ -33,25 +33,35 @@ const resultFields = createFields({
   },
   erstes_datum: {
     label: "Erstkaufdatum",
+    type: "date",
+    filterable: false,
     sortKey: "erstes_datum_sort",
     aggregate: true,
     fn: "min",
+    format: "date",
   },
   zweites_datum: {
     label: "Zweitkaufdatum",
+    type: "date",
+    filterable: false,
     sortKey: "zweites_datum_sort",
     aggregate: true,
     fn: "min",
+    format: "date",
   },
   tagen_zwischen: {
     label: "Tage zwischen den Käufen",
+    type: "number",
   },
   segment: {
     label: "Segment",
+    type: "text",
+    filterable: false,
     sortKey: "segment_sort",
     selectable: false,
     aggregate: true,
     fn: "min",
+    format: "text",
   },
 });
 
@@ -137,6 +147,7 @@ export default async (req, res) => {
     const data = await sqlHelpers.getQueryData(sqlConfig, {
       query: req.query,
       resultFields,
+      grouping: { mode: "standard", totals: false },
       params: [dateStart, dateStart, dateStart, dateEnd],
     });
 

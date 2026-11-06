@@ -15,6 +15,7 @@ const resultFields = createFields({
   month_start: {
     label: "Monat",
     selectable: false,
+    filterable: false,
     sortKey: "month_start_sort",
     defaultOrder: { priority: 1, direction: "asc" },
   },

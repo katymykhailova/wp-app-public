@@ -21,6 +21,7 @@ const SalesByPostcode = () => {
     "umsatz_neukunden",
     "umsatz_bestandskunden",
   ].sort();
+  const initialParams = { fields: defaultFields };
 
   const [startDate, setStartDate] = useState(startOfYear);
   const [endDate, setEndDate] = useState(currentDay);
@@ -54,6 +55,7 @@ const SalesByPostcode = () => {
           onEndDateChange={setEndDate}
           onParamsChange={setQueryParams}
           defaultMode="chart"
+          initialParams={initialParams}
         />
       )}
     </>

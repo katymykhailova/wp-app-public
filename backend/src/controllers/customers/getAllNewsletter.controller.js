@@ -19,6 +19,7 @@ const resultFields = createFields({
   firma: {
     label: "Firma",
     type: "select",
+    hiddenByDefault: true,
   },
   vorname: {
     label: "Vorname",
@@ -32,6 +33,7 @@ const resultFields = createFields({
   online: {
     label: "Online",
     sortable: false,
+    hiddenByDefault: true,
   },
   filiale: {
     label: "Filiale",
@@ -54,6 +56,7 @@ const resultFields = createFields({
   },
   productGroups: {
     label: "Warengruppen",
+    type: "select",
   },
 });
 
@@ -84,12 +87,18 @@ const sorce = `
         AND AURBT <> 0 
 `;
 
+const soursProductGroups = `SELECT DISTINCT
+      WGR.warengruppe AS "label",
+      WGR.groupId AS "value"
+    FROM (${productGroupsQuery}) AS WGR
+    ORDER BY "label" ASC`;
+
 const sourceFiliale = `SELECT DISTINCT
       FLL.Bezeichnung AS "label",
       FTR.AUNLN AS "value"
     FROM UDVM400DAT.MAUFTR AS FTR
     ${sorce}
-      ORDER BY "label" ASC`;
+    ORDER BY "label" ASC`;
 
 const cte = ` 
     WGR AS (${productGroupsQuery}),
@@ -117,11 +126,10 @@ const cte = `
       ),
     Art AS (SELECT APANR, APWGR
       FROM UDVM400DAT.MARPOK AS p
-      WHERE APWGR IN (101,102,306,210,402,201,601,301,701,211,702)
       UNION
       SELECT APANR, APWGR
-      FROM UDVM400DAT.MARPOL AS p
-      WHERE APWGR IN (101,102,306,210,402,201,601,301,701,211,702))`;
+      FROM UDVM400DAT.MARPOL AS p)
+      `;
 
 const sourceBase = `SELECT
       vertraege.orderNumber AS id, vertraege.firma AS firma, vertraege.vorname AS vorname, 
@@ -132,7 +140,8 @@ const sourceBase = `SELECT
     FROM vertraege
     INNER JOIN Art ON vertraege.orderNumber = Art.APANR
     INNER Join WGR ON Art.APWGR = WGR.groupId
-    LEFT JOIN rekl ON rekl.APANR = vertraege.orderNumber 
+    LEFT JOIN rekl ON rekl.APANR = vertraege.orderNumber
+    WHERE {{sourceFilters}} 
     GROUP BY vertraege.firma, vertraege.vorname, vertraege.nachname, vertraege.Email,
       vertraege.Online, vertraege.filiale, vertraege.nln, vertraege.period_sort, vertraege.auftragsdatum, vertraege.orderNumber,
       CASE WHEN rekl.APREK IS NULL OR TRIM(rekl.APREK) = '' THEN 'nein' ELSE 'ja' END`;
@@ -155,6 +164,18 @@ export default async (req, res) => {
       sqlConfig: {
         cte,
         source: sourceBase,
+        sourceFilter: {
+          productGroups: {
+            where: `EXISTS (SELECT 1
+            FROM Art AS filteredArt
+            WHERE filteredArt.APANR = vertraege.orderNumber
+            AND filteredArt.APWGR IN ({{filter:productGroups}})
+            )`,
+            defaultValue: [
+              101, 102, 306, 210, 402, 201, 601, 301, 701, 211, 702,
+            ],
+          },
+        },
       },
       options: {
         query: req.query,
@@ -173,6 +194,16 @@ export default async (req, res) => {
         params: [dateStart, dateEnd],
       },
     },
+    productGroups: {
+      sqlConfig: {
+        source: soursProductGroups,
+      },
+      options: {
+        query: {},
+        rawQuery: true,
+        params: [],
+      },
+    },
   };
 
   try {
@@ -186,6 +217,12 @@ export default async (req, res) => {
           filiale: {
             label: "Filiale",
             options: result["filiale"],
+          },
+        }),
+        ...(result["productGroups"].length && {
+          productGroups: {
+            label: "Warengruppen",
+            options: result["productGroups"],
           },
         }),
       },

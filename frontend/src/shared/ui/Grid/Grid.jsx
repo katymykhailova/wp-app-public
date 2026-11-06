@@ -43,11 +43,13 @@ const Grid = ({ data = [], columns: columnsProp = [], totals = {} }) => {
         data.map((row, rowIndex) =>
           columns.map(({ key, format }) => {
             const totalFormat = totals?.[key]?.format;
+            const fieldFormat =
+              format === "number" || format === "currency" ? format : null;
 
             const valueFormat =
               totalFormat === "number" || totalFormat === "currency"
                 ? totalFormat
-                : format;
+                : fieldFormat;
 
             return (
               <div className={s.cell} key={`${row.id ?? rowIndex}-${key}`}>

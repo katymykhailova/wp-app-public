@@ -7,7 +7,9 @@ const Inputlist = ({ checkList, type = "checkbox", name, handleChange }) => {
       <ul className={s.inputGroup}>
         {checkList.map((checkItem) => (
           <li
-            className={clsx(s.inputItem, { [s.radioItem]: type === "radio" })}
+            className={clsx(s.inputItem, {
+              [s.radioItem]: type === "radio",
+            })}
             key={checkItem.label}
           >
             <label className={s.category}>
@@ -18,6 +20,9 @@ const Inputlist = ({ checkList, type = "checkbox", name, handleChange }) => {
                 onChange={() => handleChange(checkItem.key)}
                 value={checkItem.key}
                 name={name}
+                className={clsx(s.inputItem, {
+                  [s.checkboxItem]: type === "checkbox",
+                })}
               />
               <span>{checkItem.label}</span>
             </label>

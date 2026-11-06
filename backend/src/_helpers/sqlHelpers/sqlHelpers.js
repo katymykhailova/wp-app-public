@@ -188,11 +188,11 @@ const getFieldParts = (options) => {
   };
 };
 
-const getQueryOptions = (fieldParts, options) => {
+const getQueryOptions = (fieldParts, options, sqlConfig) => {
   const { selectedFields } = fieldParts;
   const { query, resultFields } = options;
 
-  const queryFilter = parseQueryParams(query.filter, "array")
+  const parseQueryFilter = parseQueryParams(query.filter, "array")
     .filter((filter) => {
       if (!filter || typeof filter !== "object" || Array.isArray(filter)) {
         return false;
@@ -220,6 +220,16 @@ const getQueryOptions = (fieldParts, options) => {
       };
     });
 
+  const sourceFilter = sqlConfig.sourceFilter ?? {};
+
+  const queryFilter = parseQueryFilter.filter(
+    ({ field }) => !sourceFilter[field],
+  );
+
+  const querySourceFilter = parseQueryFilter.filter(
+    ({ field }) => sourceFilter[field],
+  );
+
   const queryOrder = parseQueryParams(query.order, "array")
     .filter(({ field }) => selectedFields.includes(field))
     .map(({ field, direction }) => ({
@@ -227,7 +237,7 @@ const getQueryOptions = (fieldParts, options) => {
       direction: direction?.toLowerCase() === "desc" ? "DESC" : "ASC",
     }));
 
-  return { queryFilter, queryOrder };
+  return { queryFilter, querySourceFilter, queryOrder };
 };
 
 const getTimeGranularityExpressions = (timeGranularity, query) => {
@@ -639,14 +649,47 @@ const getSelect = (fieldParts, fieldExpressions) => {
   return buildSelect(selectedFields, fieldsExpressions);
 };
 
-const getQueryParts = (options) => {
+const getSource = (queryOptions, sqlConfig) => {
+  const { querySourceFilter } = queryOptions;
+  const { sourceFilter = {}, source } = sqlConfig;
+  const params = [];
+  const conditions = [];
+
+  for (const [field, config] of Object.entries(sourceFilter)) {
+    const filter = querySourceFilter.find((item) => item.field === field);
+    const values = filter?.value?.length ? filter.value : config.defaultValue;
+
+    if (!values?.length) continue;
+
+    conditions.push(
+      config.where.replace(
+        `{{filter:${field}}}`,
+        values.map(() => "?").join(", "),
+      ),
+    );
+
+    params.push(...values);
+  }
+
+  const sql = conditions.length ? conditions.join(" AND ") : "1=1";
+  const sqlSource = source.replace("{{sourceFilters}}", sql);
+
+  return {
+    sqlSource,
+    params,
+  };
+};
+
+const getQueryParts = (options, sqlConfig) => {
   const { grouping } = options;
   const { mode, totals } = grouping;
 
   const fieldParts = getFieldParts(options);
   const fieldExpressions = getFieldExpressions(fieldParts, options);
-  const queryOptions = getQueryOptions(fieldParts, options);
 
+  const queryOptions = getQueryOptions(fieldParts, options, sqlConfig);
+
+  const source = getSource(queryOptions, sqlConfig);
   const select = getSelect(fieldParts, fieldExpressions);
   const totalSelect = getTotalSelect(fieldParts);
   const filter = getFilter(queryOptions, fieldExpressions);
@@ -681,6 +724,7 @@ const getQueryParts = (options) => {
   const orderBy = getOrderBy(queryOptions, fieldExpressions, fieldParts);
 
   return {
+    source,
     select,
     totalSelect,
     totalMarker,
@@ -697,6 +741,7 @@ const buildQuery = (sqlConfig, options = {}) => {
   const { params = [] } = options;
 
   const {
+    source,
     select,
     totalSelect,
     totalMarker,
@@ -706,17 +751,18 @@ const buildQuery = (sqlConfig, options = {}) => {
     filter,
     aggregatedSource,
     requiresPostAggregation,
-  } = getQueryParts(options);
+  } = getQueryParts(options, sqlConfig);
 
   const { where, having } = filter;
   const { params: paramsWhere } = where;
   const { sql: havingString, params: paramsHaving } = having;
+  const { sqlSource, params: paramsSource } = source;
 
   const withKeyword = ibmi && sqlConfig.recursive ? "WITH RECURSIVE" : "WITH";
 
   const withParts = [
     sqlConfig.cte,
-    `t AS (${sqlConfig.source})`,
+    `t AS (${sqlSource})`,
     `t_grouped AS (${tGrouped})`,
     requiresPostAggregation ? `t_aggregated AS (${aggregatedSource})` : null,
   ].filter(Boolean);
@@ -731,7 +777,10 @@ const buildQuery = (sqlConfig, options = {}) => {
   ${requiresPostAggregation ? "" : havingString}
   ${orderBy}`;
 
-  return { queryString, params: [...params, ...paramsWhere, ...paramsHaving] };
+  return {
+    queryString,
+    params: [...params, ...paramsSource, ...paramsWhere, ...paramsHaving],
+  };
 };
 
 const processResult = (rows, options) => {
