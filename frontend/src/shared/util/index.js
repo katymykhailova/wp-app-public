@@ -29,7 +29,7 @@ export const exportToCsv = (data, fileName = "export.csv") => {
   const rows = [
     headers.map(escapeCsvValue).join(";"),
     ...data.map((row) =>
-      headers.map((header) => escapeCsvValue(row[header])).join(";"),
+      headers.map((header) => escapeCsvValue(row[header])).join(";")
     ),
   ];
 
@@ -58,21 +58,10 @@ export const formatNumber = (
   options = {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  },
+  }
 ) => {
   format = format ?? "currency";
   return format === "currency"
     ? new Intl.NumberFormat("de-DE", options).format(value)
     : Number(value).toLocaleString("de-DE");
 };
-
-// const formatter = new Intl.NumberFormat("de-DE", {
-//   minimumFractionDigits: 2,
-//   maximumFractionDigits: 2,
-// });
-
-// export const formatNumber = (value) => {
-//   return Number.isInteger(value)
-//     ? value.toLocaleString("de-DE")
-//     : formatter.format(value);
-// };

@@ -155,7 +155,7 @@ export const privateRoutes = [
       },
       { path: "sales-quotations", navLabel: "Umsätze und Angebote" },
       { path: "sales-by-postcode", navLabel: "Umsatz nach PLZ" },
-      // { path: "stuttgart", navLabel: "Stuttgart" },
+      // { path: "sales-details", navLabel: "Verkaufspositionen" },
     ],
   },
   {

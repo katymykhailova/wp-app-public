@@ -58,28 +58,24 @@ export const pagesConfig = {
   "/sales": {
     title: "Umsatz",
     subTitle: "",
-    // backgroundImage: homeImg,
     hasSigebar: true,
     hasBanner: false,
   },
   "/visitors": {
     title: "Besucher",
     subTitle: "",
-    // backgroundImage: homeImg,
     hasSigebar: false,
     hasBanner: false,
   },
   "/purchases": {
     title: "Käufe",
     subTitle: "",
-    // backgroundImage: homeImg,
     hasSigebar: true,
     hasBanner: false,
   },
   "/customers": {
     title: "Customers",
     subTitle: "",
-    // backgroundImage: homeImg,
     hasSigebar: true,
     hasBanner: false,
   },

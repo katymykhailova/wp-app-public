@@ -33,19 +33,21 @@ const Dropdown = ({
   );
 };
 
-const DropdownList = ({ items, field, keyField, onClick }) => {
+const DropdownList = ({ items, label, keyField, onClick }) => {
   return (
     <ul className={s.dropdownList}>
       {items.map((item) => (
         <li
           key={item[keyField]}
-          onClick={() => onClick(item)}
+          onClick={() => onClick(item[keyField], item[label])}
           role="button"
           tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && onClick(item)}
+          onKeyDown={(e) =>
+            e.key === "Enter" && onClick(item[keyField], item[label])
+          }
           className={s.dropdownItem}
         >
-          {item[field]}
+          {item[label]}
         </li>
       ))}
     </ul>

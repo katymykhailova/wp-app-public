@@ -1,21 +1,34 @@
+import clsx from "clsx";
 import s from "./Inputlist.module.scss";
 
-const Inputlist = ({ checkList, handleChange }) => {
+const Inputlist = ({ checkList, type = "checkbox", name, handleChange }) => {
   return (
     <>
-      <div className={s.inputTumb}>
+      <ul className={s.inputGroup}>
         {checkList.map((checkItem) => (
-          <label className={s.category} key={checkItem.label}>
-            <input
-              type="checkbox"
-              label={checkItem.label}
-              checked={checkItem.checked}
-              onChange={() => handleChange(checkItem.key)}
-            />
-            <span>{checkItem.label}</span>
-          </label>
+          <li
+            className={clsx(s.inputItem, {
+              [s.radioItem]: type === "radio",
+            })}
+            key={checkItem.label}
+          >
+            <label className={s.category}>
+              <input
+                type={type}
+                label={checkItem.label}
+                checked={Boolean(checkItem.checked)}
+                onChange={() => handleChange(checkItem.key)}
+                value={checkItem.key}
+                name={name}
+                className={clsx(s.inputItem, {
+                  [s.checkboxItem]: type === "checkbox",
+                })}
+              />
+              <span>{checkItem.label}</span>
+            </label>
+          </li>
         ))}
-      </div>
+      </ul>
     </>
   );
 };

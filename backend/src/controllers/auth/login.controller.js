@@ -44,7 +44,7 @@ export default async (req, res) => {
 
     const adUser = searchEntries[0];
     if (!adUser) {
-      sendSuccessRes(res, { message: "User not found in AD" }, 404);
+      return sendSuccessRes(res, { message: "User not found in AD" }, 404);
     }
 
     const memberOf = adUser?.memberOf ?? [];
@@ -52,10 +52,7 @@ export default async (req, res) => {
 
     const token = jwt.generateToken({
       username,
-      dn: adUser.dn,
       displayName: adUser.displayName,
-      mail: adUser.mail,
-      department: adUser.department,
       roles,
     });
 
@@ -65,7 +62,7 @@ export default async (req, res) => {
           httponly: true,
           maxAge: 1 * 24 * 60 * 60 * 1000,
         })
-        .json({ user: username, adUser, roles });
+        .json({ user: username, displayName: adUser.displayName });
     } else {
       throw new Error("Something went wrong during token generation");
     }

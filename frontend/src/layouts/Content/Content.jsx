@@ -1,9 +1,15 @@
+import { useSelector } from "react-redux";
+
 import clsx from "clsx";
 
 import s from "./Content.module.scss";
 import { usePageLayout } from "@/context/PageLayoutContext";
 
+import ForbiddenPage from "@/layouts/Content/ForbiddenPage/ForbiddenPage";
+
 const Content = ({ children }) => {
+  const forbidden = useSelector((state) => state.app.forbidden);
+
   const { config } = usePageLayout();
   const {
     title = "",
@@ -12,6 +18,7 @@ const Content = ({ children }) => {
     hasBanner = true,
     hasSigebar = false,
   } = config;
+
   const isSubTitle = (str) => str.length > 7;
 
   return (
@@ -37,7 +44,7 @@ const Content = ({ children }) => {
           )}
         </div>
       )}
-      {children}
+      {forbidden ? <ForbiddenPage /> : children}
     </main>
   );
 };

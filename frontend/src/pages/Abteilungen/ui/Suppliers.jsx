@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from "react";
 import clsx from "clsx";
 
 import { useClickOutside } from "@/shared/hooks";
-import Dropdown from "@/shared/ui/Dropdown/Dropdown";
+import Dropdown from "@/shared/ui/Dropdown";
 
 import s from "./Suppliers.module.scss";
 import ContactsTable from "./ContactList";
@@ -18,9 +18,9 @@ const Suppliers = ({
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
 
-  const handleSelect = (item) => {
-    setCurrent(item.lieferant);
-    handleSuppliersChange?.(item.id);
+  const handleSelect = (keyField, label) => {
+    setCurrent(label);
+    handleSuppliersChange?.(keyField);
     setIsOpen(false);
   };
 
@@ -45,7 +45,7 @@ const Suppliers = ({
           >
             <Dropdown.List
               items={suppliers}
-              field="lieferant"
+              label="lieferant"
               keyField="id"
               onClick={handleSelect}
             ></Dropdown.List>

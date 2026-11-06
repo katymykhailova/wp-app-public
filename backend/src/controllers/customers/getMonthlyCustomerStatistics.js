@@ -1,163 +1,92 @@
 import { startOfYear, format } from "date-fns";
-import sqlHelpers from "../../_helpers/sqlHelpers.js";
+import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
+import { createFields } from "../../_helpers/createFields.js";
 
-export default async (req, res) => {
-  const dateStart =
-    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
-  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
-  const startYear = Number(String(dateStart).slice(0, 4));
-  const startMonth = Number(String(dateStart).slice(4, 6));
+const resultFields = createFields({
+  id: {
+    label: "id",
+    type: "number",
+    selectable: false,
+    sortable: false,
+    filterable: false,
+    visible: false,
+    queryable: false,
+  },
+  month_start: {
+    label: "Monat",
+    selectable: false,
+    filterable: false,
+    sortKey: "month_start_sort",
+    defaultOrder: { priority: 1, direction: "asc" },
+  },
+  gesamt_chat: {
+    label: "Bestellungen Chat",
+  },
+  gesamt_nln: {
+    label: "Bestellungen Filialen",
+  },
+  anzahl_chat_neukunden: {
+    label: "Neukunden Chat",
+  },
+  anzahl_eshop_neukunden: {
+    label: "Neukunden eShop",
+  },
+  anzahl_nln_neukunden: {
+    label: "Neukunden Filialen",
+  },
+  anzahl_gesamt_neukunden: {
+    label: "Neukunden gesam",
+  },
+  anzahl_chat_bestandskunden: {
+    label: "Bestandskunden Chat",
+  },
+  anzahl_eshop_bestandskunden: {
+    label: "Bestandskunden eShop",
+  },
+  anzahl_nln_bestandskunden: {
+    label: "Bestandskunden Filialen",
+  },
+  anzahl_gesamt_bestandskunden: {
+    label: "Bestandskunden gesamt",
+  },
+});
 
-  const endYear = Number(String(dateEnd).slice(0, 4));
-  const endMonth = Number(String(dateEnd).slice(4, 6));
-  const months = (endYear - startYear) * 12 + (endMonth - startMonth);
+const cte = `
+      params (dt_from) AS (
+      VALUES (DATE(TIMESTAMP_FORMAT(CAST(? AS CHAR(8)), 'YYYYMMDD')))
+      ),
+      months (month_start, month_end, n) AS (
+      SELECT
+        dt_from - (DAY(dt_from) - 1) DAYS,
+        ADD_MONTHS(dt_from - (DAY(dt_from) - 1) DAYS, 1),
+        CAST(0 AS INTEGER)
+      FROM params
+      UNION ALL
+      SELECT
+        ADD_MONTHS(month_start, 1),
+        ADD_MONTHS(month_end, 1),
+        n + 1
+      FROM months
+      WHERE n < ?
+      ),
+      umsatz AS (
+      SELECT
+        DATE(TIMESTAMP_FORMAT(DIGITS(FTR.AUDAT), 'YYYYMMDD')) AS Ftr_dt,
+        DATE(TIMESTAMP_FORMAT(DIGITS(KUNDE.KDNAD), 'YYYYMMDD')) AS Kunde_AD,
+        FTR.AUKDN AS Kunde_Nr,
+        FTR.AURBT AS Ohne_Angebote_BETRAG,
+        CASE WHEN FTR.AUNLN = '800' THEN FTR.AURBT END AS Chat_BETRAG,
+        CASE WHEN FTR.AUNLN = '900' THEN FTR.AURBT END AS eShop_BETRAG,
+        CASE WHEN FTR.AUNLN < '800' THEN FTR.AURBT END AS NLN_BETRAG
+      FROM UDVM400DAT.MAUFTR AS FTR
+      INNER JOIN UDVM400DAT.MKUNDE AS KUNDE ON FTR.AUKDN = KUNDE.KDKDN
+      WHERE
+        FTR.AUDAT BETWEEN ? AND ?
+        AND FTR.AUNFV <> 'X' 
+        AND (AUAUN <> AUKDN) AND AURBT <> 0
+        AND KUNDE.KDNAD IS NOT NULL)`;
 
-  const defaultFields = [
-    "month_start",
-    "gesamt_chat",
-    "gesamt_eshop",
-    "gesamt_nln",
-    "anzahl_chat_neukunden",
-    "anzahl_eshop_neukunden",
-    "anzahl_nln_neukunden",
-    "anzahl_gesamt_neukunden",
-    "anzahl_chat_bestandskunden",
-    "anzahl_eshop_bestandskunden",
-    "anzahl_nln_bestandskunden",
-    "anzahl_gesamt_bestandskunden",
-  ];
-
-  const technicalFields = ["month_start_sort"];
-
-  const aggregateFields = {
-    // gesamt_chat: "count",
-    // gesamt_eshop: "count",
-    // gesamt_nln: "count",
-    // anzahl_chat_neukunden: "count",
-    // anzahl_eshop_neukunden: "count",
-    // anzahl_nln_neukunden: "count",
-    // anzahl_gesamt_neukunden: "count",
-    // anzahl_chat_bestandskunden: "count",
-    // anzahl_eshop_bestandskunden: "count",
-    // anzahl_nln_bestandskunden: "count",
-    // anzahl_gesamt_bestandskunden: "count",
-  };
-
-  const resultFields = {
-    id: { label: "id", sortable: false, selectable: false, visible: false },
-    month_start: {
-      label: "Monat",
-      sortable: true,
-      selectable: false,
-      visible: true,
-      sortKey: "month_start_sort",
-    },
-    gesamt_chat: {
-      label: "Bestellungen Chat",
-      sortable: false,
-      selectable: false,
-      visible: true,
-    },
-    gesamt_nln: {
-      label: "Bestellungen Filialen",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_chat_neukunden: {
-      label: "Neukunden Chat",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_eshop_neukunden: {
-      label: "Neukunden eShop",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_nln_neukunden: {
-      label: "Neukunden Filialen",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_gesamt_neukunden: {
-      label: "Neukunden gesam",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_chat_bestandskunden: {
-      label: "Bestandskunden Chat",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_eshop_bestandskunden: {
-      label: "Bestandskunden eShop",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_nln_bestandskunden: {
-      label: "Bestandskunden Filialen",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-    anzahl_gesamt_bestandskunden: {
-      label: "Bestandskunden gesamt",
-      sortable: false,
-      selectable: true,
-      visible: true,
-    },
-  };
-
-  const defaultOrder = ["month_start"];
-
-  try {
-    const cte = `
-  params (dt_from) AS (
-    VALUES (DATE(TIMESTAMP_FORMAT('${dateStart}', 'YYYYMMDD')))
-  ),
-  months (month_start, month_end, n) AS (
-    SELECT
-      dt_from - (DAY(dt_from) - 1) DAYS,
-      ADD_MONTHS(dt_from - (DAY(dt_from) - 1) DAYS, 1),
-      CAST(0 AS INTEGER)
-    FROM params
-
-    UNION ALL
-
-    SELECT
-      ADD_MONTHS(month_start, 1),
-      ADD_MONTHS(month_end, 1),
-      n + 1
-    FROM months
-    WHERE n < ${months}
-  ),
-  umsatz AS (
-    SELECT
-      DATE(TIMESTAMP_FORMAT(DIGITS(FTR.AUDAT), 'YYYYMMDD')) AS Ftr_dt,
-      DATE(TIMESTAMP_FORMAT(DIGITS(KUNDE.KDNAD), 'YYYYMMDD')) AS Kunde_AD,
-      FTR.AUKDN AS Kunde_Nr,
-      FTR.AURBT AS Ohne_Angebote_BETRAG,
-      CASE WHEN FTR.AUNLN = '800' THEN FTR.AURBT END AS Chat_BETRAG,
-      CASE WHEN FTR.AUNLN = '900' THEN FTR.AURBT END AS eShop_BETRAG,
-      CASE WHEN FTR.AUNLN < '800' THEN FTR.AURBT END AS NLN_BETRAG
-    FROM UDVM400DAT.MAUFTR AS FTR
-    INNER JOIN UDVM400DAT.MKUNDE AS KUNDE
-      ON FTR.AUKDN = KUNDE.KDKDN
-    WHERE
-      FTR.AUDAT BETWEEN ? AND ?
-      AND FTR.AUNFV <> 'X'
-      AND FTR.AUAUN <> FTR.AUKDN
-      AND FTR.AURBT <> 0
-      AND KUNDE.KDNAD IS NOT NULL
-  )`;
-
-    const source = `SELECT 
+const source = `SELECT 
         month_start AS month_start_sort,
         VARCHAR_FORMAT(month_start,'MM.YYYY') AS month_start,
         COUNT(Chat_BETRAG) AS Gesamt_Chat,
@@ -176,26 +105,26 @@ export default async (req, res) => {
       GROUP BY MONTHS.month_start
       ORDER BY MONTHS.month_start`;
 
-    const data = await sqlHelpers.getQueryData(
-      { recursive: true, cte, source },
-      {
-        query: req.query,
-        defaultFields,
-        technicalFields,
-        aggregateFields,
-        resultFields,
-        defaultOrder,
-        params: [dateStart, dateEnd],
-      }
-    );
+const sqlConfig = { recursive: true, cte, source };
 
-    // const filialeOptions = [
-    //   ...new Map(
-    //     result
-    //       .filter(({ filiale, nln }) => filiale && nln)
-    //       .map(({ filiale, nln }) => [nln, { label: filiale, value: nln }]),
-    //   ).values(),
-    // ].sort((a, b) => a.label.localeCompare(b.label));
+export default async (req, res) => {
+  const dateStart =
+    req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
+  const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+  const startYear = Number(String(dateStart).slice(0, 4));
+  const startMonth = Number(String(dateStart).slice(4, 6));
+
+  const endYear = Number(String(dateEnd).slice(0, 4));
+  const endMonth = Number(String(dateEnd).slice(4, 6));
+  const months = (endYear - startYear) * 12 + (endMonth - startMonth);
+
+  try {
+    const data = await sqlHelpers.getQueryData(sqlConfig, {
+      query: req.query,
+      resultFields,
+      grouping: { mode: "standard", totals: false },
+      params: [dateStart, months, dateStart, dateEnd],
+    });
 
     res.status(200).json(data);
   } catch (error) {

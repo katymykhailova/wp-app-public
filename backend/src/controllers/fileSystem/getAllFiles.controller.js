@@ -16,12 +16,12 @@ const processEntry = async (entry, currentPath, currentBase) => {
   try {
     const isDirectory = entry.isDirectory();
 
-    const absolutePath = toPosix(relativePath);
+    const virtualPath = toPosix(relativePath);
 
     const item = {
       name: entry.name,
       isDirectory,
-      path: absolutePath,
+      path: virtualPath,
       relativePath: relativePath,
     };
 
@@ -76,9 +76,9 @@ const getFileStructure = async (dirPath, basePath = "") => {
 
 export default async (req, res) => {
   let requestedPath = req.body?.path || "";
-  const { target } = resolveInsideBase(BASE_DIR, requestedPath);
 
   try {
+    const { target } = resolveInsideBase(BASE_DIR, requestedPath);
     const files = await getFileStructure(target, requestedPath);
     res.status(200).json(files);
   } catch (error) {
