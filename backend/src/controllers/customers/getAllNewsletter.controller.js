@@ -66,7 +66,7 @@ const branchesData = await fsPromises.readFile(
 );
 const branches = JSON.parse(branchesData);
 
-const values = sqlHelpers.getSqlValues(branches, "id", "name");
+const branchValues = sqlHelpers.getSqlValues(branches, "id", "name");
 
 const productGroupsQuery = `
     SELECT INTEGER(LEFT(vdvar, 3)) AS "groupId", Trim(UCase(Left(vddat, 30))) AS "wgr", INTEGER(LEFT(vdvar, 3)) AS groupId, Trim(UCase(Left(vddat, 30))) AS warengruppe 
@@ -76,7 +76,7 @@ const productGroupsQuery = `
 const sorce = `
       LEFT JOIN (
           VALUES
-          ${values}
+          ${branchValues.sql}
           ) AS FLL (NLN, Bezeichnung)
           ON FTR.AUNLN = FLL.NLN
       WHERE
@@ -158,6 +158,7 @@ export default async (req, res) => {
   const dateStart =
     req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
   const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+  const params = [...branchValues.params, dateStart, dateEnd];
 
   const queries = {
     data: {
@@ -181,7 +182,7 @@ export default async (req, res) => {
         query: req.query,
         grouping: { mode: "standard", totals: false },
         resultFields,
-        params: [dateStart, dateEnd],
+        params,
       },
     },
     filiale: {
@@ -191,7 +192,7 @@ export default async (req, res) => {
       options: {
         query: {},
         rawQuery: true,
-        params: [dateStart, dateEnd],
+        params,
       },
     },
     productGroups: {

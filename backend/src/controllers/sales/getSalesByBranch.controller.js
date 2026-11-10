@@ -99,7 +99,7 @@ const branchesData = await fsPromises.readFile(
 );
 const branches = JSON.parse(branchesData);
 
-const values = sqlHelpers.getSqlValues(branches, "id", "name");
+const branchValues = sqlHelpers.getSqlValues(branches, "id", "name");
 
 // const source = `
 //   LEFT JOIN (
@@ -110,7 +110,7 @@ const values = sqlHelpers.getSqlValues(branches, "id", "name");
 
 const source = `
   LEFT JOIN (
-    VALUES ${values}
+    VALUES ${branchValues.sql}
   ) AS FLL (NLN, Bezeichnung)
     ON FTR.AUNLN = FLL.NLN
   WHERE
@@ -157,7 +157,13 @@ export default async (req, res) => {
         timeGranularity: {
           defaultGranularity: "month",
         },
-        params: [dateStart, dateStart, dateStart, dateEnd],
+        params: [
+          dateStart,
+          dateStart,
+          ...branchValues.params,
+          dateStart,
+          dateEnd,
+        ],
       },
     },
     filiale: {
@@ -167,7 +173,7 @@ export default async (req, res) => {
       options: {
         query: {},
         rawQuery: true,
-        params: [dateStart, dateEnd],
+        params: [...branchValues.params, dateStart, dateEnd],
       },
     },
   };

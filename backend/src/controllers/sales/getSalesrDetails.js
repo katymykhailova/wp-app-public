@@ -100,7 +100,7 @@ const branchesData = await fsPromises.readFile(
 );
 const branches = JSON.parse(branchesData);
 
-const values = sqlHelpers.getSqlValues(branches, "id", "name");
+const branchValues = sqlHelpers.getSqlValues(branches, "id", "name");
 
 const productGroupsQuery = `
     SELECT LEFT(vdvar, 3) AS GR_nummer, Trim(UCase(Left(vddat, 30))) AS warengruppe 
@@ -132,7 +132,7 @@ const source = `SELECT
       UDVM400DAT.MAUFTR AS ftr
     LEFT JOIN UDVM400DAT.MKUNDE AS Kunden ON
       ftr.AUKDN = Kunden.KDKDN
-    LEFT JOIN (VALUES ${values}) AS FLL (NLN, Bezeichnung)
+    LEFT JOIN (VALUES ${branchValues.sql}) AS FLL (NLN, Bezeichnung)
               ON ftr.AUNLN = FLL.NLN
     LEFT JOIN
                 (
@@ -197,8 +197,8 @@ export default async (req, res) => {
   const dateStart =
     req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
   const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
-  const termField = req.query.searchField || "artikel";
-  const termValue = req.query.searchValue || "Botero";
+  // const termField = req.query.searchField || "artikel";
+  // const termValue = req.query.searchValue || "Botero";
 
   try {
     const result = await sqlHelpers.getQueryData(sqlConfig, {
@@ -206,7 +206,7 @@ export default async (req, res) => {
       grouping: { mode: "hierarchical", totals: true },
       resultFields,
       timeGranularity: true,
-      params: [dateStart, dateEnd],
+      params: [...branchValues.params, dateStart, dateEnd],
     });
 
     // const filialeOptions = [

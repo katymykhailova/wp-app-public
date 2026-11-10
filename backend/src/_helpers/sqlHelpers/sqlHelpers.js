@@ -16,12 +16,12 @@ const defaultTimeGranularity = {
   ],
 };
 
-const getSqlValues = (arr, key, value) => {
-  const escapeSqlString = (value) => String(value).replaceAll("'", "''");
-  return arr
-    .map((item) => `(${item[key]}, '${escapeSqlString(item[value])}')`)
-    .join(", ");
-};
+const getSqlValues = (rows, key, value) => ({
+  sql: rows
+    .map(() => "(CAST(? AS INTEGER), CAST(? AS VARCHAR(100)))")
+    .join(", "),
+  params: rows.flatMap((item) => [item[key], item[value]]),
+});
 
 const getAllowedOperators = (field) =>
   field?.filterOperator ?? operatorsByType[field?.type || "text"] ?? [];
@@ -185,6 +185,8 @@ const getFieldParts = (options) => {
     groupingDimensions,
     groupFields,
     defaultOrder,
+    isHierarchical,
+    grainFields,
   };
 };
 
