@@ -2,46 +2,33 @@ import { startOfYear, format } from "date-fns";
 import fsPromises from "fs/promises";
 import config from "../../_config/config.js";
 import sqlHelpers from "../../_helpers/sqlHelpers/sqlHelpers.js";
+import { createFields } from "../../_helpers/createFields.js";
 
 const BASE_DIR = config.dbDir;
 
-const aggregateFields = {
-  artikelmenge: { fn: "sum", format: "number" },
-  artikelsumme: { fn: "sum", format: "currency" },
-  vertragsbetrag: {
-    fn: "sum",
-    format: "currency",
-    grain: ["auftragsnummer"],
-    grainFn: "max",
-    grainDistinct: false,
-    grainCast: false,
-  },
-};
-
-const defaultOrder = [{ field: "period_sort" }];
-
-const resultFields = {
+const resultFields = createFields({
   id: {
     label: "id",
-    sortable: false,
+    type: "number",
     selectable: false,
+    sortable: false,
+    filterable: false,
     visible: false,
     queryable: false,
   },
   period: {
     label: "Zeitraum",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    type: "date",
+    selectable: false,
+    filterable: false,
+    defaultOrder: { priority: 1, direction: "asc" },
     sortKey: "period_sort",
   },
   filiale: {
     label: "Filiale",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    type: "select",
+    defaultOrder: { priority: 2, direction: "asc" },
     filterKey: "nln",
-    operators: [],
   },
   // auftragsnummer: {
   //   label: "Auftragsnummer",
@@ -51,84 +38,61 @@ const resultFields = {
   // },
   kundentyp: {
     label: "B2B/Andere",
-    sortable: true,
-    selectable: true,
-    visible: true,
     hiddenByDefault: true,
   },
   kundennummer: {
     label: "Kundennummer",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    type: "number",
     hiddenByDefault: true,
   },
   name: {
     label: "Kunde",
-    sortable: true,
-    selectable: true,
-    visible: true,
     hiddenByDefault: true,
   },
   adresse: {
     label: "Adresse",
-    sortable: true,
-    selectable: true,
-    visible: true,
     hiddenByDefault: true,
   },
   email: {
     label: "email",
-    sortable: true,
-    selectable: true,
-    visible: true,
     hiddenByDefault: true,
   },
   vertragsbetrag: {
     label: "Vertragsbetrag",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    aggregate: true,
+    fn: "sum",
+    format: "currency",
+    grain: ["auftragsnummer"],
+    grainFn: "max",
+    grainDistinct: false,
+    grainCast: false,
   },
   warengruppe: {
     label: "Warengruppe",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    type: "select",
   },
   artikelart: {
     label: "Artikelart",
-    sortable: true,
-    selectable: true,
-    visible: true,
   },
   artikel: {
     label: "Artikel",
-    sortable: true,
-    selectable: true,
-    visible: true,
   },
   verkaufspreis: {
     label: "Verkaufspreis",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    type: "number",
     format: "currency",
     hiddenByDefault: true,
   },
   artikelmenge: {
     label: "Artikelmenge",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    aggregate: true,
   },
   artikelsumme: {
     label: "Summe",
-    sortable: true,
-    selectable: true,
-    visible: true,
+    aggregate: true,
+    format: "currency",
   },
-};
+});
 
 const branchesData = await fsPromises.readFile(
   BASE_DIR + "/branches.json",
@@ -136,7 +100,7 @@ const branchesData = await fsPromises.readFile(
 );
 const branches = JSON.parse(branchesData);
 
-const values = sqlHelpers.getSqlValues(branches, "id", "name");
+const branchValues = sqlHelpers.getSqlValues(branches, "id", "name");
 
 const productGroupsQuery = `
     SELECT LEFT(vdvar, 3) AS GR_nummer, Trim(UCase(Left(vddat, 30))) AS warengruppe 
@@ -168,7 +132,7 @@ const source = `SELECT
       UDVM400DAT.MAUFTR AS ftr
     LEFT JOIN UDVM400DAT.MKUNDE AS Kunden ON
       ftr.AUKDN = Kunden.KDKDN
-    LEFT JOIN (VALUES ${values}) AS FLL (NLN, Bezeichnung)
+    LEFT JOIN (VALUES ${branchValues.sql}) AS FLL (NLN, Bezeichnung)
               ON ftr.AUNLN = FLL.NLN
     LEFT JOIN
                 (
@@ -233,18 +197,16 @@ export default async (req, res) => {
   const dateStart =
     req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
   const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
-  const termField = req.query.searchField || "artikel";
-  const termValue = req.query.searchValue || "Botero";
+  // const termField = req.query.searchField || "artikel";
+  // const termValue = req.query.searchValue || "Botero";
 
   try {
     const result = await sqlHelpers.getQueryData(sqlConfig, {
       query: req.query,
       grouping: { mode: "hierarchical", totals: true },
-      aggregateFields,
       resultFields,
       timeGranularity: true,
-      defaultOrder,
-      params: [dateStart, dateEnd],
+      params: [...branchValues.params, dateStart, dateEnd],
     });
 
     // const filialeOptions = [

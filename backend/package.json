@@ -42,7 +42,7 @@
     "lru-cache": "^11.2.5",
     "mysql2": "^3.15.1",
     "odbc": "^2.4.9",
-    "p-limit": "^7.3.0",
+    "p-limit": "^7.3.3",
     "passport": "^0.7.0"
   },
   "devDependencies": {

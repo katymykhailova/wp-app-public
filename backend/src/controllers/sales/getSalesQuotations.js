@@ -152,12 +152,12 @@ const branchesData = await fsPromises.readFile(
 );
 const branches = JSON.parse(branchesData);
 
-const values = sqlHelpers.getSqlValues(branches, "id", "name");
+const branchValues = sqlHelpers.getSqlValues(branches, "id", "name");
 
 const sourceFrom = `
   FROM UDVM400DAT.MAUFTR AS FTR
   LEFT JOIN (
-    VALUES ${values}
+    VALUES ${branchValues.sql}
   ) AS FLL (NLN, Bezeichnung)
     ON FTR.AUNLN = FLL.NLN
   WHERE
@@ -190,6 +190,7 @@ export default async (req, res) => {
   const dateStart =
     req.query?.dateStart || format(startOfYear(new Date()), "yyyyMMdd");
   const dateEnd = req.query?.dateEnd || format(new Date(), "yyyyMMdd");
+  const params = [...branchValues.params, dateStart, dateEnd];
 
   const queries = {
     data: {
@@ -203,7 +204,7 @@ export default async (req, res) => {
         timeGranularity: {
           defaultGranularity: "month",
         },
-        params: [dateStart, dateEnd],
+        params,
       },
     },
     filiale: {
@@ -213,13 +214,13 @@ export default async (req, res) => {
       options: {
         query: {},
         rawQuery: true,
-        params: [dateStart, dateEnd],
+        params,
       },
     },
   };
 
   try {
-    const result = await sqlHelpers.getParallelQueryData(queries);
+    const result = await sqlHelpers.getSequentialQueryData(queries);
 
     const data = {
       ...result["data"],

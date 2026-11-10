@@ -1,6 +1,9 @@
 import { query, queryMultiple } from "../../util/db2.js";
 import { isInvalidObject, isInvalidArray } from "../is-invalid-var.js";
 import { operatorsByType } from "../../_config/constants.js";
+import pLimit from "p-limit";
+
+const limit = pLimit(10);
 
 const ibmi = process.env.DSN === "WhosPerfect";
 
@@ -16,12 +19,12 @@ const defaultTimeGranularity = {
   ],
 };
 
-const getSqlValues = (arr, key, value) => {
-  const escapeSqlString = (value) => String(value).replaceAll("'", "''");
-  return arr
-    .map((item) => `(${item[key]}, '${escapeSqlString(item[value])}')`)
-    .join(", ");
-};
+const getSqlValues = (rows, key, value) => ({
+  sql: rows
+    .map(() => "(CAST(? AS INTEGER), CAST(? AS VARCHAR(100)))")
+    .join(", "),
+  params: rows.flatMap((item) => [item[key], item[value]]),
+});
 
 const getAllowedOperators = (field) =>
   field?.filterOperator ?? operatorsByType[field?.type || "text"] ?? [];
@@ -185,6 +188,8 @@ const getFieldParts = (options) => {
     groupingDimensions,
     groupFields,
     defaultOrder,
+    isHierarchical,
+    grainFields,
   };
 };
 
@@ -209,7 +214,8 @@ const getQueryOptions = (fieldParts, options, sqlConfig) => {
       return (
         Array.isArray(value) &&
         value.length > 0 &&
-        allowedOperators.includes(operator)
+        allowedOperators.includes(operator) &&
+        resultFields[field]?.filterable
       );
     })
     .map((filter) => {
@@ -231,7 +237,12 @@ const getQueryOptions = (fieldParts, options, sqlConfig) => {
   );
 
   const queryOrder = parseQueryParams(query.order, "array")
-    .filter(({ field }) => selectedFields.includes(field))
+    .filter(
+      (item) =>
+        item?.field &&
+        selectedFields.includes(item.field) &&
+        resultFields[item.field]?.sortable,
+    )
     .map(({ field, direction }) => ({
       field: resultFields[field]?.sortKey ?? field,
       direction: direction?.toLowerCase() === "desc" ? "DESC" : "ASC",
@@ -307,10 +318,18 @@ const getTimeGranularityExpressions = (timeGranularity, query) => {
   }
 };
 
-const getAggregateExpression = (field, aggregate, preAggregate = false) => {
-  const distinct = preAggregate ? aggregate.grainDistinct : aggregate.distinct;
-  const cast = preAggregate ? aggregate.grainCast : aggregate.cast;
-  const fn = preAggregate ? (aggregate.grainFn ?? aggregate.fn) : aggregate.fn;
+const getAggregateExpression = (
+  field,
+  aggregateConfig,
+  preAggregate = false,
+) => {
+  const distinct = preAggregate
+    ? aggregateConfig.grainDistinct
+    : aggregateConfig.distinct;
+  const cast = preAggregate ? aggregateConfig.grainCast : aggregateConfig.cast;
+  const fn = preAggregate
+    ? (aggregateConfig.grainFn ?? aggregateConfig.fn)
+    : aggregateConfig.fn;
 
   const expression = `${fn}(${distinct ? "DISTINCT " : ""}t.${field})`;
 
@@ -456,9 +475,9 @@ const buildFilter = (filters, fieldsExpressions, clause = "WHERE") => {
   for (const { filterKey, value, operator } of filters) {
     const expression = fieldsExpressions[filterKey].filter;
 
-    if (operator === "in") {
+    if (operator === "in" || operator === "not in") {
       const placeholders = value.map(() => "?").join(", ");
-      conditions.push(`${expression} IN (${placeholders})`);
+      conditions.push(`${expression} ${operator} (${placeholders})`);
       params.push(...value);
     } else if (operator === "like") {
       conditions.push(`${expression} LIKE ?`);
@@ -620,12 +639,7 @@ const getAvgFields = (fieldParts) => {
   });
 };
 
-const getAggregatedSource = (
-  fieldParts,
-  fieldExpressions,
-  havingString,
-  options,
-) => {
+const getAggregatedSource = (fieldParts, fieldExpressions, havingString) => {
   const select = getSelect(fieldParts, fieldExpressions);
   const avgFields = getAvgFields(fieldParts);
 
@@ -711,7 +725,6 @@ const getQueryParts = (options, sqlConfig) => {
     fieldParts,
     fieldExpressions,
     filter.having.sql,
-    options,
   );
 
   const totalMarker = getTotalMarker(fieldParts, grouping);
@@ -860,11 +873,13 @@ const getQueryData = async (sqlConfig, options = {}) => {
 // };
 const getParallelQueryData = async (queries) => {
   const entries = await Promise.all(
-    Object.entries(queries).map(async ([name, config]) => {
-      const result = await getQueryData(config.sqlConfig, config.options);
+    Object.entries(queries).map(([name, config]) =>
+      limit(async () => {
+        const result = await getQueryData(config.sqlConfig, config.options);
 
-      return [name, result];
-    }),
+        return [name, result];
+      }),
+    ),
   );
 
   return Object.fromEntries(entries);
@@ -877,13 +892,20 @@ export const getSequentialQueryData = async (queries) => {
     const options = normalizeOptions(config.options);
 
     normalizedOptions[name] = options;
-    preparedQueries[name] = buildQuery(config.sqlConfig, options);
+    preparedQueries[name] = options.rawQuery
+      ? {
+          queryString: config.sqlConfig.source,
+          params: options.params ?? [],
+        }
+      : buildQuery(config.sqlConfig, options);
   }
   const results = await queryMultiple(preparedQueries);
   return Object.fromEntries(
     Object.entries(results).map(([name, rows]) => [
       name,
-      processResult(rows, normalizedOptions[name]),
+      normalizedOptions[name].rawQuery
+        ? rows
+        : processResult(rows, normalizedOptions[name]),
     ]),
   );
 };

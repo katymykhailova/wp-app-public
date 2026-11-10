@@ -62,7 +62,7 @@ const branchesData = await fsPromises.readFile(
 );
 const branches = JSON.parse(branchesData);
 
-const values = sqlHelpers.getSqlValues(branches, "id", "name");
+const branchValues = sqlHelpers.getSqlValues(branches, "id", "name");
 
 const source = `SELECT
       BSU.K6NLN AS nln,
@@ -73,7 +73,7 @@ const source = `SELECT
       UDVM400DAT.MKVINF AS BSU
     LEFT JOIN (
     VALUES
-    ${values}
+    ${branchValues.sql}
     ) AS FLL (NLN,
       Bezeichnung)
     ON
@@ -93,7 +93,7 @@ export default async (req, res) => {
         query: req.query,
         resultFields,
         timeGranularity: true,
-        params: [dateStart, dateEnd],
+        params: [...branchValues.params, dateStart, dateEnd],
       },
     );
 
