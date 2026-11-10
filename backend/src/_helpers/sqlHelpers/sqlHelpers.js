@@ -1,6 +1,9 @@
 import { query, queryMultiple } from "../../util/db2.js";
 import { isInvalidObject, isInvalidArray } from "../is-invalid-var.js";
 import { operatorsByType } from "../../_config/constants.js";
+import pLimit from "p-limit";
+
+const limit = pLimit(10);
 
 const ibmi = process.env.DSN === "WhosPerfect";
 
@@ -870,11 +873,13 @@ const getQueryData = async (sqlConfig, options = {}) => {
 // };
 const getParallelQueryData = async (queries) => {
   const entries = await Promise.all(
-    Object.entries(queries).map(async ([name, config]) => {
-      const result = await getQueryData(config.sqlConfig, config.options);
+    Object.entries(queries).map(([name, config]) =>
+      limit(async () => {
+        const result = await getQueryData(config.sqlConfig, config.options);
 
-      return [name, result];
-    }),
+        return [name, result];
+      }),
+    ),
   );
 
   return Object.fromEntries(entries);

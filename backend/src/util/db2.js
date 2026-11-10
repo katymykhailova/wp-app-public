@@ -3,7 +3,7 @@ import odbc from "odbc";
 const query = async (queryString, params = []) => {
   let connection;
   try {
-    connection = await odbc.connect(`${process.env.ODBC_CONNECT}`);
+    connection = await odbc.connect(`${process.env.DB_CONNECTION_STRING}`);
     return await connection.query(queryString, params);
   } catch (err) {
     console.error("DB2 connection error:", err);
@@ -31,7 +31,7 @@ const queryMultiple = async (queries) => {
   let connection;
 
   try {
-    connection = await odbc.connect(`DSN=${process.env.DSN}`);
+    connection = await odbc.connect(`${process.env.DB_CONNECTION_STRING}`);
 
     const results = {};
 
@@ -44,6 +44,7 @@ const queryMultiple = async (queries) => {
     return results;
   } catch (err) {
     console.error("DB2 connection error:", err);
+    console.error("ODBC details:", JSON.stringify(err.odbcErrors, null, 2));
     throw err;
   } finally {
     if (connection) {

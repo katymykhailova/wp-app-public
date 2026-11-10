@@ -178,7 +178,7 @@ export default async (req, res) => {
     },
   };
   try {
-    const result = await sqlHelpers.getParallelQueryData(queries);
+    const result = await sqlHelpers.getSequentialQueryData(queries);
 
     const data = {
       ...result["data"],
