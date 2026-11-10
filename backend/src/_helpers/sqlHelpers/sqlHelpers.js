@@ -5,7 +5,7 @@ import pLimit from "p-limit";
 
 const limit = pLimit(10);
 
-const ibmi = process.env.DSN === "WhosPerfect";
+const ibmi = process.env.DB_DIALECT === "db2i";
 
 const defaultTimeGranularity = {
   label: "Zeitraum",
