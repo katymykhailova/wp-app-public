@@ -34,3 +34,4 @@ src/data/
 docker-compose.prod.yml
 *.sh
 !rundev.sh
+!run.sh
