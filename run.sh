@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+cd "$(dirname "$0")"
+
 DOCKER_FILE='./docker-compose.yml'
 DOCKER_FILE_TEST='./docker-compose.test.yml'
 DOCKER_FILE_PUBLIC='./docker-compose.public.yml'
