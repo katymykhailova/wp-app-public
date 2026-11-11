@@ -38,7 +38,7 @@ const ContactsTable = ({ personal = [], selectedDivision = "" }) => {
             {i}
           </div>
         ))}
-      {middle && (
+      {middle && !threeColumns && (
         <>
           <div className={s.contactListItem}>{data[0]}</div>
           <div className={s.contactListItem}>{data[1]}</div>
@@ -52,7 +52,7 @@ const ContactsTable = ({ personal = [], selectedDivision = "" }) => {
           </div>
         </>
       )}
-      {small && (
+      {small && !threeColumns && (
         <>
           <div className={s.contactListItem}>
             <div>{data[0]}</div>
@@ -74,10 +74,10 @@ const ContactsTable = ({ personal = [], selectedDivision = "" }) => {
   );
 
   return (
-    <>
+    <div className={s.contactListContainer}>
       <h4>Telefonverzeichnis</h4>
       <div
-        className={clsx(s.contactListContainer, s.title, {
+        className={clsx(s.contactList, s.title, {
           [s.big]: big,
           [s.middle]: middle,
           [s.small]: small || threeColumns,
@@ -88,7 +88,7 @@ const ContactsTable = ({ personal = [], selectedDivision = "" }) => {
       {normalizePersonal?.length > 0 &&
         normalizePersonal.map((i) => (
           <div
-            className={clsx(s.contactListContainer, {
+            className={clsx(s.contactList, {
               [s.big]: big,
               [s.middle]: middle,
               [s.small]: small || threeColumns,
@@ -109,7 +109,7 @@ const ContactsTable = ({ personal = [], selectedDivision = "" }) => {
             )}
           </div>
         ))}
-    </>
+    </div>
   );
 };
 export default ContactsTable;

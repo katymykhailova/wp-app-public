@@ -15,6 +15,7 @@ svg circle:hover {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
+  margin-bottom: 15px;
   @include desktopSmall {
     grid-template-columns: 1.4fr 1fr;
   }
