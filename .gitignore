@@ -35,3 +35,6 @@ docker-compose.prod.yml
 *.sh
 !rundev.sh
 !run.sh
+
+certbot/conf
+certbot/www
