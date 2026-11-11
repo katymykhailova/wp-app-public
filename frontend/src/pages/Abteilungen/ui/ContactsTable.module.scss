@@ -2,6 +2,10 @@
 @use "@/styles/variables" as *;
 
 .contactListContainer {
+  margin-bottom: 15px;
+}
+
+.contactList {
   font-size: 8px;
   display: grid;
   justify-items: left;
