@@ -1,4 +1,8 @@
 services:
+  backend:
+    build:
+      target: production-test
+
   nginx:
     volumes:
       - ./nginx.prod.conf:/etc/nginx/nginx.conf:ro

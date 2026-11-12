@@ -25,6 +25,8 @@ services:
       - wp-net
   backend:
     env_file: ./backend/.env.test
+    build:
+      target: test
     volumes:
       - ./backend/network_data/Sortimentsdaten:/app/daten/Sortimentsdaten
       - ./backend/network_data/Werbung:/app/daten/Werbung
