@@ -89,3 +89,25 @@ COPY --from=builder /app/dist ./dist
 RUN odbcinst -j
 
 CMD ["node", "dist/server.js"]
+
+# --- 7: production-test (portfolio) ---
+FROM base AS production-test
+
+# IBM Db2 ODBC and CLI Driver
+COPY drivers/db2-client/clidriver /opt/ibm/clidriver
+COPY containers/api/db2dsdriver.cfg /opt/ibm/clidriver/cfg/db2dsdriver.cfg
+
+ENV LD_LIBRARY_PATH=/opt/ibm/clidriver/lib
+
+# Test database ODBC configuration
+COPY containers/api/odbcinst.test.ini /etc/odbcinst.ini
+COPY containers/api/odbc.test.ini /etc/odbc.ini
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+COPY --from=builder /app/dist ./dist
+
+RUN odbcinst -j
+
+CMD ["node", "dist/server.js"]
